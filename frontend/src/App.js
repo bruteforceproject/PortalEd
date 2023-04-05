@@ -1,24 +1,23 @@
 import logo from './logo.png';
 import './App.css';
+import React from "react";
+import {Routes, Route} from "react-router-dom";
+
+import studentOverview from './components/studentOverview';
+import home from './components/home'
+
+
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          PortalEd is in progress. Teacher View, Parent-Student View, and Counselor View coming soon.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
+        <Routes>
+            <Route  exact path="/" Component={home} /> 
+            <Route  exact path="/studentOverview" Component={studentOverview} />   
+        </Routes> 
     </div>
   );
 }
-
 export default App;
+
