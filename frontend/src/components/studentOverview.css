@@ -1,5 +1,6 @@
 /* Style page for student overview */
 
+/* styles for body and header*/
 body{
     background-color: white;
     margin: 0px;
@@ -12,6 +13,7 @@ header{
     padding:2px;
 }
 
+/*these are to make the top a clickable link to student history*/
 div.headLink{
     cursor: pointer;
     position: relative;
@@ -19,7 +21,16 @@ div.headLink{
 div.headLink:hover{
     background-color: lightblue;
 }
+.link{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:1;
+}
 
+/*styles for each period*/
 div.Period0{
     border: 1.5px solid black;
     background-color: lightgray;
@@ -36,7 +47,6 @@ div.Period1{
     padding: 7px;
     margin: 30px;
 }
-
 div.Period2{
     border: 1.5px solid black;
     background-color: lightgray;
@@ -86,6 +96,7 @@ div.Period7{
     margin: 30px;
 }
 
+/*styles for when mouse hovers over period*/
 div.Period0:hover{
     border: 1.5px solid lightskyblue;
     box-shadow: 7px 7px 5px lightskyblue;
@@ -117,13 +128,4 @@ div.Period6:hover{
 div.Period7:hover{
     border: 1.5px solid lightskyblue;
     box-shadow: 7px 7px 5px lightskyblue;
-}
-
-.link{
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:1;
 }
