@@ -1,0 +1,129 @@
+/* Style page for student overview */
+
+body{
+    background-color: white;
+    margin: 0px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: left;
+}
+header{
+    background-color: lightgray;
+    font-size: 10px;
+    padding:2px;
+}
+
+div.headLink{
+    cursor: pointer;
+    position: relative;
+}
+div.headLink:hover{
+    background-color: lightblue;
+}
+
+div.Period0{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period1{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+
+div.Period2{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period3{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period4{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period5{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period6{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+div.Period7{
+    border: 1.5px solid black;
+    background-color: lightgray;
+    box-shadow: 7px 7px 5px gray;
+    border-radius: 25px;
+    padding: 7px;
+    margin: 30px;
+}
+
+div.Period0:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period1:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period2:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period3:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period4:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period5:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period6:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+div.Period7:hover{
+    border: 1.5px solid lightskyblue;
+    box-shadow: 7px 7px 5px lightskyblue;
+}
+
+.link{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:1;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import './studentOverview.css';
+import {Link} from "react-router-dom";
 //Class names, Student Name, and Teacher names will be accessed from DB
 //need to add logos similar to ones in our mockup
 //need to style
@@ -7,42 +8,53 @@ import React from 'react';
 function studentOverview() {
   return (
     
+    <html>
+    <header>
+        <div className="headLink">
+        <a href="studentHistory.js">
+            <span class="link"></span>
+        </a>
+        <h2>Student Name: Ariel Manalo &nbsp;&nbsp; Student ID Number: 301149641</h2>
+        </div>
+    </header>
+    <body>
     <div>
-      <h1>Student Overview</h1>
-      <div><h2>Student Name</h2></div>
+      <div></div>
       <div className='Period0'>
-          <p>Period 0: Chemistry</p>
-          <p>Teacher name: </p>
+          <p><b>Period 0: </b>Chemistry</p>
+          <p><b>Teacher Name: </b>B. Banana</p>
       </div>
       <div className='Period1'>
-          <p>Period 1: Biology</p>
-          <p>Teacher name: </p>
+          <p><b>Period 1: </b>Biology</p>
+          <p><b>Teacher Name: </b>A. Apple</p>
       </div>
       <div className='Period2'>
-          <p>Period 2: Math</p>
-          <p>Teacher name: </p>
+          <p><b>Period 2: </b>Math</p>
+          <p><b>Teacher Name: </b>C. Cherry</p>
       </div>
       <div className='Period3'>
-          <p>Period 3: English</p>
-          <p>Teacher name: </p>
+          <p><b>Period 3: </b>English</p>
+          <p><b>Teacher Name: </b>M. Mango</p>
       </div>
       <div className='Period4'>
-          <p>Period 4: Art</p>
-          <p>Teacher name: </p>
+          <p><b>Period 4: </b>Art</p>
+          <p><b>Teacher Name: </b>O. Orange</p>
       </div>
       <div className='Period5'>
-          <p>Period 5: Physical Education</p>
-          <p>Teacher name: </p>
+          <p><b>Period 5: </b>Physical Education</p>
+          <p><b>Teacher Name: </b>W. Watermelon</p>
       </div>
       <div className='Period6'>
-          <p>Period 6: History</p>
-          <p>Teacher name: </p>
+          <p><b>Period 6: </b>History</p>
+          <p><b>Teacher Name: </b>D. Dragonfruit</p>
       </div>
       <div className='Period7'>
-          <p>Period 7: Elective</p>
-          <p>Teacher name: </p>
+          <p><b>Period 7: </b>Elective</p>
+          <p><b>Teacher Name: </b>B. Blueberry</p>
       </div>
     </div>
+    </body>
+    </html>
   )
 }
 export default studentOverview;
