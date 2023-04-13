@@ -26,6 +26,9 @@ function home() {
           <ul>
             <Link to="/teacherView">TeacherView</Link>
           </ul>
+          <ul>
+            <Link to="/counselorView">CounselorView</Link>
+          </ul>
           </div>
       </header>
     </div>       
