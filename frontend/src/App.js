@@ -3,8 +3,9 @@ import './App.css';
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 
-import studentOverview from './components/studentOverview';
-import home from './components/home'
+import studentOverview from './Components/studentOverview'
+import teacherView from './Components/teacherView'
+import home from './Components/home'
 
 
 
@@ -14,7 +15,8 @@ function App() {
     <div className="App">
         <Routes>
             <Route  exact path="/" Component={home} /> 
-            <Route  exact path="/studentOverview" Component={studentOverview} />   
+            <Route  exact path="/studentOverview" Component={studentOverview} />  
+            <Route  exact path="/teacherView" Component={teacherView} /> 
         </Routes> 
     </div>
   );

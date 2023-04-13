@@ -21,7 +21,10 @@ function home() {
         </a>
         <div>
           <ul>
-              <Link to="/studentOverview">StudentOverview</Link>
+            <Link to="/studentOverview">StudentOverview</Link>
+          </ul>
+          <ul>
+            <Link to="/teacherView">TeacherView</Link>
           </ul>
           </div>
       </header>
