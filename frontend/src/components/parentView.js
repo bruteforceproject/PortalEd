@@ -54,11 +54,11 @@ const ParentView = () => {
         </Link>
       </div>
       <div className="button-container button-container2">
-        <a href="studentOverview.js" className="my-button">
+        <Link to="/studentOverview" className="my-button">
           Another Student
           <br />
           StudentID#000002
-        </a>
+        </Link>
       </div>
     </>
   );
