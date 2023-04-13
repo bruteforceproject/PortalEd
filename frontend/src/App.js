@@ -3,9 +3,10 @@ import './App.css';
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 
-import studentOverview from './Components/studentOverview'
-import teacherView from './Components/teacherView'
-import home from './Components/home'
+//import studentOverview from './Components/studentOverview'
+import studentOverview from './components/studentOverview'
+import teacherView from './components/teacherView'
+import home from './components/home'
 
 
 
