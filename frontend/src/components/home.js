@@ -32,6 +32,9 @@ function home() {
           <ul>
             <Link to="/studentHistory">StudentHistory</Link>
           </ul>
+          <ul>
+            <Link to="/parentView">ParentView</Link>
+          </ul>
         </div>
       </header>
     </div>       

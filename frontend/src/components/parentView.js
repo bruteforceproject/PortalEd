@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ParentView = () => {
+const parentView = () => {
   return (
     <>
       <style>
@@ -64,4 +64,4 @@ const ParentView = () => {
   );
 };
 
-export default ParentView;
+export default parentView;
