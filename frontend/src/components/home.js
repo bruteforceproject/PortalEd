@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 
 function home() {
   return (
-    
-        
+
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -29,10 +29,13 @@ function home() {
           <ul>
             <Link to="/counselorView">CounselorView</Link>
           </ul>
-          </div>
+          <ul>
+            <Link to="/studentHistory">StudentHistory</Link>
+          </ul>
+        </div>
       </header>
     </div>       
-   
+
   )
 }
 export default home;

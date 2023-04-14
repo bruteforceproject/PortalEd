@@ -1,0 +1,146 @@
+/* studentHistory.css */
+body {
+  background-color: white;
+  margin: 0px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: left;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin: 0 0.5rem;
+}
+
+.box {
+  width: 400px; /* Set a fixed width */
+  height: 300px; /* Set a fixed height */
+  margin: 0 0.5rem;
+  background-color: lightgrey;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; /* Add this line for scrolling */
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.calendar-inner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.calendar-inner .rbc-calendar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 1rem;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.student-header h1,
+.student-header h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.go-back-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.go-back-button-home {
+  margin-top: 1rem;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.go-back-button:hover {
+  background-color: #2980b9;
+}
+
+.go-back-button-home:hover {
+  background-color: #2980b9;
+}
+
+.event-tile {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  width: calc(100% - 2rem);
+  background-color: whitesmoke;
+  box-sizing: border-box;
+}
+
+.status-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.event-date {
+  font-size: 14px;
+}
