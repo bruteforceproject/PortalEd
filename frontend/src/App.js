@@ -8,6 +8,7 @@ import StudentHistory from './components/studentHistory';
 import studentOverview from './components/studentOverview'
 import teacherView from './components/teacherView'
 import parentView from './components/parentView'
+import parentstudentView from './components/parentstudentView'
 import home from './components/home'
 import CounselorView from './components/counselorView';
 
@@ -23,6 +24,7 @@ function App() {
             <Route  exact path="/counselorView" Component={CounselorView} />  
             <Route  exact path="/teacherView" Component={teacherView} /> 
             <Route  exact path="/parentView" Component={parentView} />
+            <Route  exact path="/parentstudentView" Component={parentstudentView} />
             <Route exact path="/studentHistory" element={<StudentHistory />} />
         </Routes> 
     </div>
