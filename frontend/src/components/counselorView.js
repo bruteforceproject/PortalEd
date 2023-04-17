@@ -1,28 +1,24 @@
 import React from 'react';
 import './counselorView.css';
+//counselorView
 
-function CounselorView(){
+function counselorView() {
     return(
-
-        <div className="container">
-      <div className="header">
-        <div className="header-left">
-          <p>Counselor View</p>
-        </div>
-        <div className="header-center">
-          <h1>Portal ED</h1>
-          <div className="search-bar">
-            <label htmlFor="student-id">Student ID:</label>
-            <input type="text" id="student-id" name="student-id" />
-            <button type="submit">Search</button>
-          </div>
-        </div>
-        <div className="header-right">
-          <button>Log Out</button>
-        </div>
-      </div>
-    </div>
-    );
+        <html>
+            <header>
+                <h2> add log out button here</h2>
+            </header>
+            <body>
+                <div>
+                    <h2>search</h2>
+                    <h1>add search bar here</h1>
+                    <h2>add search button here</h2>
+                </div>
+                <div>
+                    <h4>go back to homepage button here</h4>
+                </div>
+            </body>
+        </html>
+    )
 }
-
-export default CounselorView;
+export default counselorView;

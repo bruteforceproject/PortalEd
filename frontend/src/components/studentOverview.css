@@ -9,14 +9,15 @@ body{
 }
 header{
     background-color: lightgray;
-    font-size: 10px;
-    padding:2px;
+    font-size: 20px;
+    padding: 2px;
 }
 
 /*these are to make the top a clickable link to student history*/
 div.headLink{
     cursor: pointer;
     position: relative;
+    padding: 2px;
 }
 div.headLink:hover{
     background-color: lightblue;
@@ -96,36 +97,3 @@ div.Period7{
     margin: 30px;
 }
 
-/*styles for when mouse hovers over period*/
-div.Period0:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period1:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period2:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period3:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period4:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period5:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period6:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
-div.Period7:hover{
-    border: 1.5px solid lightskyblue;
-    box-shadow: 7px 7px 5px lightskyblue;
-}
