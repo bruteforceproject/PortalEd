@@ -1,23 +1,32 @@
 /* Style page for student overview */
 
 /* styles for body and header*/
+.parentstudentView{
+    text-align: center;
+}
 body{
     background-color: white;
     margin: 0px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: left;
 }
-header{
-    background-color: lightgray;
-    font-size: 20px;
-    padding: 2px;
+.studentName{
+    background-color: white;
+    padding:2px;
+}
+h1{
+    font-size:48px;
+}
+.parentstudentLogo{
+    height: 15vmin;
+    pointer-events: none;
+    padding:15px;
 }
 
 /*these are to make the top a clickable link to student history*/
 div.headLink{
     cursor: pointer;
     position: relative;
-    padding: 2px;
 }
 div.headLink:hover{
     background-color: lightblue;
@@ -30,46 +39,31 @@ div.headLink:hover{
     left:0;
     z-index:1;
 }
-
-
-.academicsImg, .attendanceImg, .behaviorImg {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
   }
 
-.image-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    
-}
-
-.academicsImg img, .attendanceImg img , .behaviorImg img{
-    max-width: 100%;
-    max-height: 100%;
-    width: 30%;
-    height: 100%;
-}
-
-
-
 /*styles for each period*/
-div.Period{
-    position: relative;
-
+div.studentparentPeriods{
     border: 1.5px solid black;
     background-color: lightgray;
     box-shadow: 7px 7px 5px gray;
     border-radius: 25px;
-    padding: 7px;
+    padding: 10px 30px;
     margin: 30px;
+    
+}
+div.displayPeriodandName{
+    display: flex;
+    justify-content: space-between;
 }
 
-
+div.studentAverages{
+    padding: 20px;
+    justify-content: center;
+    display:flex;
+}
