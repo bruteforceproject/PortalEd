@@ -31,8 +31,39 @@ div.headLink:hover{
     z-index:1;
 }
 
+
+.academicsImg, .attendanceImg, .behaviorImg {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.image-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.academicsImg img, .attendanceImg img , .behaviorImg img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 30%;
+    height: 100%;
+}
+
+
+
 /*styles for each period*/
-div.Period0{
+div.Period{
+    position: relative;
+
     border: 1.5px solid black;
     background-color: lightgray;
     box-shadow: 7px 7px 5px gray;
@@ -40,60 +71,5 @@ div.Period0{
     padding: 7px;
     margin: 30px;
 }
-div.Period1{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period2{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period3{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period4{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period5{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period6{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
-div.Period7{
-    border: 1.5px solid black;
-    background-color: lightgray;
-    box-shadow: 7px 7px 5px gray;
-    border-radius: 25px;
-    padding: 7px;
-    margin: 30px;
-}
+
 
