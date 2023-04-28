@@ -20,6 +20,9 @@ function home() {
         >
         </a>
         <div>
+        <ul>
+            <Link to="/log-in">Login</Link>
+          </ul>
           <ul>
             <Link to="/studentOverview">StudentOverview</Link>
           </ul>
