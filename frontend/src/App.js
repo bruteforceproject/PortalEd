@@ -28,7 +28,7 @@ function App() {
             <Route  exact path = "/account-recovery/password" Component = {PasswordRecovery} />
             <Route  exact path = "/account-recovery/account-id" Component = {AccountIDRecovery} />
             <Route  exact path = "/account-recovery/verify" Component = {Verify} />
-            <Roudte  exact path = "/account-recovery/notification-sent" Component = {NotificationSent} />
+            <Route  exact path = "/account-recovery/notification-sent" Component = {NotificationSent} />
             <Route  exact path = "/account-recovery/your-account-id" Component = {YourAccountID} />
             <Route  exact path="/studentOverview" Component={studentOverview} /> 
             <Route  exact path="/counselorView" Component={CounselorView} />  
