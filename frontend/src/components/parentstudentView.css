@@ -43,8 +43,9 @@ div.headLink:hover{
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    display: inline-block;
-    margin: 10px;
+    display: flex;
+    margin: 10px 25px;     /*adjust circle widgets here*/
+    padding: 10px; 
   }
 
 /*styles for each period*/
@@ -64,6 +65,7 @@ div.displayPeriodandName{
 
 div.studentAverages{
     padding: 20px;
+
     justify-content: center;
     display:flex;
 }
