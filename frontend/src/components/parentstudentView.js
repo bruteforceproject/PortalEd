@@ -150,7 +150,9 @@ function parentstudentView() {
             </div>
             </Link>      
     </div>
+
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 1: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -160,8 +162,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 2: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -171,8 +175,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 3: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -182,8 +188,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 4: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -193,8 +201,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 5: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -204,8 +214,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 6: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -215,8 +227,10 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     <div className='studentparentPeriods'>
+    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 7: </b><br></br>Chemistry</p>  
           <p><b>Teacher: </b><br></br>B. Banana</p>
@@ -226,6 +240,7 @@ function parentstudentView() {
             <CircleWidgetBehavior />
             <CircleWidgetAcademics />
             </div>
+            </Link>
     </div>
     </div>
     </body>
