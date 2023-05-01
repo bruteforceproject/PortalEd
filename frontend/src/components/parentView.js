@@ -39,7 +39,7 @@ const ParentView = () => {
       <div className="header">Portal Ed</div>
       <div className="header-2">Parent Name</div>
       <div className="button-container">
-      <Link to="/parentstudentView" className="my-button" id="textLength">
+      <Link to="/acknowledgeView" className="my-button" id="textLength">
       <div>
       <span>Student Name</span>
       <span className="student-id">2 Unacknowledged Alerts!</span>
