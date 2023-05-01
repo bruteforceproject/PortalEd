@@ -3,7 +3,6 @@ import './teacherView.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 
-
 const TeacherView = () => {
   const students = [...Array(35).keys()]; // create array of 35 students
   const [clickCount, setClickCount] = useState(0);

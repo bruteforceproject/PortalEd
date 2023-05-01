@@ -1,129 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './parentstudentView.css';
-import {Link} from "react-router-dom";
+//import {Link} from "react-router-dom";
 import logo from '../logocropped.png';
 
-
 //Class names, Student Name, and Teacher names will be accessed from DB
+//need to add logos similar to ones in our mockup
+//need to style
 //need to link buttons to appropriate page
 
 
-/*const CircleWidgetBETA = () => {
+const CircleWidget1 = () => {
     const [clickCount, setClickCount] = useState(0);
   
     const handleClick = () => {
       setClickCount(clickCount + 1);
-     
     };
   
-    let circleColor = '#ccc';        //blank (no color)
+    let circleColor = '#ccc';
     if (clickCount === 1) {
-      circleColor = '#FAB7A9';         //color red 
+      circleColor = '#f00';
     } else if (clickCount === 2) {
-      circleColor = '#FFFFB1';            // color yellow 
+      circleColor = '#0f0';
     } else if (clickCount === 3) {
-      circleColor = '#6AE16D';               // color green
+      circleColor = '#00f';
+      setClickCount(0); // reset click count after third click
     }
-      else if(clickCount===4){
-      circleColor = '#ccc'           
-      setClickCount(0); // reset click count after fourth click
-      } 
-      
+  
     return (
       <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
         <img src={require('./academics.png')} alt="test" />
       </div>
     );
+  }
+  const CircleWidget2 = () => {
+    const [clickCount, setClickCount] = useState(0);
+  
+    const handleClick = () => {
+      setClickCount(clickCount + 1);
+    };
+  
+    let circleColor = '#ccc';
+    if (clickCount === 1) {
+      circleColor = '#f00';
+    } else if (clickCount === 2) {
+      circleColor = '#0f0';
+    } else if (clickCount === 3) {
+      circleColor = '#00f';
+      setClickCount(0); // reset click count after third click
     }
-  */
-    const CircleWidgetAttendance = () => {
-      const [circleColor, setCircleColor] = useState('#ccc'); // Initial color is blank (no color)
-    
-      useEffect(() => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      }, []); // Run the effect only once on initial render
-    
-      const handleClick = () => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      };
-    
-      const getRandomColor = () => {
-        const colors = ['#FAB7A9', '#FFFFB1', '#6AE16D']; // Available colors
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-      };
-    
-      return (
-        <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
-          <img src={require('./attendance.png')} alt="test" />
-        </div>
-      );
-    };
-
-
-    const CircleWidgetBehavior = () => {
-      const [circleColor, setCircleColor] = useState('#ccc'); // Initial color is blank (no color)
-    
-      useEffect(() => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      }, []); // Run the effect only once on initial render
-    
-      const handleClick = () => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      };
-    
-      const getRandomColor = () => {
-        const colors = ['#FAB7A9', '#FFFFB1', '#6AE16D']; // Available colors
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-      };
-    
-      return (
-        <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
-          <img src={require('./behavior.png')} alt="test" />
-        </div>
-      );
-    };
-
-    const CircleWidgetAcademics = () => {
-      const [circleColor, setCircleColor] = useState('#ccc'); // Initial color is blank (no color)
-    
-      useEffect(() => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      }, []); // Run the effect only once on initial render
-    
-      const handleClick = () => {
-        const randomColor = getRandomColor();
-        setCircleColor(randomColor);
-      };
-    
-      const getRandomColor = () => {
-        const colors = ['#FAB7A9', '#FFFFB1', '#6AE16D']; // Available colors
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-      };
-    
-      return (
-        <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
-          <img src={require('./academics.png')} alt="test" />
-        </div>
-      );
-    };
-    
-
-
-
-
   
+    return (
+      <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
+        <img src={require('./attendance.png')} alt="test" />
+      </div>
+    );
+  }
+  const CircleWidget3 = () => {
+    const [clickCount, setClickCount] = useState(0);
+  
+    const handleClick = () => {
+      setClickCount(clickCount + 1);
+    };
+  
+    let circleColor = '#ccc';
+    if (clickCount === 1) {
+      circleColor = '#f00';
+    } else if (clickCount === 2) {
+      circleColor = '#0f0';
+    } else if (clickCount === 3) {
+      circleColor = '#00f';
+      setClickCount(0); // reset click count after third click
+    }
+  
+    return (
+      <div className="circle" style={{ backgroundColor: circleColor }} onClick={handleClick}>
+        <img src={require('./behavior.png')} alt="test" />
+      </div>
+    );
+  }
+
+
 function parentstudentView() {
-  
-
-  
   return (
     
     <html>
@@ -135,112 +92,93 @@ function parentstudentView() {
         </h1>
     <body>
     <div>
-    
-    <div className='studentparentPeriods' >
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
+    <div className='studentparentPeriods'>
         <div className='displayPeriodandName'>
-          
           <p><b>Period 0: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>      
     </div>
-
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 1: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 2: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 3: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 4: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 5: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 6: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     <div className='studentparentPeriods'>
-    <Link to="/studentHistory" style={{ textDecoration: 'none', color: 'black' }}>
         <div className='displayPeriodandName'>
           <p><b>Period 7: </b><br></br>Chemistry</p>  
-          <p><b>Teacher: </b><br></br>B. Banana</p>
+          <p><b>Teacher Name: </b><br></br>B. Banana</p>
         </div>
             <div className="studentAverages">
-            <CircleWidgetAttendance />
-            <CircleWidgetBehavior />
-            <CircleWidgetAcademics />
+            <CircleWidget1 />
+            <CircleWidget2 />
+            <CircleWidget3 />
             </div>
-            </Link>
     </div>
     </div>
     </body>

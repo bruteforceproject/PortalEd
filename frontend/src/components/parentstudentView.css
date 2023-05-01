@@ -15,8 +15,7 @@ body{
     padding:2px;
 }
 h1{
-    font-size:42px;
-    font-weight: normal
+    font-size:48px;
 }
 .parentstudentLogo{
     height: 15vmin;
@@ -45,30 +44,23 @@ div.headLink:hover{
     height: 70px;
     border-radius: 50%;
     display: flex;
-    margin: 0 25px;     /*adjust circle widgets here*/
+    margin: 10px 25px;     /*adjust circle widgets here*/
     padding: 10px; 
   }
-  .link {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Preserve the default text color */
-  }
-  
+
 /*styles for each period*/
 div.studentparentPeriods{
-    /*border: 1.5px solid black;*/
-    background-color: #d9d9d9;
+    border: 1.5px solid black;
+    background-color: lightgray;
     box-shadow: 7px 7px 5px gray;
     border-radius: 25px;
-    padding: 5px 30px;
+    padding: 10px 30px;
     margin: 30px;
     
 }
 div.displayPeriodandName{
     display: flex;
     justify-content: space-between;
-    font-size:30px;
-    line-height: 1.5em;
-    
 }
 
 div.studentAverages{
