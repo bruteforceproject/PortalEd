@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './parentView.css';
 
+import './studentOverview';
+
 const ParentView = () => {
   useEffect(() =>{
 
@@ -39,7 +41,7 @@ const ParentView = () => {
       <div className="header">Portal Ed</div>
       <div className="header-2">Parent Name</div>
       <div className="button-container">
-      <Link to="/parentstudentView" className="my-button" id="textLength">
+      <Link to="/studentOverview" className="my-button" id="textLength">
       <div>
       <span>Student Name</span>
       <span className="student-id">2 Unacknowledged Alerts!</span>
@@ -47,7 +49,7 @@ const ParentView = () => {
         </Link>
       </div>
       <div className="button-container button-container2">
-        <Link to="/parentstudentView" className="my-button" id="textLength2">
+        <Link to="/studentOverview" className="my-button" id="textLength2">
         <div>
         <span>Another Student</span>
         <span className="student-id2">0 Unacknowledged Alerts</span>
