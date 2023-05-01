@@ -10,7 +10,7 @@ function home() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          PortalEd is in progress. Teacher View, Parent-Student View, and Counselor View coming soon.
+          This landing page is for presentation purposes only.
         </p>
         <a
           className="App-link"
