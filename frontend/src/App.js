@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
         <Routes>
-            <Route  exact path="/" Component={home} /> 
+            <Route  exact path="/" Component={Login} /> 
             <Route  exact path = "/log-in" Component = {Login} />
             <Route  exact path = "/account-recovery/password" Component = {PasswordRecovery} />
             <Route  exact path = "/account-recovery/account-id" Component = {AccountIDRecovery} />
