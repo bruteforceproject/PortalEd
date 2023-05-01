@@ -96,7 +96,7 @@ const EventTile = ({ date, status }) => {
 const StudentHistory = () => {
   // Set the student's name and ID as example
   const studentName = "Ariel Manalo";
-  const studentId = "301149641";
+  const studentId = "301234641";
   const [dateRange, setDateRange] = useState({ start: null, end: null });
 
   const handleRangeChange = (range) => {
