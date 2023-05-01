@@ -36,7 +36,16 @@ const Login = () => {
 
   const verifyCredentials = (e) => {
     e.preventDefault();
-    navigate("/");
+
+    if(credentials.accountID === "teacher" && credentials.password === "password"){
+      navigate("/teacherView");
+    }
+    else if(credentials.accountID === "parent" && credentials.password === "password"){
+      navigate("/parentView");
+    }
+    else if(credentials.accountID === "counselor" && credentials.password === "password"){
+      navigate("/counselorView");
+    }
   }
 
   return (
