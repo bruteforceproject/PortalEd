@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './acknowledgeView.css';
+import './studentOverview';
 
 const AcknowledgeView = () => {
   const [checkbox1, setCheckbox1] = useState(false);
@@ -9,7 +10,7 @@ const AcknowledgeView = () => {
 
   const proceedToNextView = () => {
     if (checkbox1 && checkbox2) {
-      navigate('/parentstudentView');
+      navigate('/studentOverview');
     }
   };
 

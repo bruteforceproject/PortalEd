@@ -10,6 +10,7 @@ import teacherView from './components/teacherView'
 import parentView from './components/parentView'
 import parentstudentView from './components/parentstudentView'
 import home from './components/home'
+import AcknowledgeView from './components/acknowledgeView'
 import CounselorView from './components/counselorView';
 import Login from "./pages/log-in";
 import PasswordRecovery from "./pages/account-recovery-password";
@@ -32,6 +33,7 @@ function App() {
             <Route  exact path = "/account-recovery/your-account-id" Component = {YourAccountID} />
             <Route  exact path="/studentOverview" Component={studentOverview} /> 
             <Route  exact path="/counselorView" Component={CounselorView} />  
+            <Route  exact path="/acknowledgeView" Component={AcknowledgeView} /> 
             <Route  exact path="/teacherView" Component={teacherView} /> 
             <Route  exact path="/parentView" Component={parentView} />
             <Route  exact path="/parentstudentView" Component={parentstudentView} />
