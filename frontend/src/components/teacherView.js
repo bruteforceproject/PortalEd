@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 
 const TeacherView = () => {
-  const students = [...Array(30).keys()]; // create array of 35 students
+  const students = [...Array(55).keys()]; // create array of 35 students
   const [clickCount, setClickCount] = useState(0);
   const [clickTimeout, setClickTimeout] = useState(null);
   let [buttonClassName, setbuttonClassName] = useState('default-color');
