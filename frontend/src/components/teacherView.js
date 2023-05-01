@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 
 const TeacherView = () => {
-  const students = [...Array(35).keys()]; // create array of 35 students
+  const students = [...Array(30).keys()]; // create array of 35 students
   const [clickCount, setClickCount] = useState(0);
   const [clickTimeout, setClickTimeout] = useState(null);
   let [buttonClassName, setbuttonClassName] = useState('default-color');
@@ -61,10 +61,10 @@ const TeacherView = () => {
             <button className={`grid5 gridall default-color ${buttonClassName}`} onClick={handleClick} >
               <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
             </button>
-            <button className={`grid6 gridall default-color ${buttonClassName}`} onClick={handleClick}>
+            <button className="grid6 gridall ">
               <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
             </button>
-            <button className={`grid7 gridall default-color ${buttonClassName}`} onClick={handleClick}>
+            <button className="grid7 gridall">
               <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
             </button>
           </div>

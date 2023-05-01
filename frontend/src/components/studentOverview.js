@@ -14,7 +14,8 @@ function studentOverview() {
         <a href="studentHistory">
             <span class="link"></span>
         </a>
-        <h2>Student Name: Ariel Manalo &nbsp;&nbsp; Student ID Number: 301149641</h2>
+        <h2><span class = "name">Ariel Manalo</span> &nbsp;&nbsp; <span class = "id">ID: 304314933</span></h2>
+        
         </div>
     </header>
     <body>
