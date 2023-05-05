@@ -85,9 +85,22 @@ Troubleshooting
 (vardan)
 
 - Provide information on how to set up a development environment for your project, including required software, tools, and libraries.
+- Required Software: Any IDE that is capable of editing, creating and running a react application.
+-     -Teams preferred IDE: Visual Studio Code
+- Required Libraries: This project has many packages built in, thus no additional packages are needed.
+-       Note* (If having an issue running the program than downloading "react-scripts" may solve your issue. Enter "npm install react-scripts" in directory to fix                    issue.)
+-       Dependencies for frontend include: "react", "user-event", "moment", "react-big-calendar", "react-dom", "react-router-dom", "react-scripts"
 - Explain any coding standards or style guidelines that contributors should follow.
+-       -For certain features such as images for attendance, academics and behavior, three specific colors must be used (hex values):
+-             - For good behavior: #558c3b (green)
+-             - For infraction: #f2ca52 (yellow)
+-             - For disciplinary action: #f25d50 (red)
+-       - Images used for attendance, academics and behavior must be uniform. Images for these three are located in the "PortalEd/frontend/src/components/" directory             and named appropriately as "attendnace.png", "academics.png", "behavior.png"
 - Describe the project's file structure and organization, and explain the purpose of key files or directories.
-
+-      -all routing paths done in "App.js" located in: PortalEd/frontend/src/App.js
+-      -all pages that are viewable by users located in "components" folder located in PortalEd/frontend/src/components
+-      -main pages will be ".js" files instead of html since we are using react. 
+	    -each page has a corresponding .css file that handles styling 
 # Timeline
 
 (uriel)
@@ -113,7 +126,7 @@ Rohit Agrawal
 
 Uriel Sombrerero
 
-Vardan Vardanyan
+Vardan Vardanyan | vardanvardanyan@csus.edu | https://github.com/GyumriV | https://www.linkedin.com/feed/?trk=onboarding-landing
 
 # License
 
