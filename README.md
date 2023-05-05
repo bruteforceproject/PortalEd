@@ -58,9 +58,9 @@ This app also shows a students overview so that guardians, teachers, and councel
 -             - For disciplinary action: #f25d50 (red)
 -       - Images used for attendance, academics and behavior must be uniform. Images for these three are located in the "PortalEd/frontend/src/components/" directory             and named appropriately as "attendnace.png", "academics.png", "behavior.png"
 - Describe the project's file structure and organization, and explain the purpose of key files or directories.
-      -all routing paths done in "App.js" located in: PortalEd/frontend/src/App.js
-      -all pages that are viewable by users located in "components" folder located in PortalEd/frontend/src/components
-      -main pages will be ".js" files instead of html since we are using react. 
+-      -all routing paths done in "App.js" located in: PortalEd/frontend/src/App.js
+-      -all pages that are viewable by users located in "components" folder located in PortalEd/frontend/src/components
+-      -main pages will be ".js" files instead of html since we are using react. 
 	    -each page has a corresponding .css file that handles styling 
 # Timeline
 
