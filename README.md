@@ -1,17 +1,19 @@
 # PortalEd
+
 ![logo1](https://user-images.githubusercontent.com/76506163/236370824-e533a022-758c-47d0-b1a6-6d896571e8d2.png)
 
 # Synopsis
 
-PortalEd is an web based application that allows teachers to be more closely connected with the parents and guardians of their students. Teachers can notify their students guardians on their attendance, behavior, and academic progress with the tap of a button using a traffic light based color scheme. 
+PortalEd is an web based application that allows teachers to be more closely connected with the parents and guardians of their students. Teachers can notify their students guardians on their attendance, behavior, and academic progress with the tap of a button using a traffic light based color scheme.
 
 Often teachers and school faculty will send students home with paper slips indicating that their student has received an infraction, but they have no way of knowing if the guardians will see these papers or be the ones signing them. This application gives notifications to parents and guardians and prompts them to acknowledge their child's behavior, attendance, or academic alerts. This makes it so the parents and guardians are more involved in their students' education and that they get the necessary information to maximize their child's success.
 
 This app also shows a students overview so that guardians, teachers, and councelors can be given the proper information to address any areas that may be of concern. This area will show the average score for the behavior, attendance, and academics of a student.
 
 # Installation
-  
-  (rohit)
+
+(rohit)
+
 - List any system requirements or compatibility information, such as operating system, hardware, or software versions.
 - Specify any dependencies or libraries that need to be installed before the project can be set up.
 - Provide a step-by-step guide on how to install the project, including all necessary commands or actions.
@@ -22,29 +24,66 @@ This app also shows a students overview so that guardians, teachers, and councel
 - Include instructions on how to verify that the installation was successful, such as running a specific command or script, or checking for expected output.
 
 # Testing
-  
-  (julian)
+
+(julian)
+
 - Explain the purpose of tests in your project and how they help ensure code quality and functionality.
 - Provide instructions on how to run the tests, including any necessary commands, environment setup, or dependencies.
 
-
   (ariel)
+
 - Mention any testing frameworks or tools used in the project.
 - If applicable, explain how to write new tests or modify existing ones.
 - Indicate any known issues or limitations related to the tests.
 
 # Deployment
-  
-  (ramez)
-- Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
 
-  (angel)
+(ramez)
+
+- Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
+- Deployment
+  Prerequisites
+  To deploy this project, we will need:
+  • A machine running Windows, or macOS,
+  • Node.js (version X or higher)
+  • MongoDB (version X or higher)
+  • A GitHub account
+
+  Installation
+
+1. Clone the repository from GitHub:
+   git clone https://github.com/bruteforceproject/PortalEd.git
+2. Install dependencies using npm (if it require for your local):
+   npm install
+
+Building and running the application 3. Build the application:
+npm run build
+
+4- Start the application:
+npm start
+
+Deployment 5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket). 6. Follow the provider-specific instructions for deploying a Node.js application. 7. Set any necessary environment variables (such as database credentials) in the deployment environment.
+Testing 8. Run tests using npm:
+Npm run test 9. The test suite covers the following areas:
+• Unit tests for each module
+• Integration tests for the API endpoints
+• End-to-end tests for the entire application
+
+Troubleshooting
+
+1. If the application fails to start, check that all dependencies are installed and that any necessary environment variables are set correctly.
+2. If tests fail, review the error messages, and update the relevant code or configuration to address the issues.
+3. For additional support, contact [Javier Gracia].
+
+(angel)
+
 - Provide step-by-step instructions for deploying the project, including any necessary commands or configurations.
 - Explain any environment-specific considerations, such as environment variables or configuration files.
 
 # Developer Instructions
 
-  (vardan)
+(vardan)
+
 - Provide information on how to set up a development environment for your project, including required software, tools, and libraries.
 - Explain any coding standards or style guidelines that contributors should follow.
 - Describe the project's file structure and organization, and explain the purpose of key files or directories.
@@ -55,6 +94,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 List key milestones, how much we have left to do for 191, and what we expect to get done in 191
 
 # Credits
+
 PortalEd is a project created by Matthew Brimberry
 
 The team programming this product is:
@@ -67,7 +107,7 @@ Ariel Manalo
 
 Julian Calero
 
-Ramez Hassan
+Ramez Hassan | mahshar0arm@gmail.com | https://github.com/ImRamez |
 
 Rohit Agrawal
 
@@ -78,4 +118,3 @@ Vardan Vardanyan
 # License
 
 All right are observed. This project is not open source.
-
