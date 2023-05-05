@@ -86,7 +86,7 @@ Rohit Agrawal
 
 Uriel Sombrerero
 
-Vardan Vardanyan | vardanvardanyan@csus.edu | get github link here | https://www.linkedin.com/feed/?trk=onboarding-landing
+Vardan Vardanyan | vardanvardanyan@csus.edu | https://github.com/GyumriV | https://www.linkedin.com/feed/?trk=onboarding-landing
 
 # License
 
