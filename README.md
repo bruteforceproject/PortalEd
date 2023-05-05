@@ -52,19 +52,36 @@ This app also shows a students overview so that guardians, teachers, and councel
   Installation
 
 1. Clone the repository from GitHub:
+
    git clone https://github.com/bruteforceproject/PortalEd.git
+   
 2. Install dependencies using npm (if it require for your local):
+
    npm install
 
-Building and running the application 3. Build the application:
-npm run build
+   Building and running the application 
+      
+3. Build the application:
+	npm run build
 
-4- Start the application:
-npm start
+4. Start the application:
+   npm start
 
-Deployment 5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket). 6. Follow the provider-specific instructions for deploying a Node.js application. 7. Set any necessary environment variables (such as database credentials) in the deployment environment.
-Testing 8. Run tests using npm:
-Npm run test 9. The test suite covers the following areas:
+Deployment 
+
+5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket). 
+
+6. Follow the provider-specific instructions for deploying a Node.js application. 
+
+7. Set any necessary environment variables (such as database credentials) in the deployment environment.
+
+Testing 
+
+8. Run tests using npm:
+
+   Npm run test 
+
+9. The test suite covers the following areas:
 • Unit tests for each module
 • Integration tests for the API endpoints
 • End-to-end tests for the entire application
@@ -72,7 +89,9 @@ Npm run test 9. The test suite covers the following areas:
 Troubleshooting
 
 1. If the application fails to start, check that all dependencies are installed and that any necessary environment variables are set correctly.
+
 2. If tests fail, review the error messages, and update the relevant code or configuration to address the issues.
+
 3. For additional support, contact [Javier Gracia].
 
 (angel)
