@@ -57,12 +57,19 @@ PortalEd is a project created by Matthew Brimberry
 
 This application was programed by:
 Javier Garcia | javiermgarcjr@gmail.com | https://github.com/JavierGarciaJr | https://www.linkedin.com/in/javier-garcia-b97409202/
+
 Angel Castillo
+
 Ariel Manalo
+
 Julian Calero
+
 Ramez Hassan
+
 Rohit Agrawal
+
 Uriel Sombrerero
+
 Vardan Vardanyan
 
 # License
