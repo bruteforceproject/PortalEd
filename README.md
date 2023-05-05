@@ -23,6 +23,15 @@ This app also shows a students overview so that guardians, teachers, and councel
 - Provide examples of configuration values and explain their purpose.
 - Include instructions on how to verify that the installation was successful, such as running a specific command or script, or checking for expected output.
 
+- Runs as an web application.
+- Clone the Github repository to your local computer from here: https://github.com/bruteforceproject/PortalEd
+- install Node.js (https://nodejs.org/en/download)
+- Cd Frontend (Go to Frontend folder of portel ED)
+- npm install (Helps you install npm)
+- Most of the libraries should be installed already in the code!
+- To run the code, you need a Website browser in the local system. 
+- npm start (helps you run the code in browser)
+
 # Testing
 
 (julian)
@@ -141,7 +150,7 @@ Julian Calero
 
 Ramez Hassan | mahshar0arm@gmail.com | https://github.com/ImRamez |
 
-Rohit Agrawal
+Rohit Agrawal | rohit777agrawal@gmail.com | https://github.com/rohit777agrawal | https://www.linkedin.com/in/rohit777agrawal/
 
 Uriel Sombrerero
 
