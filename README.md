@@ -55,7 +55,8 @@ List key milestones, how much we have left to do for 191, and what we expect to 
 # Credits
 PortalEd is a project created by Matthew Brimberry
 
-This application was programed by:
+The team programming this product is:
+
 Javier Garcia | javiermgarcjr@gmail.com | https://github.com/JavierGarciaJr | https://www.linkedin.com/in/javier-garcia-b97409202/
 
 Angel Castillo
