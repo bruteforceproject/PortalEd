@@ -26,6 +26,8 @@ This app also shows a students overview so that guardians, teachers, and councel
   (julian)
 - Explain the purpose of tests in your project and how they help ensure code quality and functionality.
 - Provide instructions on how to run the tests, including any necessary commands, environment setup, or dependencies.
+
+
   (ariel)
 - Mention any testing frameworks or tools used in the project.
 - If applicable, explain how to write new tests or modify existing ones.
