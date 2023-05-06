@@ -39,6 +39,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 - Node Js: v18.16.0. or later
 - Studio Visual Code: 1.77.0 or later
 - Cloned Portal ED Repository folder
+   <sub>Refer to the Installation section to download our repository.</sub>
 
 **System Requirements**
 - Windows: 10 or later
@@ -46,20 +47,20 @@ This app also shows a students overview so that guardians, teachers, and councel
 - 1.6 GHz or faster processor
 - 1 GB of RAM
 
-###Follow the steps below to deploy this project locally on your machine:###
+### Follow the steps below to deploy this project locally on your machine:###
 
-1. Open Studio Visual Code.
+1. Open **Studio Visual Code**.
 
 2. Go to **File** and click on **Open Folder**.
 
-3. Locate your Cloned Portal Ed Repository folder and click on **Open**.
+3. Locate your **Cloned Portal Ed Repository folder** and click on **Open**.
 
-4. Once opened, make sure **Terminal** is opened in **Studio Visual Code**.
+4. Once opened, naviaget to **Terminal**.
 
-5. Click anywhere inside the terminal and input the following command:
+5. Click anywhere inside **Terminal** and input the following command:
    `cd frontend`
 
-6. 
+6. To run the application, input the following command in the **Terminal**: `npm start`
 
 # Testing
 
@@ -154,7 +155,7 @@ The team programming this product is:
 
 Javier Garcia | javiermgarcjr@gmail.com | https://github.com/JavierGarciaJr | https://www.linkedin.com/in/javier-garcia-b97409202/
 
-Angel Castillo
+Angel Castillo | angelcastillo@csus.edu | | https://github.com/ange1castillo
 
 Ariel Manalo | arielrosemanalo@csus.edu | https://github.com/ArielManalo14 | https://www.linkedin.com/in/arielmanalo14/ 
 
