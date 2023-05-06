@@ -59,7 +59,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 5. Click anywhere inside the **Terminal** and input the following command:
    `cd frontend`
 
-6. To run the application, input the following command in the **Terminal**: `npm start`
+6. Next, input the following command in the **Terminal** which will run the application: `npm start`
 
 # Testing
 
