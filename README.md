@@ -46,7 +46,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 - 1.6 GHz or faster processor
 - 1 GB of RAM
 
-**Follow the steps below to deploy this project locally on your machine:**
+###Follow the steps below to deploy this project locally on your machine:###
 
 1. Open Studio Visual Code.
 
@@ -57,7 +57,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 4. Once opened, make sure **Terminal** is opened in **Studio Visual Code**.
 
 5. Click anywhere inside the terminal and input the following command:
-   'cd frontend'
+   `cd frontend`
 
 6. 
 
