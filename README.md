@@ -135,7 +135,7 @@ Ramez Hassan | mahshar0arm@gmail.com | https://github.com/ImRamez |
 
 Rohit Agrawal | rohit777agrawal@gmail.com | https://github.com/rohit777agrawal | https://www.linkedin.com/in/rohit777agrawal/
 
-Uriel Sombrerero
+Uriel Sombrerero | sombrerero5016@gmail.com  | https://github.com/uriel-18 | https://www.linkedin.com/in/urielsombrerero/
 
 Vardan Vardanyan | vardanvardanyan@csus.edu | https://github.com/GyumriV | https://www.linkedin.com/feed/?trk=onboarding-landing
 
