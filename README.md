@@ -70,12 +70,6 @@ To run the tests for the PortalEd project, follow these instructions:
 
 By following these instructions, you can run the tests for the PortalEd project to ensure that it maintains a high level of code quality and functionality. Regularly running and updating tests throughout the development process is crucial for delivering a reliable and efficient application to help teachers, parents, and guardians better support their students' education.
 
-  (ariel)
-
-- Mention any testing frameworks or tools used in the project.
-- If applicable, explain how to write new tests or modify existing ones.
-- Indicate any known issues or limitations related to the tests.
-
 - During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
 
 # Deployment
