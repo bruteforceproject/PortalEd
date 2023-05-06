@@ -39,7 +39,6 @@ This app also shows a students overview so that guardians, teachers, and councel
 - Node Js: v18.16.0. or later
 - Studio Visual Code: 1.77.0 or later
 - Cloned Portal ED Repository folder
-   <sub>Refer to the Installation section to download our repository.</sub>
 
 **System Requirements**
 - Windows: 10 or later
@@ -47,7 +46,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 - 1.6 GHz or faster processor
 - 1 GB of RAM
 
-### Follow the steps below to deploy this project locally on your machine:###
+### Follow the steps below to deploy this project locally on your machine:
 
 1. Open **Studio Visual Code**.
 
