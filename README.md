@@ -35,13 +35,13 @@ This app also shows a students overview so that guardians, teachers, and councel
 # Deployment
 ### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
 
-**To deploy this project, please verify the following:**
+**Before deploying this project, please verify the following:**
 - A machine running Windows, or macOS,
 - Node.js (version X or higher)
 - MongoDB (version X or higher)
 - A GitHub account
 
-Deployment
+**Follow the steps below to deploy this project::**
 
 5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket).
 
