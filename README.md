@@ -32,6 +32,23 @@ This app also shows a students overview so that guardians, teachers, and councel
 - To run the code, you need a Website browser in the local system.
 - npm start (helps you run the code in browser)
 
+# Deployment
+### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
+
+**To deploy this project, please verify the following:**
+- A machine running Windows, or macOS,
+- Node.js (version X or higher)
+- MongoDB (version X or higher)
+- A GitHub account
+
+Deployment
+
+5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket).
+
+6. Follow the provider-specific instructions for deploying a Node.js application.
+
+7. Set any necessary environment variables (such as database credentials) in the deployment environment.
+
 # Testing
 
 (julian)
@@ -72,61 +89,6 @@ By following these instructions, you can run the tests for the PortalEd project 
 
 - During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
 
-# Deployment
-### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
-
-**To deploy this project, please verify the following:**
-- A machine running Windows, or macOS,
-- Node.js (version X or higher)
-- MongoDB (version X or higher)
-- A GitHub account
-
-  Installation
-
-1. Clone the repository from GitHub:
-
-   git clone https://github.com/bruteforceproject/PortalEd.git
-
-2. Install dependencies using npm (if it require for your local):
-
-   npm install
-
-   Building and running the application
-
-3. Build the application:
-   npm run build
-
-4. Start the application:
-   npm start
-
-Deployment
-
-5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket).
-
-6. Follow the provider-specific instructions for deploying a Node.js application.
-
-7. Set any necessary environment variables (such as database credentials) in the deployment environment.
-
-Testing
-
-8. Run tests using npm:
-
-   Npm run test
-   And
-   To perform UI testing, we will create any testing framework based on Java and the Selenium web driver.
-
-9. The test suite covers the following areas:
-   • Unit tests for each module
-   • Integration tests for the API endpoints
-   • End-to-end tests for the entire application
-
-Troubleshooting
-
-1. If the application fails to start, check that all dependencies are installed and that any necessary environment variables are set correctly.
-
-2. If tests fail, review the error messages, and update the relevant code or configuration to address the issues.
-
-3. For additional support, contact [Javier Gracia].
 
 # Developer Instructions
 
