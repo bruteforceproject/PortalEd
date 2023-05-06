@@ -4,13 +4,13 @@
 
 # Synopsis
 
-PortalEd is a web-based application for optimizing the partnership and communication between schools and the parents/guardians. Teachers observe their student’s attendance, behavior, and academic engagement and efficiently record them utilizing a simple and straight-forward color-based scheme. 
+PortalEd is a web-based application for optimizing the partnership and communication between schools and the parents/guardians. Teachers observe their student’s attendance, behavior, and academic engagement and efficiently record them utilizing a simple and straight-forward color-based scheme.
 
-Prompt notification and response to student infractions is necessary to effectively improve the learning environment.  Too much time often elapses after an infraction, which can result in the loss of the optimal opportunity to address and rectify the incident and promote positive changes in the student’s conduct and habits.
+Prompt notification and response to student infractions is necessary to effectively improve the learning environment. Too much time often elapses after an infraction, which can result in the loss of the optimal opportunity to address and rectify the incident and promote positive changes in the student’s conduct and habits.
 
-This application automatically notifies the student’s parents and guardians and requires them to acknowledge awareness of their child's behavior, attendance, or academic alerts.  With this expedient notification and response, the parents and guardians are more actively engaged and influencing their child’s education, growth, and success.
+This application automatically notifies the student’s parents and guardians and requires them to acknowledge awareness of their child's behavior, attendance, or academic alerts. With this expedient notification and response, the parents and guardians are more actively engaged and influencing their child’s education, growth, and success.
 
-In addition to alerts, this application enables parents, guardians, and schools to analyze their student’s history and monitor for any positive or negative changes.  With this wealth of information, informed-decisions can be made to improve the quality of learning.
+In addition to alerts, this application enables parents, guardians, and schools to analyze their student’s history and monitor for any positive or negative changes. With this wealth of information, informed-decisions can be made to improve the quality of learning.
 
 # Installation
 
@@ -24,15 +24,18 @@ In addition to alerts, this application enables parents, guardians, and schools 
 - npm start (helps you run the code in browser)
 
 # Deployment
+
 ### Please refer to the following software and systen requirements to ensure your machine can support our application.
 
 **Software Requirements:**
+
 - Node Js: v18.16.0. or later
 - Studio Visual Code: 1.77.0 or later
 - Any Compatible Browsers: Chrome, Safari, Edge, Firefox, etc
 - Cloned Portal ED Repository folder
 
 **System Requirements**
+
 - Windows: 10 or later
 - MacOS: X High Sierra or later
 - 1.6 GHz or faster processor
@@ -57,7 +60,7 @@ In addition to alerts, this application enables parents, guardians, and schools 
 
 The purpose of tests in the PortalEd project is to ensure that the application is functioning correctly and efficiently. Tests play a crucial role in maintaining code quality, reliability, and functionality by identifying potential issues, bugs, or inconsistencies early in the development process. They help to:
 
-- Validate the expected behavior of various features, such as attendance tracking, behavior monitoring, and academic progress    reporting.
+- Validate the expected behavior of various features, such as attendance tracking, behavior monitoring, and academic progress reporting.
 
 - Ensure that new features and updates do not introduce breaking changes or unintended side effects.
 
@@ -91,7 +94,6 @@ By following these instructions, you can run the tests for the PortalEd project 
 
 - During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
 
-
 # Developer Instructions
 
 - Required Software: Any IDE that is capable of editing, creating and running a react application.
@@ -114,7 +116,9 @@ By following these instructions, you can run the tests for the PortalEd project 
 # Timeline
 
 List key milestones, how much we have left to do for 191, and what we expect to get done in 191
+
 ### Key Milestones:
+
 - [x] Front-end Counselor View
 - [x] Front-end Parent View
 - [x] Front-end Teacher View
@@ -123,14 +127,16 @@ List key milestones, how much we have left to do for 191, and what we expect to 
 - [x] Student Average widget
 
 ### What's left to do for 190
-   - [ ] Establish consistent visual stype so the app looks cohesive and unified across all screens
-   - [ ] Database management
-   - [ ] Counselor View components
-     
+
+- [ ] Establish consistent visual stype so the app looks cohesive and unified across all screens
+- [ ] Database management
+- [ ] Counselor View components
+
 ### What we expect to get done in 191
-   - Mongodb variables for student names
-   - Calculate and store student history and averages in database
-   - All components to be integrated in a way that data can be shared and access consistently 
+
+- Mongodb variables for student names
+- Calculate and store student history and averages in database
+- All components to be integrated in a way that data can be shared and access consistently
 
 # Credits
 
@@ -142,7 +148,7 @@ Javier Garcia | javiermgarcjr@gmail.com | https://github.com/JavierGarciaJr | ht
 
 Angel Castillo | angelcastillo@csus.edu | | https://github.com/ange1castillo
 
-Ariel Manalo | arielrosemanalo@csus.edu | https://github.com/ArielManalo14 | https://www.linkedin.com/in/arielmanalo14/ 
+Ariel Manalo | arielrosemanalo@csus.edu | https://github.com/ArielManalo14 | https://www.linkedin.com/in/arielmanalo14/
 
 Julian Calero
 
@@ -150,7 +156,7 @@ Ramez Hassan | mahshar0arm@gmail.com | https://github.com/ImRamez |
 
 Rohit Agrawal | rohit777agrawal@gmail.com | https://github.com/rohit777agrawal | https://www.linkedin.com/in/rohit777agrawal/
 
-Uriel Sombrerero | sombrerero5016@gmail.com  | https://github.com/uriel-18 | https://www.linkedin.com/in/urielsombrerero/
+Uriel Sombrerero | sombrerero5016@gmail.com | https://github.com/uriel-18 | https://www.linkedin.com/in/urielsombrerero/
 
 Vardan Vardanyan | vardanvardanyan@csus.edu | https://github.com/GyumriV | https://www.linkedin.com/feed/?trk=onboarding-landing
 
