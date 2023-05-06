@@ -75,9 +75,7 @@ By following these instructions, you can run the tests for the PortalEd project 
 # Deployment
 ### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
 
-**Deployment Prerequisites**
-
-**To deploy this project, we will need:**
+**To deploy this project, please verify the following:**
 - A machine running Windows, or macOS,
 - Node.js (version X or higher)
 - MongoDB (version X or higher)
