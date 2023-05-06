@@ -38,6 +38,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 **Software Requirements:**
 - Node Js: v18.16.0. or later
 - Studio Visual Code: 1.77.0 or later
+- Any Compatible Browsers: Chrome, Safari, Edge, Firefox, etc
 - Cloned Portal ED Repository folder
 
 **System Requirements**
