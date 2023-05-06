@@ -73,9 +73,6 @@ By following these instructions, you can run the tests for the PortalEd project 
 - During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
 
 # Deployment
-
-(ramez)
-
 ## Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
 
 ### Deployment Prerequisites
