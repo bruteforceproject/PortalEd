@@ -33,11 +33,12 @@ This app also shows a students overview so that guardians, teachers, and councel
 - npm start (helps you run the code in browser)
 
 # Deployment
-### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
+### Please refer to the following software and systen requirements to ensure your machine can support our application.
 
-**General Requirements:**
+**Software Requirements:**
 - Node Js: v18.16.0. or later
 - Studio Visual Code: 1.77.0 or later
+- Cloned Portal ED Repository folder
 
 **System Requirements**
 - Windows: 10 or later
@@ -45,14 +46,20 @@ This app also shows a students overview so that guardians, teachers, and councel
 - 1.6 GHz or faster processor
 - 1 GB of RAM
 
+**Follow the steps below to deploy this project locally on your machine:**
 
-**Follow the steps below to deploy this project::**
+1. Open Studio Visual Code.
 
-5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket).
+2. Go to **File** and click on **Open Folder**.
 
-6. Follow the provider-specific instructions for deploying a Node.js application.
+3. Locate your Cloned Portal Ed Repository folder and click on **Open**.
 
-7. Set any necessary environment variables (such as database credentials) in the deployment environment.
+4. Once opened, make sure **Terminal** is opened in **Studio Visual Code**.
+
+5. Click anywhere inside the terminal and input the following command:
+   'cd frontend'
+
+6. 
 
 # Testing
 
