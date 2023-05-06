@@ -54,7 +54,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 
 3. Locate your **Cloned Portal Ed Repository folder** and click on **Open**.
 
-4. Once opened, naviaget to **Terminal**.
+4. Once opened, navigate to **Terminal**.
 
 5. Click anywhere inside **Terminal** and input the following command:
    `cd frontend`
