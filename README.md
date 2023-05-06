@@ -29,7 +29,7 @@ This app also shows a students overview so that guardians, teachers, and councel
 - Cd Frontend (Go to Frontend folder of portel ED)
 - npm install (Helps you install npm)
 - Most of the libraries should be installed already in the code!
-- To run the code, you need a Website browser in the local system. 
+- To run the code, you need a Website browser in the local system.
 - npm start (helps you run the code in browser)
 
 # Testing
@@ -63,37 +63,39 @@ This app also shows a students overview so that guardians, teachers, and councel
 1. Clone the repository from GitHub:
 
    git clone https://github.com/bruteforceproject/PortalEd.git
-   
+
 2. Install dependencies using npm (if it require for your local):
 
    npm install
 
-   Building and running the application 
-      
+   Building and running the application
+
 3. Build the application:
-	npm run build
+   npm run build
 
 4. Start the application:
    npm start
 
-Deployment 
+Deployment
 
-5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket). 
+5. Create an AWS or MongoDB account and provision the necessary resources (such as a database instance and storage bucket).
 
-6. Follow the provider-specific instructions for deploying a Node.js application. 
+6. Follow the provider-specific instructions for deploying a Node.js application.
 
 7. Set any necessary environment variables (such as database credentials) in the deployment environment.
 
-Testing 
+Testing
 
 8. Run tests using npm:
 
-   Npm run test 
+   Npm run test
+   And
+   To perform UI testing, we will create any testing framework based on Java and the Selenium web driver.
 
 9. The test suite covers the following areas:
-• Unit tests for each module
-• Integration tests for the API endpoints
-• End-to-end tests for the entire application
+   • Unit tests for each module
+   • Integration tests for the API endpoints
+   • End-to-end tests for the entire application
 
 Troubleshooting
 
@@ -127,8 +129,9 @@ Troubleshooting
 - Describe the project's file structure and organization, and explain the purpose of key files or directories.
 -      -all routing paths done in "App.js" located in: PortalEd/frontend/src/App.js
 -      -all pages that are viewable by users located in "components" folder located in PortalEd/frontend/src/components
--      -main pages will be ".js" files instead of html since we are using react. 
-	    -each page has a corresponding .css file that handles styling 
+-      -main pages will be ".js" files instead of html since we are using react.
+      -each page has a corresponding .css file that handles styling
+
 # Timeline
 
 (uriel)
