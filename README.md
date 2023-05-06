@@ -36,8 +36,39 @@ This app also shows a students overview so that guardians, teachers, and councel
 
 (julian)
 
-- Explain the purpose of tests in your project and how they help ensure code quality and functionality.
-- Provide instructions on how to run the tests, including any necessary commands, environment setup, or dependencies.
+The purpose of tests in the PortalEd project is to ensure that the application is functioning correctly and efficiently. Tests play a crucial role in maintaining code quality, reliability, and functionality by identifying potential issues, bugs, or inconsistencies early in the development process. They help to:
+
+- Validate the expected behavior of various features, such as attendance tracking, behavior monitoring, and academic progress    reporting.
+
+- Ensure that new features and updates do not introduce breaking changes or unintended side effects.
+
+- Facilitate refactoring and optimization of the codebase by providing a safety net for developers to make changes without inadvertently breaking existing functionality.
+
+- Improve collaboration between team members by making it easier to understand the intended behavior of the code and verify its correctness.
+
+To run the tests for the PortalEd project, follow these instructions:
+
+1. Ensure your development environment is set up correctly:
+
+   - Install the required dependencies, such as the appropriate language runtime, package manager, and testing framework.
+
+   - Make sure you have the latest version of the project code from the repository.
+
+2. Install the necessary test dependencies:
+
+   - Use the project's package manager to install the required testing libraries and tools. For example, if the project uses npm, run npm install in the project root directory.
+
+3. Run the tests:
+
+   - Depending on the testing framework and configuration, the command to run the tests may vary. For example, if the project uses a popular JavaScript testing framework like Jest, you can run the tests with npm test or yarn test.
+
+   - If the project uses a different testing framework, refer to the framework's documentation for the appropriate command.
+
+4. Review the test results:
+
+   - The test runner should provide a summary of the test results, including any failed tests and error messages. Use this information to identify and fix any issues with the code.
+
+By following these instructions, you can run the tests for the PortalEd project to ensure that it maintains a high level of code quality and functionality. Regularly running and updating tests throughout the development process is crucial for delivering a reliable and efficient application to help teachers, parents, and guardians better support their students' education.
 
   (ariel)
 
