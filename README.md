@@ -45,6 +45,8 @@ This app also shows a students overview so that guardians, teachers, and councel
 - If applicable, explain how to write new tests or modify existing ones.
 - Indicate any known issues or limitations related to the tests.
 
+- During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
+
 # Deployment
 
 (ramez)
@@ -144,7 +146,7 @@ Javier Garcia | javiermgarcjr@gmail.com | https://github.com/JavierGarciaJr | ht
 
 Angel Castillo
 
-Ariel Manalo
+Ariel Manalo | arielrosemanalo@csus.edu | https://github.com/ArielManalo14 | https://www.linkedin.com/in/arielmanalo14/ 
 
 Julian Calero
 
