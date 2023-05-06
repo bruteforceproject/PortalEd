@@ -35,11 +35,16 @@ This app also shows a students overview so that guardians, teachers, and councel
 # Deployment
 ### Describe the deployment process for your project, including any prerequisites, such as system requirements or software dependencies.
 
-**Before deploying this project, please verify the following:**
-- A machine running Windows, or macOS,
-- Node.js (version X or higher)
-- MongoDB (version X or higher)
-- A GitHub account
+**General Requirements:**
+- Node Js: v18.16.0. or later
+- Studio Visual Code: 1.77.0 or later
+
+**System Requirements**
+- Windows: 10 or later
+- MacOS: X High Sierra or later
+- 1.6 GHz or faster processor
+- 1 GB of RAM
+
 
 **Follow the steps below to deploy this project::**
 
