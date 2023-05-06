@@ -122,6 +122,23 @@ By following these instructions, you can run the tests for the PortalEd project 
 (uriel)
 List key milestones, how much we have left to do for 191, and what we expect to get done in 191
 
+- [x] Front-end Counselor View
+- [x] Front-end Parent View
+- [x] Front-end Teacher View
+- [x] Setup MongoDB
+- [x] Display Student-History
+- [x] Student Average widget
+
+   ### What's left to do for 190
+     - [ ] Establish consistent visual stype so the app looks cohesive and unified across all screens
+     - [ ] Database management
+     - [ ] Counselor View components
+     
+   ### What we expect to get done in 191
+     - Mongodb variables for student names
+     - Calculate and store student history and averages in database
+     - All components to be integrated in a way that data can be shared and access consistently 
+
 # Credits
 
 PortalEd is a project created by Matthew Brimberry
