@@ -150,7 +150,7 @@ Angel Castillo | angelcastillo@csus.edu | | https://github.com/ange1castillo
 
 Ariel Manalo | arielrosemanalo@csus.edu | https://github.com/ArielManalo14 | https://www.linkedin.com/in/arielmanalo14/
 
-Julian Calero
+Julian Calero | juliancalero@csus.edu | https://github.com/juliancaler0 | https://www.linkedin.com/in/julian-calero-978841149/
 
 Ramez Hassan | mahshar0arm@gmail.com | https://github.com/ImRamez |
 
