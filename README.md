@@ -25,7 +25,7 @@ In addition to alerts, this application enables parents, guardians, and schools 
 
 # Deployment
 
-### Please refer to the following software and systen requirements to ensure your machine can support our application.
+### Please refer to the following software and system requirements to ensure your machine can support our application.
 
 **Software Requirements:**
 
