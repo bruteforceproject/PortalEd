@@ -89,7 +89,7 @@ function parentstudentView() {
         <img src={logo} className="parentstudentLogo" alt="logo" />
         
         <h1 class="studentName" style={{marginTop: 0}}>
-          Jane Doe
+          Jane Doe testing
         </h1>
     <body>
     <div>
