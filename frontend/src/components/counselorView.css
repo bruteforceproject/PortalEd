@@ -1,0 +1,66 @@
+.container_cou {
+  display: flex;
+  flex-direction: column;
+  height: 25vh;
+}
+
+.label_container_cou {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.student_id_text_cou {
+  font-size: 24px;
+}
+
+.input_search_cou {
+  color: rgb(73, 73, 73);
+  font-size: 17px;
+  padding: 15px;
+  margin: 10px 0px;
+  width: 328px;
+  height: 26px;
+  border-radius: 12px;
+  border: 1px solid rgb(210, 210, 215);
+}
+
+.header_cou {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  padding: 1rem;
+}
+
+.header-right_cou {
+  margin-bottom: auto;
+  display: flex;
+  align-items: right;
+  justify-content: flex-end;
+}
+
+.header-center_cou {
+  display: flex;
+  flex-direction: column;
+  /*  justify-content: space-between;*/
+  align-items: center;
+}
+
+.search-bar_cou {
+  display: flex;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+
+.button_cou {
+  display: flex;
+  background-color: transparent;
+  margin: 20px;
+  color: black;
+  border-width: 0;
+  text-decoration: none;
+  font-size: 24px;
+  text-align: center;
+}

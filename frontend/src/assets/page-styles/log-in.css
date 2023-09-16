@@ -1,0 +1,181 @@
+*{box-sizing: content-box;}
+
+.log-in{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-in-link{
+    position: relative;
+    margin-top: 100px;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.log-in-link:link {    /* unvisited link */
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+.log-in-link:visited {    /* visited link */
+    color: black;
+}
+.log-in-link:hover {    /* mouse over link */
+    color:#171d9a;
+    border-bottom: none;
+    border-bottom: 1px solid;
+}
+.log-in-link:active {    /* active link */
+    color:#171d9a;
+    opacity: 0;
+}
+
+.title{
+box-sizing: inherit;
+color: rgb(73, 73, 73);
+direction: ltr;
+display: block;
+font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+height: 36px;
+letter-spacing: 0.128px;
+text-align: center;
+text-rendering: optimizeLegibility;
+word-break: break-word;
+}
+
+.title#small{
+  box-sizing: inherit;
+  color: rgb(73, 73, 73);
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  height: 36px;
+  letter-spacing: 0.128px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
+  font-weight: 400;
+}
+
+
+
+.caption#small{
+box-sizing: inherit;
+color: rgb(73, 73, 73);
+direction: ltr;
+display: block;
+font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 17px;
+font-style: normal;
+font-weight: 400;
+letter-spacing: -0.374px;
+line-height: 25.000032px;
+text-align: center;
+text-rendering: optimizeLegibility;
+word-break: break-word;
+}
+
+.caption#medium{
+  box-sizing: inherit;
+  color: rgb(73, 73, 73);
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 25.000032px;
+  text-align: left;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
+  font-weight: bold;
+  }
+
+  .caption#medium-light{
+    box-sizing: inherit;
+    color: rgb(73, 73, 73);
+    direction: ltr;
+    display: block;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25.000032px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    word-break: break-word;
+    }
+
+.log-in-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.log-in-button{
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 30px;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform;
+}
+
+.log-in-button:disabled {
+  pointer-events: none;
+}
+
+.log-in-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.log-in-button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.log-in-button#back-button{
+  margin-right: 60px;
+}
+
+
+

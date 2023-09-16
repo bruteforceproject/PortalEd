@@ -1,0 +1,79 @@
+.header {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size:60px;
+    font-weight: bold;
+  }
+  .header-2 {
+    position: absolute;
+    top: 175px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size:48px;
+    font-weight: bold;
+  }
+  
+  .button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .my-button {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+    width: 525px; /* set a fixed width for the box */
+    height: 230px; /* set a fixed height for the box */
+    background-color: #d9d9d9;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 48px;
+    text-align: center;
+    overflow: hidden; /* hide overflow text */
+    white-space: nowrap;
+    text-overflow: ellipsis; /* allow text to wrap to next line */
+    
+  }
+  
+  .my-button.short {
+    font-size: 56px;
+  }
+  
+  .my-button.medium {
+    font-size: 36px;
+  }
+  
+  .my-button.long {
+    font-size: 36px;
+  }
+  .button-container2 {
+    margin-top: 250px;
+  }
+  .student-id {
+    color: red;
+    white-space: pre-wrap;
+  }
+  .my-button div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .my-button .student-id {
+    color: red;
+    display: block;
+  }
+  .student-id2 {
+    color: rgb(70, 68, 68);
+    white-space: pre-wrap;
+  }
+  .my-button .student-id2 {
+    color: rgb(70, 68, 68);
+    display: block;
+  }
