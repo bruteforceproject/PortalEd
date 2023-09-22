@@ -38,6 +38,7 @@ function App() {
             <Route  exact path="/parentView" Component={parentView} />
             <Route  exact path="/parentstudentView" Component={parentstudentView} />
             <Route  exact path="/studentHistory" element={<StudentHistory />} />
+            <Route  exact path="/home" Component={home} /> 
         </Routes> 
     </div>
   );
