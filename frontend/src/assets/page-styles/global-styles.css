@@ -1,0 +1,83 @@
+/* global-styles.css */
+
+/* 
+Red: #e63b2c
+Yellow: #f2ca52
+Green: #558c3b
+*/
+
+/* Reset default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+  
+
+  h1, h2, h3 {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+
+  h1 {
+    font-size: 28px; 
+  }
+  
+  h2 {
+    font-size: 24px; 
+  }
+  
+  h3 {
+    font-size: 20px; 
+  }
+  
+
+  :root {
+    --primary-color: #a3a3a3; /* Change to your primary color */
+    --secondary-color: #3f3f3f; /* Change to your secondary color */
+    --background-color: #f0f0f0; /* Change to your background color */
+  }
+  
+
+  body {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+  }
+  
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; 
+  }
+  
+  /* Link styles */
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Spacing */
+  h1, h2, h3, p {
+    margin-bottom: 20px;
+  }
+  
