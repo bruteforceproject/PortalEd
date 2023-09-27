@@ -13,6 +13,7 @@ import home from './components/home'
 import AcknowledgeView from './components/acknowledgeView'
 import CounselorView from './components/counselorView';
 import Login from "./pages/log-in";
+import Register from "./pages/register";
 import PasswordRecovery from "./pages/account-recovery-password";
 import AccountIDRecovery from "./pages/account-recovery-accountid";
 import YourAccountID from "./pages/account-recovery-your-account-id";
@@ -26,6 +27,7 @@ function App() {
         <Routes>
             <Route  exact path="/" Component={Login} /> 
             <Route  exact path = "/log-in" Component = {Login} />
+            <Route  exact path = "/register" Component = {Register} />
             <Route  exact path = "/account-recovery/password" Component = {PasswordRecovery} />
             <Route  exact path = "/account-recovery/account-id" Component = {AccountIDRecovery} />
             <Route  exact path = "/account-recovery/verify" Component = {Verify} />
