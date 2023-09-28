@@ -1,62 +1,56 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const cors = require("cors"); // Add this line for CORS support
+const cors = require("cors");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const app = express();
-
-const uri = "mongodb+srv://PortalEd:pk0WFbP1wOyqKXYu@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority";
-
-// Middleware for JSON parsing and CORS
 app.use(express.json());
-app.use(cors()); // Enable CORS
+app.use(cors());
 
-const userSchema = new mongoose.Schema({
-  accountID: { type: String, unique: true }, // Change 'username' to 'accountID'
-  password: String,
-  // Add other user properties as needed
+let db;
+const url = `mongodb+srv://PortalEd:<Password>@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
+
+const client = new MongoClient(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1,
 });
 
-const User = mongoose.model("User", userSchema);
+// This is an end point to receive post requests on /addUser
+app.post("/addTeacher", async (req, res) => {
+  const userCollection = db.collection("Student");
+  userCollection.insertOne(req.body, (err, result) => {
+    if (err) res.status(500).send(err);
+    res.send(result.ops[0]);
+  });
+});
 
-async function connect() {
+async function dbget(id) {
   try {
-    await mongoose.connect(uri);
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error(error);
+    console.log("In dbget");
+    await client.connect();
+    console.log("Connected!");
+    const collection = await client
+      .db("PortedEd")
+      .collection("Student")
+      .findOne({ studentID: String(id) });
+    return collection;
+  } finally {
+    client.close();
   }
 }
 
-connect();
-
-app.listen(8000, () => {
-  console.log("Server started on port 8000");
+// this is an end point to get all the users from /getUsers
+app.post("/getStudents", async (req, res) => {
+  console.log(req.body);
+  const userCollection = await dbget(req.body.studentId);
+  res.send(userCollection);
 });
 
-// Create a new user
-app.post("/api/users", async (req, res) => {
-  try {
-    const { accountID, password } = req.body; // Change 'username' to 'accountID'
+app.get("/", (req, res) => {
+  res.json("req.body.name");
+});
 
-    // Hash and salt the password (use bcrypt)
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Create a new user document
-    const newUser = new User({
-      accountID, // Change 'username' to 'accountID'
-      password: hashedPassword,
-      // Add other user properties as needed
-    });
-
-    // Save the user document to MongoDB
-    await newUser.save();
-
-    // Respond with a success message
-    res.status(201).json({ message: "User created successfully" });
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ message: "Error creating user" });
-  }
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
