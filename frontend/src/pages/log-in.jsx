@@ -3,22 +3,24 @@ import InputField from "../assets/components/input-field";
 import "../assets/page-styles/log-in.css";
 import { useNavigate } from "react-router-dom";
 
+
 const Login = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    accountID: "",
+    email: "",
     password: "",
   });
 
   const [error, setError] = useState("");
 
+
   const accountInputs = [
     {
       id: 1,
-      name: "accountID",
+      name: "email",
       type: "text",
-      placeholder: "Account ID",
-      label: "Account ID",
+      placeholder: "email",
+      label: "email",
     },
     {
       id: 2,
@@ -47,7 +49,14 @@ const Login = () => {
 
       if (response.status === 200) {
         // Authentication successful, redirect to the dashboard or home page
-        navigate("/home"); // Change to your authenticated page
+        const data = await response.json();
+        let userId = data.userId; // Retrieve the userId from the response
+        userId= userId.toString();
+        // Now you can use the userId as needed, e.g., store it in state, local storage, or redirect to a new page.
+        console.log("User ID:", userId);  
+        console.log(typeof userId);
+
+        navigate("/home", { state: { userId } }); // Change to your authenticated page
       } else if (response.status === 401) {
         setError("Incorrect password");
       } else if (response.status === 404) {
@@ -63,34 +72,33 @@ const Login = () => {
 
   return (
     <div className="log-in">
-  <form className="log-in-form" onSubmit={handleSubmit}>
-    <h1 className="title">Portal ED</h1>
-    <p className="caption" id="small">
-      Sign in to your Portal ED account
-    </p>
-    {accountInputs.map((input) => (
-      <InputField
-        key={input.id}
-        {...input}
-        value={credentials[input.name]}
-        onChange={onChange}
-      />
-    ))}
-    <button className="log-in-button" type="submit">
-      Sign In
-    </button>
-    <div className="error-message">
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <form className="log-in-form" onSubmit={handleSubmit}>
+        <h1 className="title">Portal ED</h1>
+        <p className="caption" id="small">
+          Sign in to your Portal ED account
+        </p>
+        {accountInputs.map((input) => (
+          <InputField
+            key={input.id}
+            {...input}
+            value={credentials[input.name]}
+            onChange={onChange}
+          />
+        ))}
+        <button className="log-in-button" type="submit">
+          Sign In
+        </button>
+        <div className="error-message">
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </div>
+        <a
+          className="log-in-link"
+          href="http://localhost:3000/account-recovery/password"
+        >
+          Forgot email or password?
+        </a>
+      </form>
     </div>
-    <a
-      className="log-in-link"
-      href="http://localhost:3000/account-recovery/password"
-    >
-      Forgot Account ID or password?
-    </a>
-  </form>
-</div>
-
   );
 };
 

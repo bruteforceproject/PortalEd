@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 
@@ -7,6 +7,7 @@ const app = express();
 
 const uri = "mongodb+srv://PortalEd:pk0WFbP1wOyqKXYu@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 app.use(express.json());
 app.use(cors());
@@ -22,20 +23,29 @@ async function startServer() {
     // Create a new user (registration route)
     app.post("/api/users", async (req, res) => {
       try {
-        const { accountID, password } = req.body;
+        const { email, password } = req.body;
 
-        // Check if the accountID already exists
-        const existingUser = await collection.findOne({ accountID });
+        // Check if the email already exists
+        const existingUser = await collection.findOne({ email });
         if (existingUser) {
-          return res.status(400).json({ message: "AccountID already exists" });
+          return res.status(400).json({ message: "email already exists" });
         }
 
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const newUser = {
-          accountID,
+          email,
           password: hashedPassword,
+          role: "teacher",
+          period0: "",
+          period1: "",
+          period2: "",
+          period3: "",
+          period4: "",
+          period5: "",
+          period6: "",
+          period7: "",
           // Add other user properties as needed
         };
 
@@ -48,13 +58,15 @@ async function startServer() {
       }
     });
 
+
+    
     // User login route
     app.post("/api/login", async (req, res) => {
       try {
-        const { accountID, password } = req.body;
+        const { email, password } = req.body;
 
-        // Find the user by accountID
-        const user = await collection.findOne({ accountID });
+        // Find the user by email
+        const user = await collection.findOne({ email });
 
         if (!user) {
           return res.status(404).json({ message: "User not found" });
@@ -68,7 +80,11 @@ async function startServer() {
         }
 
         // Authentication successful
-        res.status(200).json({ message: "Login successful" });
+
+        globalUserId = user._id.toString();
+
+        res.status(200).json({ message: "Login successful", userId: user._id }); // Include the user's _id
+
       } catch (error) {
         console.error("Error during login:", error);
         res.status(500).json({ message: "Login failed" });

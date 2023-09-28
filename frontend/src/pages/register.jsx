@@ -6,18 +6,21 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
-    accountID: "",
+    email: "",
     password: "",
+    
     // Add other fields as needed
   });
+
+  const [error, setError] = useState(""); // Add state for error message
 
   const accountInputs = [
     {
       id: 1,
-      name: "accountID",
+      name: "email",
       type: "text",
-      placeholder: "Account ID",
-      label: "Account ID",
+      placeholder: "email",
+      label: "email",
     },
     {
       id: 2,
@@ -47,7 +50,10 @@ const Register = () => {
 
       if (response.status === 201) {
         // Registration successful, redirect to the dashboard or home page
-        navigate("/home"); // Change to your authenticated page
+        navigate("/log-in"); // Change to your authenticated page
+      } else if (response.status === 400) {
+        // Email already exists, set the error message
+        setError("Email already has an account");
       } else {
         console.error("Registration failed:", response.statusText);
       }
@@ -70,15 +76,18 @@ const Register = () => {
             value={userData[input.name]}
             onChange={onChange}
           />
-        ))}
-        <button className="log-in-button" type="submit">
-          Sign Up
-        </button>
-        <a
-          className="log-in-link"
-          href="http://localhost:3000/account-recovery/password"
-        >
-          Forgot Account ID or password?
+          ))}
+          <button className="log-in-button" type="submit">
+            Sign Up
+          </button>
+          <div className="error-message">
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+          <a
+            className="log-in-link"
+            href="http://localhost:3000/account-recovery/password"
+          >
+            Forgot email or password?
         </a>
       </form>
     </div>
