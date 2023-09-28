@@ -1,62 +1,89 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
 const bcrypt = require("bcrypt");
-const cors = require("cors"); // Add this line for CORS support
+const cors = require("cors");
 
 const app = express();
 
 const uri = "mongodb+srv://PortalEd:pk0WFbP1wOyqKXYu@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Middleware for JSON parsing and CORS
 app.use(express.json());
-app.use(cors()); // Enable CORS
+app.use(cors());
 
-const userSchema = new mongoose.Schema({
-  accountID: { type: String, unique: true }, // Change 'username' to 'accountID'
-  password: String,
-  // Add other user properties as needed
-});
-
-const User = mongoose.model("User", userSchema);
-
-async function connect() {
+async function startServer() {
   try {
-    await mongoose.connect(uri);
+    await client.connect();
     console.log("Connected to MongoDB");
+
+    const database = client.db("test");
+    const collection = database.collection("users");
+
+    // Create a new user (registration route)
+    app.post("/api/users", async (req, res) => {
+      try {
+        const { accountID, password } = req.body;
+
+        // Check if the accountID already exists
+        const existingUser = await collection.findOne({ accountID });
+        if (existingUser) {
+          return res.status(400).json({ message: "AccountID already exists" });
+        }
+
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        const newUser = {
+          accountID,
+          password: hashedPassword,
+          // Add other user properties as needed
+        };
+
+        await collection.insertOne(newUser);
+
+        res.status(201).json({ message: "User created successfully" });
+      } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).json({ message: "Error creating user" });
+      }
+    });
+
+    // User login route
+    app.post("/api/login", async (req, res) => {
+      try {
+        const { accountID, password } = req.body;
+
+        // Find the user by accountID
+        const user = await collection.findOne({ accountID });
+
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        // Check if the provided password matches the stored hashed password
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+          return res.status(401).json({ message: "Incorrect password" });
+        }
+
+        // Authentication successful
+        res.status(200).json({ message: "Login successful" });
+      } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).json({ message: "Login failed" });
+      }
+    });
+
+    // Start the Express server
+    const port = process.env.PORT || 8000;
+    app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
+    });
   } catch (error) {
-    console.error(error);
+    console.error("MongoDB connection error:", error);
   }
 }
 
-connect();
-
-app.listen(8000, () => {
-  console.log("Server started on port 8000");
-});
-
-// Create a new user
-app.post("/api/users", async (req, res) => {
-  try {
-    const { accountID, password } = req.body; // Change 'username' to 'accountID'
-
-    // Hash and salt the password (use bcrypt)
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Create a new user document
-    const newUser = new User({
-      accountID, // Change 'username' to 'accountID'
-      password: hashedPassword,
-      // Add other user properties as needed
-    });
-
-    // Save the user document to MongoDB
-    await newUser.save();
-
-    // Respond with a success message
-    res.status(201).json({ message: "User created successfully" });
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ message: "Error creating user" });
-  }
-});
+// Call the startServer function to start the server
+startServer();

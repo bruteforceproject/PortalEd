@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({
+  const [userData, setUserData] = useState({
     accountID: "",
     password: "",
+    // Add other fields as needed
   });
 
   const accountInputs = [
@@ -25,30 +26,28 @@ const Register = () => {
       placeholder: "Password",
       label: "Password",
     },
+    // Add additional input fields here
   ];
 
   const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit button clicked");
 
     try {
-      const response = await fetch('http://localhost:8000/api/users', {
+      const response = await fetch("http://localhost:8000/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify(userData),
       });
 
-      console.log("Response status:", response.status);
-
       if (response.status === 201) {
-        console.log("User created successfully");
-        navigate("/home");
+        // Registration successful, redirect to the dashboard or home page
+        navigate("/home"); // Change to your authenticated page
       } else {
         console.error("Registration failed:", response.statusText);
       }
@@ -62,18 +61,18 @@ const Register = () => {
       <form className="log-in-form" onSubmit={handleSubmit}>
         <h1 className="title">Portal ED</h1>
         <p className="caption" id="small">
-          [Admin Only]: Register account
+          Create a Portal ED account
         </p>
         {accountInputs.map((input) => (
           <InputField
             key={input.id}
             {...input}
-            value={credentials[input.name]}
+            value={userData[input.name]}
             onChange={onChange}
           />
         ))}
-        <button className="log-in-button" type="submit"> 
-          Next
+        <button className="log-in-button" type="submit">
+          Sign Up
         </button>
         <a
           className="log-in-link"
