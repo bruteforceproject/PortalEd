@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 let db;
-const url = `mongodb+srv://PortalEd:<Password>@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://Ramez:Q61yjN9a41HIZSIy@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(url, {
   useNewUrlParser: true,
@@ -39,7 +39,7 @@ async function dbget(id) {
   }
 }
 
-// this is an end point to get all the users from /getUsers
+// this is an end point to get all the users from /getStudents
 app.post("/getStudents", async (req, res) => {
   console.log(req.body);
   const userCollection = await dbget(req.body.studentId);

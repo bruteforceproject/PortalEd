@@ -159,6 +159,17 @@ word-break: break-word;
   will-change: transform;
 }
 
+.error-message {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Additional styles for the error message text color */
+.error-message p {
+  color: red;
+}
+
+
 .log-in-button:disabled {
   pointer-events: none;
 }

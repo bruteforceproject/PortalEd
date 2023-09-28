@@ -11,7 +11,9 @@
     "react-big-calendar": "^1.6.9",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "realm": "^12.2.0",
+    "realm-web": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
