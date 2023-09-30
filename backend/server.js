@@ -1,3 +1,4 @@
+//testing purposes
 const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -7,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 let db;
-const url = `mongodb+srv://Ramez:Q61yjN9a41HIZSIy@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://Ramez:GHipRjutHHid5CG7@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(url, {
   useNewUrlParser: true,
@@ -33,6 +34,7 @@ async function dbget(id) {
       .db("PortedEd")
       .collection("Student")
       .findOne({ studentID: String(id) });
+    console.log(collection);
     return collection;
   } finally {
     client.close();
