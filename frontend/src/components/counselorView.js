@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./logo1.png";
+import logo from "../logo1.png";
 import { useNavigate } from "react-router-dom";
 import "./counselorView.css";
 
