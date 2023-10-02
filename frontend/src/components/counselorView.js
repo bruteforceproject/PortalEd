@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../logo1.png";
 import { useNavigate } from "react-router-dom";
 import "./counselorView.css";
 
 function CounselorView() {
-  const [studentData, setStudentData] = useState("");
+  const [studentData, setStudentData] = useState({});
   const [studentID, setStudentID] = useState("");
+  const [recordFound, setRecordFound] = useState(false);
   const navigate = useNavigate();
 
   async function getData() {
@@ -19,14 +20,10 @@ function CounselorView() {
       }),
     })
       .then((response) => response.json())
-      .then((response) => {
-        try {
-          // console.log("Worked");
-          // console.log(studentData);
-          setStudentData(response);
-        } catch (err) {
-          console.log(err);
-        }
+      .then((data) => {
+        console.log(studentData);
+        setStudentData(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -52,25 +49,48 @@ function CounselorView() {
               id="student-id"
               name="student-id"
               onChange={(e) => {
-                console.log(e.target.value);
                 setStudentID(e.target.value);
               }}
             />
-            <button
-              onClick={async () => {
-                if (studentID.length !== 0) {
-                  getData();
-                  console.log(studentData);
-                  navigate("/studentHistory", {
-                    state: { myData: studentData },
-                  });
-                }
-              }}
-              className="button_cou"
-              type="submit"
-            >
-              Search
-            </button>
+
+            {recordFound ? (
+              // if data exist then it will navigate to student history view.
+              <button
+                onClick={async () => {
+                  if (studentID.length !== 0 && studentData.length !== 0) {
+                    navigate("/studentHistory", {
+                      state: { myData: studentData },
+                    });
+                  }
+                }}
+                className="button_cou"
+                type="submit"
+              >
+                Continue
+              </button>
+            ) : (
+              // verify data exists by search click
+              <button
+                onClick={async () => {
+                  if (studentID.length !== 0) {
+                    await getData();
+                    // console.log(studentData);
+                    if (JSON.stringify(studentData) !== "{}") {
+                      setRecordFound(true);
+                    } else {
+                      setRecordFound(false);
+                    }
+                  }
+                }}
+                className="button_cou"
+                type="submit"
+              >
+                Search
+              </button>
+            )}
+          </div>
+          <div className="search-bar_cou">
+            <h3>{recordFound}</h3>
           </div>
         </div>
       </div>

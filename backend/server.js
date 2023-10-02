@@ -1,3 +1,4 @@
+//testing purposes
 const express = require("express");
 const { MongoClient, ServerApiVersion ,ObjectId } = require("mongodb");
 const bcrypt = require("bcrypt");
@@ -5,7 +6,9 @@ const cors = require("cors");
 
 const app = express();
 
-const url = "mongodb+srv://PortalEd:KTel7qm0wmTACFTg@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority";
+let db;
+const url = `mongodb+srv://Ramez:GHipRjutHHid5CG7@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
+
 const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -44,6 +47,7 @@ async function dbget(id) {
       .db("PortedEd")
       .collection("Student")
       .findOne({ studentID: String(id) });
+    console.log(collection);
     return collection;
   } finally {
     client.close();
