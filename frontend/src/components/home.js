@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../logo.png';
 import {Link} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function home() {
+
+function Home() {
+  const location = useLocation();
+  const userId = location.state.userId;
+  
   return (
 
 
@@ -12,6 +17,7 @@ function home() {
         <p>
           This landing page is for presentation purposes only.
         </p>
+        <p>User ID: {userId} </p> {/* Display the userId here */}
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -44,4 +50,4 @@ function home() {
 
   )
 }
-export default home;
+export default Home;

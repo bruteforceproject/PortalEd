@@ -1,22 +1,22 @@
 // studentHistory.js
-import React, { useState } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import './studentHistory.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./studentHistory.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ onRangeChange }) => {
   return (
-    <div style={{ height: '50vh', width: '50vw', margin: 'auto' }}>
+    <div style={{ height: "50vh", width: "50vw", margin: "auto" }}>
       <Calendar
         localizer={localizer}
         events={[]}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: "100%", width: "100%" }}
         defaultView="month"
         onRangeChange={onRangeChange}
       />
@@ -37,7 +37,7 @@ const GoBack = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/studentOverview');
+    navigate("/studentOverview");
   };
 
   return (
@@ -51,7 +51,7 @@ const GoBackhome = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -62,18 +62,18 @@ const GoBackhome = () => {
 };
 
 const EventTile = ({ date, status }) => {
-  const formattedDate = moment(date).format('dddd, MM/DD/YYYY');
+  const formattedDate = moment(date).format("dddd, MM/DD/YYYY");
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'good':
-        return 'green';
-      case 'satisfactory':
-        return 'yellow';
-      case 'bad':
-        return 'red';
+      case "good":
+        return "green";
+      case "satisfactory":
+        return "yellow";
+      case "bad":
+        return "red";
       default:
-        return 'black';
+        return "black";
     }
   };
 
@@ -81,11 +81,11 @@ const EventTile = ({ date, status }) => {
     <div className="event-tile">
       <div
         style={{
-          height: '12px',
-          width: '12px',
-          borderRadius: '50%',
+          height: "12px",
+          width: "12px",
+          borderRadius: "50%",
           backgroundColor: getStatusColor(status),
-          marginRight: '0.5rem',
+          marginRight: "0.5rem",
         }}
       ></div>
       <span>{formattedDate}</span>
@@ -95,8 +95,14 @@ const EventTile = ({ date, status }) => {
 
 const StudentHistory = () => {
   // Set the student's name and ID as example
-  const studentName = "Ariel Manalo";
-  const studentId = "301234641";
+
+  const location = useLocation();
+  const myData = location.state.myData;
+
+  const studentName = myData.fname + " " + myData.lname;
+  // const studentName = "Ramez";
+  const studentId = myData.studentID;
+  // const studentId = "1";
   const [dateRange, setDateRange] = useState({ start: null, end: null });
 
   const handleRangeChange = (range) => {
@@ -136,7 +142,7 @@ const StudentHistory = () => {
     if (!dateRange.start || !dateRange.end) {
       return true;
     }
-    return eventDate.isBetween(dateRange.start, dateRange.end, 'day', '[]');
+    return eventDate.isBetween(dateRange.start, dateRange.end, "day", "[]");
   });
 
   const renderEventTiles = (category) => {
@@ -154,21 +160,21 @@ const StudentHistory = () => {
         <MyCalendar onRangeChange={handleRangeChange} />
       </div>
       <div>
-      <div className="container">
-        <div className="box-container">
-          <label>Academic</label>
-          <div className="box">{renderEventTiles("Academic")}</div>
+        <div className="container">
+          <div className="box-container">
+            <label>Academic</label>
+            <div className="box">{renderEventTiles("Academic")}</div>
+          </div>
+          <div className="box-container">
+            <label>Behavior</label>
+            <div className="box">{renderEventTiles("Behavior")}</div>
+          </div>
+          <div className="box-container">
+            <label>Attendance</label>
+            <div className="box">{renderEventTiles("Attendance")}</div>
+          </div>
         </div>
-        <div className="box-container">
-          <label>Behavior</label>
-          <div className="box">{renderEventTiles("Behavior")}</div>
-        </div>
-        <div className="box-container">
-          <label>Attendance</label>
-          <div className="box">{renderEventTiles("Attendance")}</div>
-        </div>
-      </div>
-      <GoBack />
+        <GoBack />
       </div>
       <GoBackhome />
     </>
