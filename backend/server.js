@@ -144,11 +144,10 @@ app.get("/", (req, res) => {
       }
     });
 
-    app.post("/verify", async(reg, res) => {
-      const {phoneNumber} = req.body
+    app.post("/api/verify", async(req, res) => {
+      const { phoneNumber } = req.body
 
       var result = await textFlow.sendVerificationSMS(phoneNumber)
-
       if (result.ok)
         return res.status(200).json({ success: true });
 

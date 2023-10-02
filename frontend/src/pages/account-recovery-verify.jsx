@@ -8,6 +8,7 @@ const Verify = () => {
   
   const [phoneNumber, setPhoneNumber] = useState({
     phoneNumber: ""
+    
   });
 
   const phoneInput = [
