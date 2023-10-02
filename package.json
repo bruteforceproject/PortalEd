@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.2.0",
+    "npx": "^10.2.2",
+    "react-big-calendar": "^1.6.9",
+    "react-router-dom": "^6.10.0"
+  }
+}
