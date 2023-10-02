@@ -3,6 +3,9 @@ const express = require("express");
 const { MongoClient, ServerApiVersion ,ObjectId } = require("mongodb");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const textFlow = require("textflow.js")
+
+textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr")
 
 const app = express();
 
@@ -140,6 +143,16 @@ app.get("/", (req, res) => {
         res.status(500).json({ message: "Login failed" });
       }
     });
+
+    app.post("/verify", async(reg, res) => {
+      const {phoneNumber} = req.body
+
+      var result = await textFlow.sendVerificationSMS(phoneNumber)
+
+      if (result.ok)
+        return res.status(200).json({ success: true });
+
+    })
 
     // Start the Express server
     const port = process.env.PORT || 8000;

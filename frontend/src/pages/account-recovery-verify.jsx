@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const Verify = () => {
   const navigate = useNavigate();
   
-  const [phoneNumber, setAccountID] = useState({
+  const [phoneNumber, setPhoneNumber] = useState({
     phoneNumber: ""
   });
 
@@ -21,20 +21,28 @@ const Verify = () => {
   ]
 
   const onChange = (e) => {
-    setAccountID({...phoneNumber, [e.target.name]: e.target.value})
+    setPhoneNumber({...phoneNumber, [e.target.name]: e.target.value})
   };
 
   const buttonHandler = (e) => {
     e.preventDefault();
     let id = e.target.id;
-    if(id=== 'next-button'){
-        
+    if(id === 'next-button'){
+        fetch("http://localhost:8000/api/verify", {
+          method: "POST",
+          headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            phoneNumber
+          })
+        })
         navigate("../account-recovery/notification-sent");
     }
     else if(id === 'back-button') {
         navigate(-1);
     }
-
   }
 
   return (
