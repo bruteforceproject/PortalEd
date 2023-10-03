@@ -49,6 +49,7 @@ const Login = () => {
 
       if (response.status === 200) {
         // Authentication successful, redirect to the dashboard or home page
+        console.log(credentials);
         const data = await response.json();
         let userId = data.userId; // Retrieve the userId from the response
         userId= userId.toString();

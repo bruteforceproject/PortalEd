@@ -23,12 +23,17 @@ app.use(express.json());
 app.use(cors());
 
 async function startServer() {
+  //testing here
+  //const data = await mongoClient.db().collection('Student').find({}).toArray();
+  //console.log('!!!', data);
+  
   try {
     await client.connect();
     console.log("Connected to MongoDB");
 
     const database = client.db("test");
     const collection = database.collection("users");
+    const studentCollection = database.collection("Student");
 
 
 
@@ -41,6 +46,8 @@ app.post("/addTeacher", async (req, res) => {
   });
 });
 
+
+
 async function dbget(id) {
   try {
     console.log("In dbget");
@@ -51,6 +58,7 @@ async function dbget(id) {
       .collection("Student")
       .findOne({ studentID: String(id) });
     console.log(collection);
+    console.log("we made it here");
     return collection;
   } finally {
     client.close();
@@ -67,12 +75,6 @@ app.post("/getStudents", async (req, res) => {
 app.get("/", (req, res) => {
   res.json("req.body.name");
 });
-
-
-
-
-
-
 
 
     // Create a new user (registration route)

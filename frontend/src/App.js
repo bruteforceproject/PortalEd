@@ -3,7 +3,6 @@ import './App.css';
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 
-//import studentOverview from './Components/studentOverview'
 import StudentHistory from './components/studentHistory'; 
 import studentOverview from './components/studentOverview'
 import teacherView from './components/teacherView'
