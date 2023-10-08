@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../logo1.png";
 import { useNavigate } from "react-router-dom";
 import "./counselorView.css";
 
 function CounselorView() {
-  const [studentData, setStudentData] = useState({});
   const [studentID, setStudentID] = useState("");
-  const [recordFound, setRecordFound] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {}, []);
+
   async function getData() {
-    await fetch(`http://localhost:5000/getStudents`, {
+    await fetch(`http://localhost:8000/getStudents`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,8 +21,9 @@ function CounselorView() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(studentData);
-        setStudentData(data);
+        navigate("/studentOverview", {
+          state: { myData: data },
+        });
         console.log(data);
       })
       .catch((err) => {
@@ -53,33 +54,12 @@ function CounselorView() {
               }}
             />
 
-            {recordFound ? (
-              // if data exist then it will navigate to student history view.
-              <button
-                onClick={async () => {
-                  if (studentID.length !== 0 && studentData.length !== 0) {
-                    navigate("/studentHistory", {
-                      state: { myData: studentData },
-                    });
-                  }
-                }}
-                className="button_cou"
-                type="submit"
-              >
-                Continue
-              </button>
-            ) : (
+            {
               // verify data exists by search click
               <button
                 onClick={async () => {
-                  if (studentID.length !== 0) {
+                  if (studentID) {
                     await getData();
-                    // console.log(studentData);
-                    if (JSON.stringify(studentData) !== "{}") {
-                      setRecordFound(true);
-                    } else {
-                      setRecordFound(false);
-                    }
                   }
                 }}
                 className="button_cou"
@@ -87,10 +67,7 @@ function CounselorView() {
               >
                 Search
               </button>
-            )}
-          </div>
-          <div className="search-bar_cou">
-            <h3>{recordFound}</h3>
+            }
           </div>
         </div>
       </div>
