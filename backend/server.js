@@ -32,7 +32,7 @@ async function startServer() {
     await client.connect();
     console.log("Connected to MongoDB");
 
-    const database = client.db("test");
+    const database = client.db("PortedEd");
     const collection = database.collection("users");
     const studentCollection = database.collection("Student");
 
@@ -47,6 +47,7 @@ async function startServer() {
 
     // this is an end point to get all the users from /getStudents
     app.post("/getStudents", async (req, res) => {
+      await client.connect();
       const student = await studentCollection.findOne({
         studentID: String(req.body.studentId),
       });
@@ -129,17 +130,15 @@ async function startServer() {
     });
 
     app.post("/api/email-verification", async (req, res) => {
-        const { email } = req.body;
+      const { email } = req.body;
 
-        const user = await collection.findOne({ email });
+      const user = await collection.findOne({ email });
 
-        if (!user) {
-          return res.status(404).json({ message: "Email doesn't exist" });
-        }
-        
-        else {
-          res.status(200).json({ message: "Email exists", userId: user._id });
-        }
+      if (!user) {
+        return res.status(404).json({ message: "Email doesn't exist" });
+      } else {
+        res.status(200).json({ message: "Email exists", userId: user._id });
+      }
     });
 
     app.post("/api/get-email", async (req, res) => {
@@ -149,17 +148,17 @@ async function startServer() {
 
       if (!user) {
         return res.status(404).json({ message: "Phone number doesn't exist" });
-      }
-      
-      else {
+      } else {
         console.log("Phone Number exists");
 
-        if(await bcrypt.compare(firstName, user.firstName) && await bcrypt.compare(lastName, user.lastName)){
+        if (
+          (await bcrypt.compare(firstName, user.firstName)) &&
+          (await bcrypt.compare(lastName, user.lastName))
+        ) {
           res.status(200).json({ message: "Email exists", userId: user._id });
         }
-
       }
-  });
+    });
 
     // Start the Express server
     const port = process.env.PORT || 8000;
