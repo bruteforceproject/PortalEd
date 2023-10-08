@@ -1,5 +1,5 @@
 // studentHistory.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -96,12 +96,17 @@ const EventTile = ({ date, status }) => {
 const StudentHistory = () => {
   // Set the student's name and ID as example
 
+  const [studentData, setStudentData] = useState({});
   const location = useLocation();
-  const myData = location.state.myData;
 
-  const studentName = myData.fname + " " + myData.lname;
+  useEffect(() => {
+    console.log(location);
+    setStudentData(location.state.myData);
+  }, []);
+
+  const studentName = studentData.firstName + " " + studentData.lastName;
   // const studentName = "Ramez";
-  const studentId = myData.studentID;
+  const studentId = studentData.studentID;
   // const studentId = "1";
   const [dateRange, setDateRange] = useState({ start: null, end: null });
 

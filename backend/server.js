@@ -1,11 +1,13 @@
 //testing purposes
 const express = require("express");
-const { MongoClient, ServerApiVersion ,ObjectId } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
-const textFlow = require("textflow.js")
+const textFlow = require("textflow.js");
 
-textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr")
+textFlow.useKey(
+  "6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr"
+);
 
 const app = express();
 
@@ -18,7 +20,6 @@ const client = new MongoClient(url, {
   serverApi: ServerApiVersion.v1,
 });
 
-
 app.use(express.json());
 app.use(cors());
 
@@ -26,7 +27,7 @@ async function startServer() {
   //testing here
   //const data = await mongoClient.db().collection('Student').find({}).toArray();
   //console.log('!!!', data);
-  
+
   try {
     await client.connect();
     console.log("Connected to MongoDB");
@@ -35,47 +36,22 @@ async function startServer() {
     const collection = database.collection("users");
     const studentCollection = database.collection("Student");
 
-
-
     // This is an end point to receive post requests on /addUser
-app.post("/addTeacher", async (req, res) => {
-  const userCollection = db.collection("Student");
-  userCollection.insertOne(req.body, (err, result) => {
-    if (err) res.status(500).send(err);
-    res.send(result.ops[0]);
-  });
-});
+    app.post("/addTeacher", async (req, res) => {
+      const userCollection = db.collection("Student");
+      userCollection.insertOne(req.body, (err, result) => {
+        if (err) res.status(500).send(err);
+        res.send(result.ops[0]);
+      });
+    });
 
-
-
-async function dbget(id) {
-  try {
-    console.log("In dbget");
-    await client.connect();
-    console.log("Connected!");
-    const collection = await client
-      .db("PortedEd")
-      .collection("Student")
-      .findOne({ studentID: String(id) });
-    console.log(collection);
-    console.log("we made it here");
-    return collection;
-  } finally {
-    client.close();
-  }
-}
-
-// this is an end point to get all the users from /getStudents
-app.post("/getStudents", async (req, res) => {
-  console.log(req.body);
-  const userCollection = await dbget(req.body.studentId);
-  res.send(userCollection);
-});
-
-app.get("/", (req, res) => {
-  res.json("req.body.name");
-});
-
+    // this is an end point to get all the users from /getStudents
+    app.post("/getStudents", async (req, res) => {
+      const student = await studentCollection.findOne({
+        studentID: String(req.body.studentId),
+      });
+      res.status(200).json(student);
+    });
 
     // Create a new user (registration route)
     app.post("/api/users", async (req, res) => {
@@ -139,21 +115,18 @@ app.get("/", (req, res) => {
         globalUserId = user._id.toString();
 
         res.status(200).json({ message: "Login successful", userId: user._id }); // Include the user's _id
-
       } catch (error) {
         console.error("Error during login:", error);
         res.status(500).json({ message: "Login failed" });
       }
     });
 
-    app.post("/api/verify", async(req, res) => {
-      const { phoneNumber } = req.body
+    app.post("/api/verify", async (req, res) => {
+      const { phoneNumber } = req.body;
 
-      var result = await textFlow.sendVerificationSMS(phoneNumber)
-      if (result.ok)
-        return res.status(200).json({ success: true });
-
-    })
+      var result = await textFlow.sendVerificationSMS(phoneNumber);
+      if (result.ok) return res.status(200).json({ success: true });
+    });
 
     // Start the Express server
     const port = process.env.PORT || 8000;
@@ -162,6 +135,8 @@ app.get("/", (req, res) => {
     });
   } catch (error) {
     console.error("MongoDB connection error:", error);
+  } finally {
+    await client.close();
   }
 }
 // Call the startServer function to start the server
