@@ -3,39 +3,30 @@ import InputField from '../assets/components/input-field'
 import "../assets/page-styles/log-in.css"
 import { useNavigate } from 'react-router-dom'
 
-const AccountIDRecovery = () => {
+const NewPassword = () => {
 const navigate = useNavigate();
 
   const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: ""
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const infoInput = [
     {
       id: 1,
-      name: "firstName",
+      name: "newPassword",
       type: "text",
-      placeholder: "first name",
-      label: "first name"
+      placeholder: "new password",
+      label: "new password"
     },
 
     {
         id: 2,
-        name: "lastName",
+        name: "confirmPassword",
         type: "text",
-        placeholder: "last name",
-        label: "last name"
+        placeholder: "confirm password",
+        label: "confirm password"
     },
-
-    {
-        id: 3,
-        name: "phoneNumber",
-        type: "tel",
-        placeholder: "phone number",
-        label: "phone number"
-    }
   ]
 
   const onChange = (e) => {
@@ -44,21 +35,21 @@ const navigate = useNavigate();
 
   const next = (e) => {
     e.preventDefault();
-    navigate("../account-recovery/your-account-id");
+    navigate("../log-in");
   }
 
   return (
     <div className = "log-in">
       <form className='log-in-form' onSubmit={next}>
         <h1 className='title' id='small' >Portal ED</h1>
-        <p className='caption' id="medium">Fill the information below to find your Account ID</p>
+        <p className='caption' id="medium">Set your new password</p>
         {infoInput.map((input) => (
           <InputField key = {input.id} {...input} value = {personalInfo[infoInput.name]} onChange = {onChange}/>
         ))}
-        <button className='log-in-button'>Next</button>
+        <button className='log-in-button'>Finish</button>
       </form>
     </div>
   )
 }
 
-export default AccountIDRecovery
+export default NewPassword

@@ -155,6 +155,20 @@ app.get("/", (req, res) => {
 
     })
 
+    app.post("/api/email-verification", async (req, res) => {
+        const { email } = req.body;
+
+        const user = await collection.findOne({ email });
+
+        if (!user) {
+          return res.status(404).json({ message: "Email doesn't exist" });
+        }
+        
+        else {
+          res.status(200).json({ message: "Email exists", userId: user._id });
+        }
+    });
+
     // Start the Express server
     const port = process.env.PORT || 8000;
     app.listen(port, () => {

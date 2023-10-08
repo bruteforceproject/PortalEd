@@ -3,26 +3,26 @@ import InputField from '../assets/components/input-field'
 import "../assets/page-styles/log-in.css"
 import { useNavigate } from 'react-router-dom'
 
-const Verify = () => {
+const EnterCode = () => {
   const navigate = useNavigate();
   
-  const [phoneNumber, setPhoneNumber] = useState({
-    phoneNumber: ""
+  const [code, setCode] = useState({
+    code: ""
     
   });
 
-  const phoneInput = [
+  const codeInput = [
     {
       id: 1,
-      name: "phoneNumber",
-      type: "tel",
-      placeholder: "Phone Number",
-      label: "Phone Number"
+      name: "code",
+      type: "code",
+      placeholder: "Code",
+      label: "Code"
     },
   ]
 
   const onChange = (e) => {
-    setPhoneNumber({...phoneNumber, [e.target.name]: e.target.value})
+    setCode({...code, [e.target.name]: e.target.value})
   };
 
   const buttonHandler = (e) => {
@@ -36,10 +36,10 @@ const Verify = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            phoneNumber
+            code
           })
         })
-        navigate("../account-recovery/enter-code");
+        navigate("../account-recovery/new-password");
     }
     else if(id === 'back-button') {
         navigate(-1);
@@ -50,10 +50,10 @@ const Verify = () => {
     <div className = "log-in">
       <form className='log-in-form' onSubmit={buttonHandler}>
         <h1 className='title' id='small'>Portal ED</h1>
-        <p className='caption' id="medium">Confirm your phone number</p>
-        <p className='caption' id="small">Enter your phone number</p>
-        {phoneInput.map((input) => (
-          <InputField key = {input.id} {...input} value = {phoneNumber[phoneInput.name]} onChange = {onChange}/>
+        <p className='caption' id="medium">Code confirmation</p>
+        <p className='caption' id="small">Enter the code you received</p>
+        {codeInput.map((input) => (
+          <InputField key = {input.id} {...input} value = {code[codeInput.name]} onChange = {onChange}/>
         ))}
         <div className = "nav-buttons">
         <button className='log-in-button' id='back-button' onClick={buttonHandler} >Back</button>
@@ -64,4 +64,4 @@ const Verify = () => {
   )
 }
 
-export default Verify
+export default EnterCode

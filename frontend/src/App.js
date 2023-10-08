@@ -17,7 +17,8 @@ import PasswordRecovery from "./pages/account-recovery-password";
 import AccountIDRecovery from "./pages/account-recovery-accountid";
 import YourAccountID from "./pages/account-recovery-your-account-id";
 import Verify from "./pages/account-recovery-verify";
-import NotificationSent from "./pages/account-recovery-notification-sent";
+import NewPassword from "./pages/account-recovery-new-password";
+import EnterCode from './pages/account-recovery-enter-code';
 
 function App() {
   
@@ -30,7 +31,8 @@ function App() {
             <Route  exact path = "/account-recovery/password" Component = {PasswordRecovery} />
             <Route  exact path = "/account-recovery/account-id" Component = {AccountIDRecovery} />
             <Route  exact path = "/account-recovery/verify" Component = {Verify} />
-            <Route  exact path = "/account-recovery/notification-sent" Component = {NotificationSent} />
+            <Route  exact path = "/account-recovery/enter-code" Component = {EnterCode} />
+            <Route  exact path = "/account-recovery/new-password" Component = {NewPassword} />
             <Route  exact path = "/account-recovery/your-account-id" Component = {YourAccountID} />
             <Route  exact path="/studentOverview" Component={studentOverview} /> 
             <Route  exact path="/counselorView" Component={CounselorView} />  
