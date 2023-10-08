@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const PasswordRecovery = () => {
   const navigate = useNavigate();
-  
+  const [error, setError] = useState("");
   const [email, setEmail] = useState({
     email: ""
   });

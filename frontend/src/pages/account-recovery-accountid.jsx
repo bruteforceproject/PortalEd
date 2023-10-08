@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const AccountIDRecovery = () => {
 const navigate = useNavigate();
-
+const [error, setError] = useState("");
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
     lastName: "",
@@ -42,9 +42,36 @@ const navigate = useNavigate();
     setPersonalInfo({...personalInfo, [e.target.name]: e.target.value})
   };
 
-  const next = (e) => {
+  const next = async (e) => {
     e.preventDefault();
-    navigate("../account-recovery/your-account-id");
+
+    try {
+      const response = await fetch("http://localhost:8000/api/get-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(personalInfo),
+      });
+
+      if (response.status === 200) {
+        console.log(personalInfo);
+        const data = await response.json();
+        let userId = data.userId;
+        userId = userId.toString();
+        
+        console.log("User ID:", userId);  
+        console.log(typeof userId);
+
+        navigate("../account-recovery/your-account-id", { state: { userId } });
+      } else if (response.status === 404) {
+        setError("Email doesn't exists");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Authentication failed");
+    }
+
   }
 
   return (

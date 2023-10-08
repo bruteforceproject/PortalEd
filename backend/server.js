@@ -142,6 +142,25 @@ async function startServer() {
         }
     });
 
+    app.post("/api/get-email", async (req, res) => {
+      const { firstName, lastName, phoneNumber } = req.body;
+
+      const user = await collection.findOne({ phoneNumber });
+
+      if (!user) {
+        return res.status(404).json({ message: "Phone number doesn't exist" });
+      }
+      
+      else {
+        console.log("Phone Number exists");
+
+        if(await bcrypt.compare(firstName, user.firstName) && await bcrypt.compare(lastName, user.lastName)){
+          res.status(200).json({ message: "Email exists", userId: user._id });
+        }
+
+      }
+  });
+
     // Start the Express server
     const port = process.env.PORT || 8000;
     app.listen(port, () => {
