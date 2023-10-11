@@ -1,13 +1,10 @@
 //testing purposes
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const bcrypt = require("bcrypt");
 const cors = require("cors");
-const textFlow = require("textflow.js");
+//const textFlow = require("textflow.js");
 
-textFlow.useKey(
-  "6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr"
-);
+//textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr");
 
 const app = express();
 
@@ -30,11 +27,15 @@ async function startServer() {
 
   try {
     await client.connect();
+    
     console.log("Connected to MongoDB");
 
     const database = client.db("PortedEd");
-    const collection = database.collection("users");
     const studentCollection = database.collection("Student");
+    const parentCollection = database.collection("Parent");
+    const teacherCollection = database.collection("Teacher");
+
+
 
     // This is an end point to receive post requests on /addUser
     app.post("/addTeacher", async (req, res) => {
@@ -54,73 +55,121 @@ async function startServer() {
       res.status(200).json(student);
     });
 
-    // Create a new user (registration route)
-    app.post("/api/users", async (req, res) => {
-      try {
-        const { email, password } = req.body;
-
-        // Check if the email already exists
-        const existingUser = await collection.findOne({ email });
-        if (existingUser) {
-          return res.status(400).json({ message: "email already exists" });
-        }
-
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        const newUser = {
-          email,
-          password: hashedPassword,
-          role: "teacher",
-          period0: "",
-          period1: "",
-          period2: "",
-          period3: "",
-          period4: "",
-          period5: "",
-          period6: "",
-          period7: "",
-          // Add other user properties as needed
-        };
-
-        await collection.insertOne(newUser);
-
-        res.status(201).json({ message: "User created successfully" });
-      } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).json({ message: "Error creating user" });
-      }
-    });
 
     // User login route
-    app.post("/api/login", async (req, res) => {
+    app.post("/login", async (req, res) => {
       try {
+        await client.connect();
         const { email, password } = req.body;
-
+        // Log the email for debugging
+        console.log("Email:", email);
+        console.log("password:", password);
         // Find the user by email
-        const user = await collection.findOne({ email });
+        const parentUser = await parentCollection.findOne({ email });
 
-        if (!user) {
-          return res.status(404).json({ message: "User not found" });
+        if (parentUser) {
+          // Check if the provided password matches the stored hashed password
+          //const passwordMatch = await bcrypt.compare(password, parentUser.password);
+    
+          if (password === parentUser.password) {
+            // Authentication successful for a parent
+            globalUserId = parentUser._id.toString();
+            return res.status(200).json({
+              message: "Login successful",
+              userId: parentUser._id,
+              role: parentUser.role,
+            });
+          }
+        }
+    
+        // If user not found in parentCollection, check teacherCollection
+        const teacherUser = await teacherCollection.findOne({ email });
+    
+        if (teacherUser) {
+          // Check if the provided password matches the stored hashed password
+          //const passwordMatch = await bcrypt.compare(password, teacherUser.password);
+    
+          if (password === teacherUser.password) {
+            // Authentication successful for a teacher
+            globalUserId = teacherUser._id.toString();
+            return res.status(200).json({
+              message: "Login successful",
+              userId: teacherUser._id,
+              role: teacherUser.role,
+            });
+          }
         }
 
-        // Check if the provided password matches the stored hashed password
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (!passwordMatch) {
-          return res.status(401).json({ message: "Incorrect password" });
-        }
-
-        // Authentication successful
-
-        globalUserId = user._id.toString();
-
-        res.status(200).json({ message: "Login successful", userId: user._id }); // Include the user's _id
+        res.status(200).json({ message: "Login successful", userId: user._id, role:user.role}); // Include the user's _id
       } catch (error) {
         console.error("Error during login:", error);
         res.status(500).json({ message: "Login failed" });
       }
     });
+
+    // Create a new route to fetch the parent's name
+app.get("/users/:userId", async (req, res) => {
+  try {
+    const { ObjectId } = require("mongodb");
+    const userId = req.params.userId;
+    const user = await parentCollection.findOne({ _id: new ObjectId(userId) });
+
+    if (user) {
+      const { fname, lname } = user;
+      res.status(200).json({ fname, lname });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ message: "Error fetching user data" });
+  }
+});
+
+app.get("/users/:userId/children", async (req, res) => {
+  try {
+    const { ObjectId } = require("mongodb");
+    const userId = req.params.userId;
+    
+    // Find the parent document by _id
+    const parent = await parentCollection.findOne({ _id: new ObjectId(userId) });
+
+    if (!parent) {
+      return res.status(404).json({ message: "Parent not found" });
+    }
+
+    const children = parent.children; // Assuming children is an array of student ObjectIds
+
+    // Initialize an array to store student information
+    const studentInfo = [];
+
+    // Iterate through the children array
+    for (const studentId of children) {
+      // Query the Student collection to retrieve student's document by _id
+      const student = await studentCollection.findOne({ _id: studentId });
+
+      if (student) {
+        // Extract fname and lname from the student document
+        const { fname, lname, alertCount } = student;
+        studentInfo.push({ fname, lname, alertCount });
+      }
+    }
+
+    if (studentInfo.length === 0) {
+      return res.status(404).json({ message: "No children found" });
+    }
+
+    // Send the list of student information as a response
+    res.status(200).json(studentInfo);
+  } catch (error) {
+    console.error("Error fetching children data:", error);
+    res.status(500).json({ message: "Error fetching children data" });
+  }
+});
+
+
+
+
 
     app.post("/api/verify", async (req, res) => {
       const { phoneNumber } = req.body;
@@ -168,7 +217,7 @@ async function startServer() {
   } catch (error) {
     console.error("MongoDB connection error:", error);
   } finally {
-    await client.close();
+    //await client.close();
   }
 }
 // Call the startServer function to start the server

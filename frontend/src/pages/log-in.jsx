@@ -24,8 +24,8 @@ const Login = () => {
       id: 2,
       name: "password",
       type: "password",
-      placeholder: "Password",
-      label: "Password",
+      placeholder: "password",
+      label: "password",
     },
   ];
 
@@ -37,25 +37,29 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/login", {
+      const response = await fetch("http://localhost:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(credentials),
       });
-
+  
       if (response.status === 200) {
         // Authentication successful, redirect to the dashboard or home page
-        console.log(credentials);
         const data = await response.json();
         let userId = data.userId; // Retrieve the userId from the response
         userId= userId.toString();
-        // Now you can use the userId as needed, e.g., store it in state, local storage, or redirect to a new page.
-        console.log("User ID:", userId);  
-        console.log(typeof userId);
+        const role = data.role; // Retrieve the "role" from the response
+        console.log("Role:", role); // Add this line to check the value of the role
 
-        navigate("/home", { state: { userId } }); // Change to your authenticated page
+        if (role === "parent") {
+          // Redirect to the parent view if the role is "parent"
+          navigate("/parentView", { state: { userId } });
+        } else {
+          // Redirect to the home page for other roles
+          navigate("/home", { state: { userId } });
+        }
       } else if (response.status === 401) {
         setError("Incorrect password");
       } else if (response.status === 404) {

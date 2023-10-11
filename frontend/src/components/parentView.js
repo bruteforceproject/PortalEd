@@ -1,12 +1,59 @@
 
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './parentView.css';
 import './acknowledgeView.js';
 import './studentOverview';
 
 const ParentView = () => {
-  useEffect(() =>{
+  const location = useLocation();
+  const [userId, setUserId] = useState('');
+  const [parentName, setParentName] = useState('');
+  const [studentInfo, setStudentInfo] = useState([]);
+
+  useEffect(() => {
+    // Get userId from location state
+    const userIdFromLocation = location.state.userId;
+    setUserId(userIdFromLocation);
+
+    // Fetch user data using the userId
+    async function fetchUserData(userId) {
+      try {
+        const response = await fetch(`http://localhost:8000/users/${userId}`);
+        if (response.status === 200) {
+          const data = await response.json();
+          const { fname, lname } = data;
+          // Update parentName after fetching data
+          setParentName(`${fname} ${lname}`);
+        } else {
+          console.error('Error fetching user data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+        // Fetch student information using the userId
+        async function fetchStudentInfo(userId) {
+          try {
+            const response = await fetch(`http://localhost:8000/users/${userId}/children`);
+            if (response.status === 200) {
+              const data = await response.json();
+              // Update studentInfo with the fetched data
+              setStudentInfo(data);
+            } else {
+              console.error('Error fetching student info');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
+
+
+    // Call the fetchUserData function
+    fetchUserData(userIdFromLocation);
+    fetchStudentInfo(userIdFromLocation);
+
 
     const buttons = document.querySelectorAll('.my-button');
     
@@ -33,28 +80,23 @@ const ParentView = () => {
     });
   
 
-  },[]
+  },[location.state.userId]
   );
   return (
     <>
-      
       <div className="header">Portal Ed</div>
-      <div className="header-2">Parent Name</div>
+      <div className="header-2">{parentName}</div>
       <div className="button-container">
-      <Link to="/acknowledgeView" className="my-button" id="textLength">
-      <div>
-      <span>Student Name</span>
-      <span className="student-id">2 Unacknowledged Alerts!</span>
-      </div>
-        </Link>
-      </div>
-      <div className="button-container button-container2">
-        <Link to="/studentOverview" className="my-button" id="textLength2">
-        <div>
-        <span>Another Student</span>
-        <span className="student-id2">0 Unacknowledged Alerts</span>
-      </div>
-        </Link>
+        {studentInfo.map((student, index) => (
+          <div key={index} className="student-link">
+            <Link to={`/acknowledgeView/`} className="my-button" id={`textLength${index}`}>
+              <div>
+                <span>{`${student.fname} ${student.lname}`}</span>
+                <span className="student-id">{`${student.alertCount} Unacknowledged Alerts!`}</span>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </>
   );
