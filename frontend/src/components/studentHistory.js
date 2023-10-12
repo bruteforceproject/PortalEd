@@ -104,7 +104,7 @@ const StudentHistory = () => {
     setStudentData(location.state.myData);
   }, []);
 
-  const studentName = studentData.firstName + " " + studentData.lastName;
+  const studentName = studentData.fname + " " + studentData.lname;
   // const studentName = "Ramez";
   const studentId = studentData.studentID;
   // const studentId = "1";

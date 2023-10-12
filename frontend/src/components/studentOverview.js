@@ -27,22 +27,28 @@ function StudentOverview() {
                   });
                 }
               }}
-              class="name"
+              
             >
-              {studentData.firstName} {studentData.lastName}
+              <span class="name">Student Name: {studentData.fname} {studentData.lname}</span>
             </span>{" "}
             &nbsp;&nbsp;{" "}
-            <span class="id">Student ID:{studentData.studentID}</span>
+            <span class="id">Student ID: {studentData.studentID}</span>
           </h2>
         </div>
       </header>
       <body>
         <div>
           <div className="Period">
-            <p>
-              <b>Period 0: </b>
-              {studentData.classes?.period1}
+            <div className="period-info">
+              <p>
+                <b>Period 0: </b>
+                {studentData.period0}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
+            
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -54,16 +60,20 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
+            
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 1: </b>
-              {studentData.classes?.period1}
+
+          <div className="period-info">
+              <p>
+                <b>Period 1: </b>
+                {studentData.period1}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -75,16 +85,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 2: </b>
-              {studentData.classes?.period2}
+          <div className="period-info">
+              <p>
+                <b>Period 2: </b>
+                {studentData.period2}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -96,16 +108,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 3: </b>
-              {studentData.classes?.period3}
+          <div className="period-info">
+              <p>
+                <b>Period 3: </b>
+                {studentData.period3}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -117,16 +131,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 4: </b>
-              {studentData.classes?.period4}
+          <div className="period-info">
+              <p>
+                <b>Period 4: </b>
+                {studentData.period4}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -138,16 +154,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 5: </b>
-              {studentData.classes?.period5}
+          <div className="period-info">
+              <p>
+                <b>Period 5: </b>
+                {studentData.period5}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -159,16 +177,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 6: </b>
-              {studentData.classes?.period6}
+          <div className="period-info">
+              <p>
+                <b>Period 6: </b>
+                {studentData.period6}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -180,16 +200,18 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
 
           <div className="Period">
-            <p>
-              <b>Period 7: </b>
-              {studentData.classes?.period7}
+          <div className="period-info">
+              <p>
+                <b>Period 7: </b>
+                {studentData.period7}
+              </p>
+              <p>
+                <b>Teacher Name: </b>B. Banana{" "}
             </p>
+            </div>
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -201,9 +223,6 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
-            <p>
-              <b>Teacher Name: </b>B. Banana{" "}
-            </p>
           </div>
         </div>
       </body>
