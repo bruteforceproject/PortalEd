@@ -13,12 +13,13 @@ header{
     padding: 2px; */
     font-size: 2rem;
     padding: 1%;
+
 }
 
 .name {
     text-align: left;
    /* padding-right: 30%; */
-   padding-right: 30%;
+   left: 10%;
 }
 
 /*these are to make the top a clickable link to student history*/
@@ -41,10 +42,14 @@ div.headLink:hover{
 
 
 .academicsImg, .attendanceImg, .behaviorImg {
+    position: relative;
     flex: 1;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    height: 100%;
+    width: auto;
+    justify-content: center;
+    
+    
     
   }
 
@@ -53,26 +58,27 @@ div.headLink:hover{
     top: 50%;
     left: 60%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    height: 50px;
-   /* width: 60%;
-    height: 70%; */
+
+    width: 40%;
+    height: 80%; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 50%;
+    
 }
 
-.image-container {
-    flex-basis: 80px;
-}
+
 
 .academicsImg img, .attendanceImg img , .behaviorImg img{
-    max-width: 30%;
+    position: absolute;
+    max-width: 100%;
     max-height: 100%;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
     border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid black;
+    
     
 }
 
@@ -100,23 +106,10 @@ div.Period{
     padding: 7px;
     margin: 30px;
 
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+    
     
 }
 
-/*
-.Period.period-info {
-    flex: 1;
-    margin-bottom: 10px;
-    align-items: left;
-    padding-right: 10%;
-    margin-right: 10%;
-    
-}
-
-*/
 .period-info{
     
    flex: 1;
