@@ -78,15 +78,14 @@ async function startServer() {
         const parentUser = await parentCollection.findOne({ email });
 
         if (parentUser) {
-          // Check if the provided password matches the stored hashed password
-          //const passwordMatch = await bcrypt.compare(password, parentUser.password);
+
     
           if (password === parentUser.password) {
             // Authentication successful for a parent
             globalUserId = parentUser._id.toString();
             return res.status(200).json({
               message: "Login successful",
-              userId: parentUser._id,
+              userId: parentUser.parent_id,
               role: parentUser.role,
             });
           }
@@ -120,9 +119,9 @@ async function startServer() {
     // Create a new route to fetch the parent's name
 app.get("/users/:userId", async (req, res) => {
   try {
-    const { ObjectId } = require("mongodb");
+
     const userId = req.params.userId;
-    const user = await parentCollection.findOne({ _id: new ObjectId(userId) });
+    const user = await parentCollection.findOne({ parent_id: userId });
 
     if (user) {
       const { fname, lname } = user;
@@ -136,37 +135,27 @@ app.get("/users/:userId", async (req, res) => {
   }
 });
 
+
+
 app.get("/users/:userId/children", async (req, res) => {
   try {
-    const { ObjectId } = require("mongodb");
     const userId = req.params.userId;
-    
-    // Find the parent document by _id
-    const parent = await parentCollection.findOne({ _id: new ObjectId(userId) });
+    console.log("parentview id:", userId);
+    // Retrieve students with matching parent_id from the student database
+    const students = await studentCollection.find({ parent_id: userId }).toArray();
 
-    if (!parent) {
-      return res.status(404).json({ message: "Parent not found" });
+    if (students.length === 0) {
+      return res.status(404).json({ message: "No children found" });
     }
-
-    const children = parent.children; // Assuming children is an array of student ObjectIds
 
     // Initialize an array to store student information
     const studentInfo = [];
 
-    // Iterate through the children array
-    for (const studentId of children) {
-      // Query the Student collection to retrieve student's document by _id
-      const student = await studentCollection.findOne({ _id: studentId });
-
-      if (student) {
-        // Extract fname and lname from the student document
-        const { fname, lname, alertCount } = student;
-        studentInfo.push({ fname, lname, alertCount });
-      }
-    }
-
-    if (studentInfo.length === 0) {
-      return res.status(404).json({ message: "No children found" });
+    // Iterate through the students
+    for (const student of students) {
+      // Extract fname, lname, and alertCount from the student document
+      const { fname, lname, alertCount } = student;
+      studentInfo.push({ fname, lname, alertCount });
     }
 
     // Send the list of student information as a response
@@ -176,6 +165,7 @@ app.get("/users/:userId/children", async (req, res) => {
     res.status(500).json({ message: "Error fetching children data" });
   }
 });
+
 
 
 
