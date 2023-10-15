@@ -34,6 +34,7 @@ async function startServer() {
     const studentCollection = database.collection("Student");
     const parentCollection = database.collection("Parent");
     const teacherCollection = database.collection("Teacher");
+    const classCollection = database.collection("Class");
 
 
 
@@ -53,6 +54,15 @@ async function startServer() {
         studentID: String(req.body.studentId),
       });
       res.status(200).json(student);
+    });
+
+    //end point to get class information
+    app.post("/getClass", async(req, res) => {
+      await client.connect();
+      const classes = await classCollection.findOne({
+        class_id: String(req.body.class_id),
+      });
+      res.status(200).json(classes);
     });
 
 

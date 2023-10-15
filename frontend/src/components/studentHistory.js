@@ -33,11 +33,11 @@ const StudentHeader = ({ studentName, studentId }) => {
   );
 };
 
-const GoBack = () => {
+const GoBack = ({studentData}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/studentOverview");
+    navigate("/studentOverview", {state: {myData: studentData}});
   };
 
   return (
@@ -179,7 +179,7 @@ const StudentHistory = () => {
             <div className="box">{renderEventTiles("Attendance")}</div>
           </div>
         </div>
-        <GoBack />
+        <GoBack studentData={studentData}/>
       </div>
       <GoBackhome />
     </>
