@@ -42,7 +42,7 @@ const [error, setError] = useState("");
     setPersonalInfo({...personalInfo, [e.target.name]: e.target.value})
   };
 
-  const next = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -58,20 +58,23 @@ const [error, setError] = useState("");
         const data = await response.json();
         let userEmail = data.email;
         userEmail = userEmail.toString();
-
         navigate("../account-recovery/your-account-id", { state: { userEmail } });
-      } else if (response.status === 404) {
-        setError("Email doesn't exists");
+      } 
+      
+      else if (response.status === 404) {
+        setError("Email not found");
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.error("Error:", error);
-      setError("Authentication failed");
+      setError("Operation Failed");
     }
   }
 
   return (
     <div className = "log-in">
-      <form className='log-in-form' onSubmit={next}>
+      <form className='log-in-form' onSubmit={handleSubmit}>
         <h1 className='title' id='small' >Portal ED</h1>
         <p className='caption' id="medium">Fill the information below to find your Account ID</p>
         {infoInput.map((input) => (

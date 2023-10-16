@@ -167,10 +167,26 @@ app.get("/users/:userId/children", async (req, res) => {
 });
 
     app.post("/api/verify", async (req, res) => {
-      const { phoneNumber } = req.body;
+      const { phone, email } = req.body;
+      console.log(req.body)
 
-      var result = await textFlow.sendVerificationSMS(phoneNumber);
-      if (result.ok) return res.status(200).json({ success: true });
+      const user = await parentCollection.findOne({ phone });
+
+      console.log(phone)
+      console.log(email)
+
+      if (!user) {
+        return res.status(404).json({ message: "Phone doesn't exist" });
+      } 
+      
+      else if (user.email != email) {
+        res.status(404).json({ message: "Phone number doesn't match associated account"});
+      }
+
+      else {
+        res.status(200).json({ message: "Phone number matches associated account"});
+      }
+      
     });
 
     app.post("/api/email-verification", async (req, res) => {
@@ -180,8 +196,10 @@ app.get("/users/:userId/children", async (req, res) => {
 
       if (!user) {
         return res.status(404).json({ message: "Email doesn't exist" });
-      } else {
-        res.status(200).json({ message: "Email exists", userPhone: user.phone });
+      } 
+      
+      else {
+        res.status(200).json({ message: "Email exists", userPhone: user.phone, userEmail: user.email });
       }
     });
 

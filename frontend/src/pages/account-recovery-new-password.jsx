@@ -33,14 +33,14 @@ const navigate = useNavigate();
     setPersonalInfo({...personalInfo, [e.target.name]: e.target.value})
   };
 
-  const next = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     navigate("../log-in");
   }
 
   return (
     <div className = "log-in">
-      <form className='log-in-form' onSubmit={next}>
+      <form className='log-in-form' onSubmit={handleSubmit}>
         <h1 className='title' id='small' >Portal ED</h1>
         <p className='caption' id="medium">Set your new password</p>
         {infoInput.map((input) => (

@@ -7,11 +7,12 @@ const Verify = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userPhone = location.state.userPhone
+  const userEmail = location.state.userEmail
   const [error, setError] = useState("");
   
   const [phoneNumber, setPhoneNumber] = useState({
-    phone: ""
-    
+    phone: "",
+    email: userEmail
   });
 
   const phoneInput = [
@@ -30,6 +31,7 @@ const Verify = () => {
 
   const buttonHandler = async (e) => {
     e.preventDefault();
+    console.log(userEmail)
     let id = e.target.id;
     if(id === 'next-button'){
       try {
@@ -42,17 +44,18 @@ const Verify = () => {
         });
   
         if (response.status === 200) {
-          const data = await response.json();
-          let userEmail = data.email;
-          userEmail = userEmail.toString();
   
-          navigate("../account-recovery/enter-code", { state: { userEmail } });
-        } else if (response.status === 404) {
+          navigate("../account-recovery/enter-code");
+        } 
+        
+        else if (response.status === 404) {
           setError("Email doesn't exists");
         }
-      } catch (error) {
+      } 
+      
+      catch (error) {
         console.error("Error:", error);
-        setError("Authentication failed");
+        setError("Operation Failed");
       }
     }
     else if(id === 'back-button') {
