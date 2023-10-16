@@ -1,20 +1,23 @@
 import { React, useState } from 'react'
 import InputField from '../assets/components/input-field'
 import "../assets/page-styles/log-in.css"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Verify = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const userPhone = location.state.userPhone
+  const [error, setError] = useState("");
   
   const [phoneNumber, setPhoneNumber] = useState({
-    phoneNumber: ""
+    phone: ""
     
   });
 
   const phoneInput = [
     {
       id: 1,
-      name: "phoneNumber",
+      name: "phone",
       type: "tel",
       placeholder: "Phone Number",
       label: "Phone Number"
@@ -25,21 +28,32 @@ const Verify = () => {
     setPhoneNumber({...phoneNumber, [e.target.name]: e.target.value})
   };
 
-  const buttonHandler = (e) => {
+  const buttonHandler = async (e) => {
     e.preventDefault();
     let id = e.target.id;
     if(id === 'next-button'){
-        fetch("http://localhost:8000/api/verify", {
+      try {
+        const response = await fetch("http://localhost:8000/api/verify", {
           method: "POST",
           headers: {
-            Accept: 'application/json',
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            phoneNumber
-          })
-        })
-        navigate("../account-recovery/enter-code");
+          body: JSON.stringify(phoneNumber),
+        });
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          let userEmail = data.email;
+          userEmail = userEmail.toString();
+  
+          navigate("../account-recovery/enter-code", { state: { userEmail } });
+        } else if (response.status === 404) {
+          setError("Email doesn't exists");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setError("Authentication failed");
+      }
     }
     else if(id === 'back-button') {
         navigate(-1);
@@ -51,7 +65,7 @@ const Verify = () => {
       <form className='log-in-form' onSubmit={buttonHandler}>
         <h1 className='title' id='small'>Portal ED</h1>
         <p className='caption' id="medium">Confirm your phone number</p>
-        <p className='caption' id="small">Enter your phone number</p>
+        <p className='caption' id="small">Enter your phone number associated with your account: {userPhone}</p>
         {phoneInput.map((input) => (
           <InputField key = {input.id} {...input} value = {phoneNumber[phoneInput.name]} onChange = {onChange}/>
         ))}

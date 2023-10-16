@@ -24,7 +24,7 @@ const PasswordRecovery = () => {
     setEmail({...email, [e.target.name]: e.target.value})
   };
 
-  const verifyPhoneNumber = async (e) => {
+  const next = async (e) => {
     e.preventDefault();
 
     try {
@@ -39,13 +39,10 @@ const PasswordRecovery = () => {
       if (response.status === 200) {
         console.log(email);
         const data = await response.json();
-        let userId = data.userId;
-        userId = userId.toString();
-        
-        console.log("User ID:", userId);  
-        console.log(typeof userId);
+        let userPhone = data.userPhone;
+        userPhone = userPhone.toString();
 
-        navigate("../account-recovery/verify", { state: { userId } }); // Change to your authenticated page
+        navigate("../account-recovery/verify", { state: { userPhone } });
       } else if (response.status === 404) {
         setError("Email doesn't exists");
       }
@@ -57,7 +54,7 @@ const PasswordRecovery = () => {
 
   return (
     <div className = "log-in">
-      <form className='log-in-form' onSubmit={verifyPhoneNumber}>
+      <form className='log-in-form' onSubmit={next}>
         <h1 className='title' id='small'>Portal ED</h1>
         <p className='caption' id="medium">Trouble signing in?</p>
         {emailInput.map((input) => (

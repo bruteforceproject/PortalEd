@@ -7,15 +7,15 @@ const AccountIDRecovery = () => {
 const navigate = useNavigate();
 const [error, setError] = useState("");
   const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: ""
+    fname: "",
+    lname: "",
+    phone: ""
   });
 
   const infoInput = [
     {
       id: 1,
-      name: "firstName",
+      name: "fname",
       type: "text",
       placeholder: "first name",
       label: "first name"
@@ -23,7 +23,7 @@ const [error, setError] = useState("");
 
     {
         id: 2,
-        name: "lastName",
+        name: "lname",
         type: "text",
         placeholder: "last name",
         label: "last name"
@@ -31,8 +31,8 @@ const [error, setError] = useState("");
 
     {
         id: 3,
-        name: "phoneNumber",
-        type: "tel",
+        name: "phone",
+        type: "text",
         placeholder: "phone number",
         label: "phone number"
     }
@@ -55,15 +55,11 @@ const [error, setError] = useState("");
       });
 
       if (response.status === 200) {
-        console.log(personalInfo);
         const data = await response.json();
-        let userId = data.userId;
-        userId = userId.toString();
-        
-        console.log("User ID:", userId);  
-        console.log(typeof userId);
+        let userEmail = data.email;
+        userEmail = userEmail.toString();
 
-        navigate("../account-recovery/your-account-id", { state: { userId } });
+        navigate("../account-recovery/your-account-id", { state: { userEmail } });
       } else if (response.status === 404) {
         setError("Email doesn't exists");
       }
@@ -71,7 +67,6 @@ const [error, setError] = useState("");
       console.error("Error:", error);
       setError("Authentication failed");
     }
-
   }
 
   return (
