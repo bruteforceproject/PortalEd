@@ -15,6 +15,9 @@ function StudentOverview() {
 
 
   useEffect(() => {
+
+    if (!location.state || !location.state.myData) return;
+
     setStudentData(location.state.myData);
 
     const periodFields = [
