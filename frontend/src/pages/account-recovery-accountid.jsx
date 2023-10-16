@@ -7,15 +7,15 @@ const AccountIDRecovery = () => {
 const navigate = useNavigate();
 const [error, setError] = useState("");
   const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: ""
+    fname: "",
+    lname: "",
+    phone: ""
   });
 
   const infoInput = [
     {
       id: 1,
-      name: "firstName",
+      name: "fname",
       type: "text",
       placeholder: "first name",
       label: "first name"
@@ -23,7 +23,7 @@ const [error, setError] = useState("");
 
     {
         id: 2,
-        name: "lastName",
+        name: "lname",
         type: "text",
         placeholder: "last name",
         label: "last name"
@@ -31,8 +31,8 @@ const [error, setError] = useState("");
 
     {
         id: 3,
-        name: "phoneNumber",
-        type: "tel",
+        name: "phone",
+        type: "text",
         placeholder: "phone number",
         label: "phone number"
     }
@@ -42,7 +42,7 @@ const [error, setError] = useState("");
     setPersonalInfo({...personalInfo, [e.target.name]: e.target.value})
   };
 
-  const next = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -55,28 +55,26 @@ const [error, setError] = useState("");
       });
 
       if (response.status === 200) {
-        console.log(personalInfo);
         const data = await response.json();
-        let userId = data.userId;
-        userId = userId.toString();
-        
-        console.log("User ID:", userId);  
-        console.log(typeof userId);
-
-        navigate("../account-recovery/your-account-id", { state: { userId } });
-      } else if (response.status === 404) {
-        setError("Email doesn't exists");
+        let userEmail = data.email;
+        userEmail = userEmail.toString();
+        navigate("../account-recovery/your-account-id", { state: { userEmail } });
+      } 
+      
+      else if (response.status === 404) {
+        setError("Email not found");
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.error("Error:", error);
-      setError("Authentication failed");
+      setError("Operation Failed");
     }
-
   }
 
   return (
     <div className = "log-in">
-      <form className='log-in-form' onSubmit={next}>
+      <form className='log-in-form' onSubmit={handleSubmit}>
         <h1 className='title' id='small' >Portal ED</h1>
         <p className='caption' id="medium">Fill the information below to find your Account ID</p>
         {infoInput.map((input) => (

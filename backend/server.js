@@ -166,46 +166,54 @@ app.get("/users/:userId/children", async (req, res) => {
   }
 });
 
-
-
-
-
-
     app.post("/api/verify", async (req, res) => {
-      const { phoneNumber } = req.body;
+      const { phone, email } = req.body;
+      console.log(req.body)
 
-      var result = await textFlow.sendVerificationSMS(phoneNumber);
-      if (result.ok) return res.status(200).json({ success: true });
+      const user = await parentCollection.findOne({ phone });
+
+      console.log(phone)
+      console.log(email)
+
+      if (!user) {
+        return res.status(404).json({ message: "Phone doesn't exist" });
+      } 
+      
+      else if (user.email != email) {
+        res.status(404).json({ message: "Phone number doesn't match associated account"});
+      }
+
+      else {
+        res.status(200).json({ message: "Phone number matches associated account"});
+      }
+      
     });
 
     app.post("/api/email-verification", async (req, res) => {
       const { email } = req.body;
 
-      const user = await collection.findOne({ email });
+      const user = await parentCollection.findOne({ email });
 
       if (!user) {
         return res.status(404).json({ message: "Email doesn't exist" });
-      } else {
-        res.status(200).json({ message: "Email exists", userId: user._id });
+      } 
+      
+      else {
+        res.status(200).json({ message: "Email exists", userPhone: user.phone, userEmail: user.email });
       }
     });
 
     app.post("/api/get-email", async (req, res) => {
-      const { firstName, lastName, phoneNumber } = req.body;
+      const { fname, lname, phone } = req.body;
 
-      const user = await collection.findOne({ phoneNumber });
+      const user = await parentCollection.findOne({ phone });
 
       if (!user) {
-        return res.status(404).json({ message: "Phone number doesn't exist" });
-      } else {
-        console.log("Phone Number exists");
-
-        if (
-          (await bcrypt.compare(firstName, user.firstName)) &&
-          (await bcrypt.compare(lastName, user.lastName))
-        ) {
-          res.status(200).json({ message: "Email exists", userId: user._id });
-        }
+        return res.status(404).json({ message: "Email doesn't exist" });
+      } 
+      
+      else if(fname == user.fname && lname == user.lname){
+        res.status(200).json({ message: "Found email", email: user.email });
       }
     });
 
