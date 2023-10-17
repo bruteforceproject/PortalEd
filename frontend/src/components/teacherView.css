@@ -4,31 +4,50 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    background-color: #F4E2DE;
   }
   
-  .period-buttons {
+  .periods {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 10%;
     height: 100vh;
     padding: 10px;
-    background-color: #141414;
+    background-color: #10403B;
   }
-  
-  .button {
+  .period.on {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
     margin-bottom: 10px;
-    background-color: #212121;
-    border: 1px solid orange;
-    color: orange;
+    border: 5px solid;
     font-size: 20px;
     cursor: pointer;
-    
+    color: #F4E2DE;
+    background: #D94F04; /* Green color for the on state */
+    transform: scale(1.05); /* Slight scaling effect for the on state */
+  }
+  
+  .period.off {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8AA6A3;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    background-color: #007172;
+    border: 1px solid;
+    font-size: 20px;
+    cursor: pointer;
+    color: #F4E2DE;
+  }
+  
+  .period:hover {
+    background: #F29325;
   }
   
   .student-grid {
@@ -52,7 +71,8 @@
     align-items: center;
     width: 100%;
     height: 120px;
-    background-color: orange;
+    /* background-color: orange; */
+    background-color: #FFE59A;
     color: white;
     font-size: 30px;
     border-radius: 10px;
@@ -83,7 +103,7 @@
     height: 50px;
     max-height: 50px;
     overflow: hidden;
-    background-color: orange;
+    background-color: #007172;
     cursor: pointer;
   }
   .grid2 {
@@ -94,7 +114,7 @@
     grid-row-start: 2;
     grid-row-end: 3;
     font-size: 20px;
-    background-color: #f25d50;
+    background-color: #C5E0B3;
   }
   .grid3 {
     max-height: 15px;
@@ -103,7 +123,7 @@
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: #f2ca52;
+    background-color: #FFE59A;
     overflow: hidden;
     border: 1px solid black;
   }
@@ -115,7 +135,7 @@
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: #558c3b ;
+    background-color: #C5E0B3;
   }
   .grid5 {
     height: 55px;
@@ -155,16 +175,18 @@
     cursor: pointer;
   }
   
-  .color-one {
-    background-color: #558c3b;
+  .color-green {
+    /* background-color: #558c3b; */
+    background-color: #C5E0B3;
   }
   
-  .color-two {
-    background-color: #f2ca52;
+  .color-yellow {
+    /* background-color: #f2ca52; */
+    background-color: #FFE59A;
   }
   
-  .color-three {
-    background-color: #f25d50;
+  .color-red {
+    background-color: #F7CAAC;
   }
 
   
