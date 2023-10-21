@@ -2,46 +2,53 @@ import React from 'react'
 import './teacherView.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
-import { FaLock } from "react-icons/fa";
-import { FaUnlock } from "react-icons/fa";
+import { GrValidate } from "react-icons/gr"; 
+import axios from 'axios'
+
+
 
 const TeacherView = () => {
-  const students = [...Array(55).keys()]; // create array of 35 students
-  const [clickCount, setClickCount] = useState(0);
-  const [clickTimeout, setClickTimeout] = useState(null);
-  let [buttonClassName, setbuttonClassName] = useState('default-color');
 
-  useEffect(() => {
-    if (clickCount === 3) {
-      setbuttonClassName('color-red');
-      clearTimeout(clickTimeout);
-      setClickTimeout(null);
-      setClickCount(0);
-    } else if (clickCount === 2) {
-      if (!clickTimeout) {
-        const timeoutId = setTimeout(() => {
-          setbuttonClassName('color-yellow');
-          setClickCount(0);
-          setClickTimeout(null);
-        }, 10);
-        setClickTimeout(timeoutId);
-      }
-    } else if (clickCount === 1) {
-      if (!clickTimeout) {
-        const timeoutId = setTimeout(() => {
-          setbuttonClassName('color-green');
-          setClickTimeout(null);
-        }, 1000);
-        setClickTimeout(timeoutId);
-      }
-    }
-  }, [clickCount, clickTimeout]);
+  //??Need the count of students
+  const students = [...Array(20).keys()]; // create array of 35 students
 
-  const handleClick = (i) => {
-    setClickCount(prevCount => prevCount + 1);
-  };
+
+  // const [clickCount, setClickCount] = useState(0);
+  // const [clickTimeout, setClickTimeout] = useState(null);
+  // let [buttonClassName, setbuttonClassName] = useState('default-color');
+
+  // useEffect(() => {
+  //   if (clickCount === 3) {
+  //     setbuttonClassName('color-red');
+  //     clearTimeout(clickTimeout);
+  //     setClickTimeout(null);
+  //     setClickCount(0);
+  //   } else if (clickCount === 2) {
+  //     if (!clickTimeout) {
+  //       const timeoutId = setTimeout(() => {
+  //         setbuttonClassName('color-yellow');
+  //         setClickCount(0);
+  //         setClickTimeout(null);
+  //       }, 10);
+  //       setClickTimeout(timeoutId);
+  //     }
+  //   } else if (clickCount === 1) {
+  //     if (!clickTimeout) {
+  //       const timeoutId = setTimeout(() => {
+  //         setbuttonClassName('color-green');
+  //         setClickTimeout(null);
+  //       }, 1000);
+  //       setClickTimeout(timeoutId);
+  //     }
+  //   }
+  // }, [clickCount, clickTimeout]);
+
+  // const handleClick = (i) => {
+  //   setClickCount(prevCount => prevCount + 1);
+  // };
 
   // Start of Period Switch Setup
+  //?? How to put this false thingy in database and extract from there?
   const [switches, setSwitches] = useState([false, false, false, false, false, false, false, false]);
   const [activeSwitch, setActiveSwitch] = useState(null);
 
@@ -93,16 +100,16 @@ const TeacherView = () => {
             <div className='grid1'>
               <Link to="/parentstudentView" className='grid1'>Student {i + 1}</Link>
             </div>
-            <div className='grid2 gridall'></div>
-            <div className='grid3 gridall'></div>
-            <div className='grid4 gridall'> </div>
-            <button className={`grid5 gridall default-color ${buttonClassName}`} onClick={handleClick} >
-              <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
+            <div className='grid2 gridall default-color'></div>
+            <div className='grid3 gridall default-color'></div>
+            <div className='grid4 gridall default-color'> </div>
+            <button className={"grid5 gridall default-color"} >
+              <span className='teacher_logo'><GrValidate/></span>
             </button>
-            <button className="grid6 gridall ">
+            <button className="grid6 gridall default-color ">
               <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
             </button>
-            <button className="grid7 gridall">
+            <button className="grid7 gridall default-color">
               <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
             </button>
           </div>
