@@ -8,11 +8,58 @@ import "./studentOverview.css";
 
 function StudentOverview() {
   const [studentData, setStudentData] = useState({});
+  const [classData, setClassData] = useState({}); //added
   const navigate = useNavigate();
   const location = useLocation();
+
+
+
   useEffect(() => {
+
+    if (!location.state || !location.state.myData) return;
+
     setStudentData(location.state.myData);
-  }, []);
+
+    const periodFields = [
+      studentData.period0,
+      studentData.period1,
+      studentData.period2,
+      studentData.period3,
+      studentData.period4,
+      studentData.period5,
+      studentData.period6,
+      studentData.period7,
+    ];
+
+    //fetching class info from each period
+    const fetchClassInfo = async () => {
+      const classInfoPromises = periodFields.map((periodID) => {
+        return fetch('http://localhost:8000/getClass', { // Update the URL here
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ class_id: periodID }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("network response not ok");
+            }
+            return response.json();
+          })
+          .catch((error) => {
+            console.error("Error fetching class info:", error);
+          });
+      });
+    
+      const classInfo = await Promise.all(classInfoPromises);
+      setClassData(classInfo);
+    };
+    
+
+    fetchClassInfo();
+
+  }, [studentData]);
 
   return (
     <html>
@@ -38,11 +85,14 @@ function StudentOverview() {
       </header>
       <body>
         <div>
+    
+          
+          
           <div className="Period">
             <div className="period-info">
               <p>
                 <b>Period 0: </b>
-                {studentData.period0}
+                {classData[0]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -68,7 +118,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 1: </b>
-                {studentData.period1}
+                {classData[1]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -91,7 +141,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 2: </b>
-                {studentData.period2}
+                {classData[2]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -114,7 +164,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 3: </b>
-                {studentData.period3}
+                {classData[3]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -137,7 +187,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 4: </b>
-                {studentData.period4}
+                {classData[4]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -160,7 +210,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 5: </b>
-                {studentData.period5}
+                {classData[5]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -183,7 +233,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 6: </b>
-                {studentData.period6}
+                {classData[6]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -206,7 +256,7 @@ function StudentOverview() {
           <div className="period-info">
               <p>
                 <b>Period 7: </b>
-                {studentData.period7}
+                {classData[7]?.className}
               </p>
               <p>
                 <b>Teacher Name: </b>B. Banana{" "}
@@ -223,6 +273,22 @@ function StudentOverview() {
                 <img src={require("./behavior.png")} alt="test" />
               </span>
             </div>
+          </div>
+          <div className="navigation-buttons">
+              <button className="back-button"
+                onClick={() => {
+                  navigate("/teacherView");
+                }}
+              >
+                Go back to Teacher View
+              </button>
+              <button className="back-button"
+                onClick={() => {
+                  navigate("/counselorView");
+                }}
+              >
+                Go back to Counselor View
+              </button>
           </div>
         </div>
       </body>

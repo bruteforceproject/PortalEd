@@ -67,6 +67,26 @@ div.headLink:hover{
     
 }
 
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.back-button{
+    margin-right: 10px;
+    font-size: 1rem;
+    background-color: #007aff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
 
 
 .academicsImg img, .attendanceImg img , .behaviorImg img{

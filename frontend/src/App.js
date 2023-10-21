@@ -4,7 +4,8 @@ import React from "react";
 import {Routes, Route} from "react-router-dom";
 
 import StudentHistory from './components/studentHistory'; 
-import studentOverview from './components/studentOverview'
+import StudentOverview from './components/studentOverview'
+
 import teacherView from './components/teacherView'
 import parentView from './components/parentView'
 import parentstudentView from './components/parentstudentView'
@@ -25,6 +26,9 @@ function App() {
   return (
     <div className="App">
         <Routes>
+        <Route exact path="/" element={<Login />} /> 
+        <Route exact path="/log-in" element={<Login />} />
+
             <Route  exact path="/" Component={Login} /> 
             <Route  exact path = "/log-in" Component = {Login} />
             <Route  exact path = "/register" Component = {Register} />
@@ -34,7 +38,9 @@ function App() {
             <Route  exact path = "/account-recovery/enter-code" Component = {EnterCode} />
             <Route  exact path = "/account-recovery/new-password" Component = {NewPassword} />
             <Route  exact path = "/account-recovery/your-account-id" Component = {YourAccountID} />
-            <Route  exact path="/studentOverview" Component={studentOverview} /> 
+            {/* <Route  exact path="/studentOverview" Component={studentOverview} />  */}
+            <Route exact path="/studentOverview/:studentId" element={<StudentOverview />} />
+
             <Route  exact path="/counselorView" Component={CounselorView} />  
             <Route  exact path="/acknowledgeView" Component={AcknowledgeView} /> 
             <Route  exact path="/teacherView" Component={teacherView} /> 

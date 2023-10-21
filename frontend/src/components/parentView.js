@@ -84,20 +84,29 @@ const ParentView = () => {
   );
   return (
     <>
-      <div className="header">Portal Ed</div>
-      <div className="header-2">{parentName}</div>
-      <div className="button-container">
-        {studentInfo.map((student, index) => (
-          <div key={index} className="student-link">
-            <Link to={`/acknowledgeView/`} className="my-button" id={`textLength${index}`}>
-              <div>
-                <span>{`${student.fname} ${student.lname}`}</span>
-                <span className="student-id">{`${student.alertCount} Unacknowledged Alerts!`}</span>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+        <div className="wrapper"> {/* This is the new wrapper */}
+            <div className="header">Portal Ed</div>
+            <div className="header-2">{parentName}</div>
+            <div className="button-container">
+                {studentInfo.map((student, index) => (
+                    <div key={index} className="student-link">
+                      <Link
+                        to={{
+                          pathname: student.alertCount === 0 ? `/studentOverview/${student.id}` : `/acknowledgeView/`,
+                          state: { myData: student }
+                        }}
+                        className="my-button"
+                        id={`textLength${index}`}
+                      >
+                            <div>
+                                <span>{`${student.fname} ${student.lname}`}</span>
+                                <span className="student-id">{`${student.alertCount} Unacknowledged Alerts!`}</span>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
+        </div>
     </>
   );
 };
