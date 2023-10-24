@@ -2,64 +2,80 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./studentOverview.css";
 
-//Class names, Student Name, and Teacher names will be accessed from DB
 
-//It should also be able to get studentID from teacherview
 
 function StudentOverview() {
   const [studentData, setStudentData] = useState({});
-  const [classData, setClassData] = useState({}); //added
+  const [classData, setClassData] = useState([]);
+  const [teacherData, setTeacherData] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
-
-
   useEffect(() => {
+    // Ensure that the studentData is available before proceeding
+    if (location.state && location.state.myData) {
+      const studentData = location.state.myData;
+      setStudentData(studentData);
 
-    if (!location.state || !location.state.myData) return;
+      const periodFields = [
+        studentData.period0,
+        studentData.period1,
+        studentData.period2,
+        studentData.period3,
+        studentData.period4,
+        studentData.period5,
+        studentData.period6,
+        studentData.period7,
+      ];
 
-    setStudentData(location.state.myData);
-
-    const periodFields = [
-      studentData.period0,
-      studentData.period1,
-      studentData.period2,
-      studentData.period3,
-      studentData.period4,
-      studentData.period5,
-      studentData.period6,
-      studentData.period7,
-    ];
-
-    //fetching class info from each period
-    const fetchClassInfo = async () => {
-      const classInfoPromises = periodFields.map((periodID) => {
-        return fetch('http://localhost:8000/getClass', { // Update the URL here
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ class_id: periodID }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("network response not ok");
+      // Fetch class and teacher data
+      const fetchData = async () => {
+        const combinedDataPromises = periodFields.map(async (periodID) => {
+          try {
+            // Fetch class data
+            const classResponse = await fetch('http://localhost:8000/getClass', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ class_id: periodID }),
+            });
+            if (!classResponse.ok) {
+              throw new Error("Network response not ok");
             }
-            return response.json();
-          })
-          .catch((error) => {
-            console.error("Error fetching class info:", error);
-          });
-      });
-    
-      const classInfo = await Promise.all(classInfoPromises);
-      setClassData(classInfo);
-    };
-    
+            const classInfo = await classResponse.json();
 
-    fetchClassInfo();
+            // Fetch teacher data based on classInfo
+            const teacherResponse = await fetch('http://localhost:8000/getTeacher', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ teacher_id: classInfo?.teacher_id }),
+            });
+            if (!teacherResponse.ok) {
+              throw new Error("Network response not ok");
+            }
+            const teacherInfo = await teacherResponse.json();
 
-  }, [studentData]);
+            return { classInfo, teacherInfo };
+          } catch (error) {
+            console.error("Error fetching class and teacher info:", error);
+            return { classInfo: null, teacherInfo: null };
+          }
+        });
+
+        const combinedData = await Promise.all(combinedDataPromises);
+        const classInfo = combinedData.map((data) => data.classInfo);
+        const teacherInfo = combinedData.map((data) => data.teacherInfo);
+
+        setClassData(classInfo);
+        setTeacherData(teacherInfo);
+      };
+
+      fetchData();
+    }
+  }, [location.state]);
 
   return (
     <html>
@@ -95,10 +111,10 @@ function StudentOverview() {
                 {classData[0]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+                <b>Teacher Name: </b>{teacherData[0]?.fname}{" "}{teacherData[0]?.lname}
             </p>
             </div>
-            
+             
             <div class="image-container">
               <span className="academicsImg">
                 <img src={require("./academics.png")} alt="test" />
@@ -121,7 +137,7 @@ function StudentOverview() {
                 {classData[1]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[1]?.fname}{" "}{teacherData[1]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -144,7 +160,7 @@ function StudentOverview() {
                 {classData[2]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[2]?.fname}{" "}{teacherData[2]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -167,7 +183,7 @@ function StudentOverview() {
                 {classData[3]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[3]?.fname}{" "}{teacherData[3]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -190,7 +206,7 @@ function StudentOverview() {
                 {classData[4]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[4]?.fname}{" "}{teacherData[4]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -213,7 +229,7 @@ function StudentOverview() {
                 {classData[5]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[5]?.fname}{" "}{teacherData[5]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -236,7 +252,7 @@ function StudentOverview() {
                 {classData[6]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[6]?.fname}{" "}{teacherData[6]?.lname}
             </p>
             </div>
             <div class="image-container">
@@ -259,7 +275,7 @@ function StudentOverview() {
                 {classData[7]?.className}
               </p>
               <p>
-                <b>Teacher Name: </b>B. Banana{" "}
+              <b>Teacher Name: </b>{teacherData[7]?.fname}{" "}{teacherData[7]?.lname}
             </p>
             </div>
             <div class="image-container">

@@ -65,6 +65,15 @@ async function startServer() {
       res.status(200).json(classes);
     });
 
+    //end point to get teacher information given teacher_id
+    app.post("/getTeacher", async(req, res) => {
+      await client.connect();
+      const teachers = await teacherCollection.findOne({
+        teacher_id: String(req.body.teacher_id),
+      })
+      res.status(200).json(teachers);
+    });
+
 
     // User login route
     app.post("/login", async (req, res) => {

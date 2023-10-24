@@ -38,8 +38,9 @@ function App() {
             <Route  exact path = "/account-recovery/enter-code" Component = {EnterCode} />
             <Route  exact path = "/account-recovery/new-password" Component = {NewPassword} />
             <Route  exact path = "/account-recovery/your-account-id" Component = {YourAccountID} />
-            {/* <Route  exact path="/studentOverview" Component={studentOverview} />  */}
-            <Route exact path="/studentOverview/:studentId" element={<StudentOverview />} />
+             <Route  exact path="/studentOverview" Component={StudentOverview} /> 
+            {/* Route exact path="/studentOverview/:studentId" element={<StudentOverview />} */}
+            
 
             <Route  exact path="/counselorView" Component={CounselorView} />  
             <Route  exact path="/acknowledgeView" Component={AcknowledgeView} /> 
