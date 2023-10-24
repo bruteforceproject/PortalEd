@@ -56,13 +56,22 @@ async function startServer() {
       res.status(200).json(student);
     });
 
-    //end point to get class information
+    //end point to get class information given class_id
     app.post("/getClass", async(req, res) => {
       await client.connect();
       const classes = await classCollection.findOne({
         class_id: String(req.body.class_id),
       });
       res.status(200).json(classes);
+    });
+
+    //end point to get teacher information given teacher_id
+    app.post("/getTeacher", async(req, res) => {
+      await client.connect();
+      const teachers = await teacherCollection.findOne({
+        teacher_id: String(req.body.teacher_id),
+      })
+      res.status(200).json(teachers);
     });
 
 
