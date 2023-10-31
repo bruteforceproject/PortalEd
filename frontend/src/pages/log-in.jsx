@@ -76,33 +76,39 @@ const Login = () => {
 
   return (
     <div className="log-in">
-      <form className="log-in-form" onSubmit={handleSubmit}>
-      <img className = "client-logo" src = {logo} alt="logo" />
-        <h1 className="title">Portal ED</h1>
-        <p className="caption" id="small">
-          Sign in to your Portal ED account
-        </p>
-        {accountInputs.map((input) => (
-          <InputField
-            key={input.id}
-            {...input}
-            value={credentials[input.name]}
-            onChange={onChange}
-          />
-        ))}
-        <button className="log-in-button" type="submit">
-          Sign In
-        </button>
-        <div className="error-message">
-          {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <div className="client-logo-container">
+          <img className = "client-logo" src = {logo} alt="logo" />
         </div>
-        <a
-          className="log-in-link"
-          href="http://localhost:3000/account-recovery/password"
-        >
-          Forgot email or password?
-        </a>
-      </form>
+
+      <div className="log-in-container">
+        <form className="log-in-form" id="column" onSubmit={handleSubmit}>
+          <h1 className="title">Portal ED</h1>
+          <p className="caption" id="small">
+            Sign in to your Portal ED account
+          </p>
+          {accountInputs.map((input) => (
+            <InputField
+              key={input.id}
+              {...input}
+              value={credentials[input.name]}
+              onChange={onChange}
+            />
+          ))}
+          <button className="log-in-button" type="submit">
+            Sign In
+          </button>
+          <div className="error-message">
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+          <a
+            className="log-in-link"
+            href="http://localhost:3000/account-recovery/password"
+          >
+            Forgot email or password?
+          </a>
+        </form>
+      </div>
     </div>
   );
 };
