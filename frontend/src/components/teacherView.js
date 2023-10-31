@@ -2,8 +2,8 @@ import React from 'react'
 import './teacherView.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect} from 'react';
-import { GrValidate } from "react-icons/gr"; 
-import axios from 'axios'
+//import { GrValidate } from "react-icons/gr"; 
+//import axios from 'axios'
 
 
 
@@ -104,7 +104,7 @@ const TeacherView = () => {
             <div className='grid3 gridall default-color'></div>
             <div className='grid4 gridall default-color'> </div>
             <button className={"grid5 gridall default-color"} >
-              <span className='teacher_logo'><GrValidate/></span>
+              {/*<span className='teacher_logo'><GrValidate/></span>*/}
             </button>
             <button className="grid6 gridall default-color ">
               <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>

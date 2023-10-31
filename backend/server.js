@@ -2,9 +2,7 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const yessir = require('twilio')("AC5d2f3bf0571fa3e3382f90f069d173a9", "f193804a21f009f4292401f7bf0822fa");
+const yessir = require('twilio')("AC5d2f3bf0571fa3e3382f90f069d173a9", "xxxxxxxxxxxxxxxxxxxxxxxxxx");
 
 //const textFlow = require("textflow.js");
 
@@ -185,9 +183,6 @@ async function startServer() {
 
       const user = await parentCollection.findOne({ phone });
 
-      console.log(phone);
-      console.log(email);
-
       if (!user) {
         return res.status(404).json({ message: "Phone doesn't exist" });
       } else if (user.email != email) {
@@ -203,13 +198,26 @@ async function startServer() {
 
 app.post("/api/start-verify", async (req, res)  => {
   
-  const phoneNumber = req.body
-  console.log(phoneNumber)
+  const {phone, email} = req.body
 
-  yessir.verify.v2.services('VA0e9f79de4c9c2e79e15d9f2f3522132e')
+  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
                 .verifications
-                .create({to: "+19164709557", channel: 'sms'})
+                .create({to: phone, channel: 'sms'})
                 .then(verification => console.log(verification.status));
+});
+
+app.post("/api/start-check", async (req, res)  => {
+  
+  const { code, phone } = req.body
+
+  console.log(code)
+
+  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
+  .verificationChecks
+  .create({to: phone, code: code})
+  .then(verification_check => console.log(verification_check.status));
+
+
 });
 
 

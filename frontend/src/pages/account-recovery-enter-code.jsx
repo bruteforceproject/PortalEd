@@ -1,13 +1,20 @@
 import { React, useState } from 'react'
 import InputField from '../assets/components/input-field'
 import "../assets/page-styles/log-in.css"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+
 
 const EnterCode = () => {
+
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const userPhone = location.state.userPhone
+  const userEmail = location.state.userEmail 
+  const [error, setError] = useState("");   
   const [code, setCode] = useState({
-    code: ""
-    
+    code: "",
+    phone: userPhone
   });
 
   const codeInput = [
@@ -24,21 +31,33 @@ const EnterCode = () => {
     setCode({...code, [e.target.name]: e.target.value})
   };
 
-  const buttonHandler = (e) => {
+  const buttonHandler = async (e) => {
     e.preventDefault();
     let id = e.target.id;
     if(id === 'next-button'){
-        fetch("http://localhost:8000/api/verify", {
+      try {
+        const response = await fetch("http://localhost:8000/api/start-check", {
           method: "POST",
           headers: {
-            Accept: 'application/json',
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            code
-          })
-        })
-        navigate("../account-recovery/new-password");
+          body: JSON.stringify(code),
+        });
+  
+        if (response.status === 200) {
+          navigate("../account-recovery/new-password", { state: { userEmail } });
+        } 
+        
+        else if (response.status === 404) {
+          setError("Email not found");
+        }
+      } 
+
+      catch (error) {
+        console.error("Error:", error);
+        setError("Operation Failed");
+      }
+      
     }
     else if(id === 'back-button') {
         navigate(-1);
