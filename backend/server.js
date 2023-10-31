@@ -2,11 +2,16 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const yessir = require('twilio')("AC5d2f3bf0571fa3e3382f90f069d173a9", "f193804a21f009f4292401f7bf0822fa");
+
 //const textFlow = require("textflow.js");
 
 //textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr");
 
 const app = express();
+
 
 let db;
 const url = `mongodb+srv://Ramez:U75ZRvMsST1W5IK6@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
@@ -174,6 +179,7 @@ async function startServer() {
       }
     });
 
+<<<<<<< Updated upstream
     app.post("/api/verify", async (req, res) => {
       const { phone, email } = req.body;
       console.log(req.body);
@@ -195,6 +201,18 @@ async function startServer() {
           .json({ message: "Phone number matches associated account" });
       }
     });
+=======
+app.post("/api/start-verify", async (req, res)  => {
+  
+  const phoneNumber = req.body
+  console.log(phoneNumber)
+
+  yessir.verify.v2.services('VA0e9f79de4c9c2e79e15d9f2f3522132e')
+                .verifications
+                .create({to: "+19164709557", channel: 'sms'})
+                .then(verification => console.log(verification.status));
+});
+>>>>>>> Stashed changes
 
     app.post("/api/email-verification", async (req, res) => {
       const { email } = req.body;

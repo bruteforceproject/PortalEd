@@ -35,7 +35,7 @@ const Verify = () => {
     let id = e.target.id;
     if(id === 'next-button'){
       try {
-        const response = await fetch("http://localhost:8000/api/verify", {
+        const response = await fetch("http://localhost:8000/api/start-verify", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

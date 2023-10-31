@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputField from "../assets/components/input-field";
 import "../assets/page-styles/log-in.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../logo1.png";
 
 
 const Login = () => {
@@ -76,6 +77,7 @@ const Login = () => {
   return (
     <div className="log-in">
       <form className="log-in-form" onSubmit={handleSubmit}>
+      <img className = "client-logo" src = {logo} alt="logo" />
         <h1 className="title">Portal ED</h1>
         <p className="caption" id="small">
           Sign in to your Portal ED account

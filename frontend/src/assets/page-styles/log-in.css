@@ -1,5 +1,10 @@
 *{box-sizing: content-box;}
 
+.client-logo{
+  width: 50px;
+  margin: 10px;
+}
+
 .log-in{
     display: flex;
     flex-direction: column;
