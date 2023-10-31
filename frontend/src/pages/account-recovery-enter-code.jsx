@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 
 const EnterCode = () => {
   const navigate = useNavigate();
-  
   const [code, setCode] = useState({
     code: ""
     

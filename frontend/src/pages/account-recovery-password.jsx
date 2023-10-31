@@ -24,9 +24,8 @@ const PasswordRecovery = () => {
     setEmail({...email, [e.target.name]: e.target.value})
   };
 
-  const verifyPhoneNumber = async (e) => {
+  const next = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:8000/api/email-verification", {
         method: "POST",
@@ -39,25 +38,28 @@ const PasswordRecovery = () => {
       if (response.status === 200) {
         console.log(email);
         const data = await response.json();
-        let userId = data.userId;
-        userId = userId.toString();
-        
-        console.log("User ID:", userId);  
-        console.log(typeof userId);
+        let userPhone = data.userPhone;
+        let userEmail = data.userEmail;
+        userPhone = userPhone.toString();
+        userEmail = userEmail.toString();
 
-        navigate("../account-recovery/verify", { state: { userId } }); // Change to your authenticated page
-      } else if (response.status === 404) {
+        navigate("../account-recovery/verify", { state: { userPhone, userEmail } });
+      } 
+      
+      else if (response.status === 404) {
         setError("Email doesn't exists");
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.error("Error:", error);
-      setError("Authentication failed");
+      setError("Operation Failed");
     }
   }
 
   return (
     <div className = "log-in">
-      <form className='log-in-form' onSubmit={verifyPhoneNumber}>
+      <form className='log-in-form' onSubmit={next}>
         <h1 className='title' id='small'>Portal ED</h1>
         <p className='caption' id="medium">Trouble signing in?</p>
         {emailInput.map((input) => (
