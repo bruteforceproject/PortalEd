@@ -21,10 +21,14 @@ function CounselorView() {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate("/studentOverview", {
-          state: { myData: data },
-        });
-        console.log(data);
+        if (data) {
+          navigate("/studentOverview", {
+            state: { myData: data },
+          });
+        } else {
+          alert("Error: \nStudent ID is not Found!");
+          console.log(data);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +38,14 @@ function CounselorView() {
   return (
     <div className="container_cou">
       <div className="header-right_cou">
-        <button className="button_cou">Log Out</button>
+        <button
+          className="button_cou"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Log Out
+        </button>
       </div>
       <div className="header-center_cou">
         <img src={logo} alt="logo" />
