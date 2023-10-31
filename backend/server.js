@@ -179,7 +179,6 @@ async function startServer() {
       }
     });
 
-<<<<<<< Updated upstream
     app.post("/api/verify", async (req, res) => {
       const { phone, email } = req.body;
       console.log(req.body);
@@ -201,7 +200,7 @@ async function startServer() {
           .json({ message: "Phone number matches associated account" });
       }
     });
-=======
+
 app.post("/api/start-verify", async (req, res)  => {
   
   const phoneNumber = req.body
@@ -212,7 +211,7 @@ app.post("/api/start-verify", async (req, res)  => {
                 .create({to: "+19164709557", channel: 'sms'})
                 .then(verification => console.log(verification.status));
 });
->>>>>>> Stashed changes
+
 
     app.post("/api/email-verification", async (req, res) => {
       const { email } = req.body;
