@@ -43,7 +43,7 @@ function App() {
             
 
             <Route  exact path="/counselorView" Component={CounselorView} />  
-            <Route  exact path="/acknowledgeView" Component={AcknowledgeView} /> 
+            <Route path="/acknowledgeView/:studentId" element={<AcknowledgeView />} />
             <Route  exact path="/teacherView" Component={teacherView} /> 
             <Route  exact path="/parentView" Component={parentView} />
             <Route  exact path="/parentstudentView" Component={parentstudentView} />

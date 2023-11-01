@@ -91,13 +91,10 @@ const ParentView = () => {
                 {studentInfo.map((student, index) => (
                     <div key={index} className="student-link">
                       <Link
-                        to={{
-                          pathname: student.alertCount === 0 ? `/studentOverview/${student.id}` : `/acknowledgeView/`,
-                          state: { myData: student }
-                        }}
+                        to={student.alertCount === 0 ? `/studentOverview/${student.studentId}` : `/acknowledgeView/${student.studentId}`}
                         className="my-button"
                         id={`textLength${index}`}
-                      >
+                        >
                             <div>
                                 <span>{`${student.fname} ${student.lname}`}</span>
                                 <span className="student-id">{`${student.alertCount} Unacknowledged Alerts!`}</span>
