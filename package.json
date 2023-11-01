@@ -6,7 +6,8 @@
     "express": "^4.18.2",
     "mongodb": "^6.1.0",
     "react-icons": "^4.11.0",
-    "textflow.js": "^0.1.4"
+    "textflow.js": "^0.1.4",
+    "twilio": "^4.19.0"
   },
   "scripts": {
     "start-dev": "concurrently \"node backend/server.js\" \"cd frontend && npm start\""

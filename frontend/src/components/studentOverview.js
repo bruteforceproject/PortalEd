@@ -8,6 +8,7 @@ function StudentOverview() {
   const [studentData, setStudentData] = useState({});
   const [classData, setClassData] = useState([]);
   const [teacherData, setTeacherData] = useState([]);
+  const [attendanceData, setAttendanceData] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,6 +33,22 @@ function StudentOverview() {
       const fetchData = async () => {
         const combinedDataPromises = periodFields.map(async (periodID) => {
           try {
+
+            
+
+            //fetch attendance data
+            const attendanceResponse = await fetch('http://localhost:8000/getAttendance', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ studentID: studentData.studentID, class_id: periodID }),
+          });
+          if (!attendanceResponse.ok) {
+            throw new Error("Network response not ok");
+          }
+          const attendanceInfo = await attendanceResponse.json();
+
             // Fetch class data
             const classResponse = await fetch('http://localhost:8000/getClass', {
               method: 'POST',
@@ -58,19 +75,23 @@ function StudentOverview() {
             }
             const teacherInfo = await teacherResponse.json();
 
-            return { classInfo, teacherInfo };
+            //console.log("Attendance Info:", attendanceInfo);
+
+            return { classInfo, teacherInfo, attendanceInfo };
           } catch (error) {
             console.error("Error fetching class and teacher info:", error);
-            return { classInfo: null, teacherInfo: null };
+            return { classInfo: null, teacherInfo: null , attendanceData: null};
           }
         });
 
         const combinedData = await Promise.all(combinedDataPromises);
         const classInfo = combinedData.map((data) => data.classInfo);
         const teacherInfo = combinedData.map((data) => data.teacherInfo);
+        const attendanceInfo = combinedData.map((data) => data.attendanceInfo);
 
         setClassData(classInfo);
         setTeacherData(teacherInfo);
+        setAttendanceData(attendanceInfo);
       };
 
       fetchData();
@@ -121,6 +142,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[0]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -146,6 +168,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[1]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -169,6 +192,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[2]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -192,6 +216,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[3]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -215,6 +240,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[4]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -238,6 +264,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[5]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -261,6 +288,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[6]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />
@@ -284,6 +312,7 @@ function StudentOverview() {
               </span>
               <span className="attendanceImg">
                 <img src={require("./attendance.png")} alt="test" />
+                <b>Attendance color: </b> {attendanceData[7]?.color}  
               </span>
               <span className="behaviorImg">
                 <img src={require("./behavior.png")} alt="test" />

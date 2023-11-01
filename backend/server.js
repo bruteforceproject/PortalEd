@@ -38,6 +38,7 @@ async function startServer() {
     const parentCollection = database.collection("Parent");
     const teacherCollection = database.collection("Teacher");
     const classCollection = database.collection("Class");
+    const attendanceCollection = database.collection("Attendance");
 
     // This is an end point to receive post requests on /addUser
     app.post("/addTeacher", async (req, res) => {
@@ -74,6 +75,21 @@ async function startServer() {
         teacher_id: String(req.body.teacher_id),
       });
       res.status(200).json(teachers);
+    });
+
+    //end point to get attendance
+    app.post("/getAttendance", async (req, res) => {
+      try {
+        const {studentID, class_id} = req.body;
+        const attendanceData = await attendanceCollection.findOne({studentID, class_id});
+        if(!attendanceData) {
+          return res.status(404).json({message: "Attendance data not found"});
+        }
+        res.status(200).json(attendanceData);
+      } catch(error) {
+        console.error("Error fetching attendance data:", error);
+        res.status(500).json({message: "Error fetching attendance data"});
+      }
     });
 
     // User login route
