@@ -34,29 +34,25 @@ const Verify = () => {
     console.log(userEmail)
     let id = e.target.id;
     if(id === 'next-button'){
+      console.log(phoneNumber.phone)
+      console.log(userPhone)
+       if(phoneNumber.phone === userPhone) {
+        navigate("../account-recovery/enter-code", { state: { userPhone, userEmail } });
       try {
-        const response = await fetch("http://localhost:8000/api/verify", {
+        await fetch("http://localhost:8000/api/start-verify", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(phoneNumber),
         });
-  
-        if (response.status === 200) {
-  
-          navigate("../account-recovery/enter-code");
-        } 
-        
-        else if (response.status === 404) {
-          setError("Email doesn't exists");
-        }
       } 
       
       catch (error) {
         console.error("Error:", error);
         setError("Operation Failed");
       }
+       }
     }
     else if(id === 'back-button') {
         navigate(-1);

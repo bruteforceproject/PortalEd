@@ -1,58 +1,85 @@
 *{box-sizing: content-box;}
-
 .log-in{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.client-logo-container{
+  width: 50%;
+}
+
+.client-logo{
+  width: 30%;
+  margin-top: 40%;
+  margin-left: 15%;
+}
+
+.log-in-container{
+  flex: 1
+}
+
+.log-in-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-in-form#column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25%;
+  margin-right: 40%;
 }
 
 .nav-buttons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .log-in-link{
-    position: relative;
-    margin-top: 100px;
-    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  margin-top: 100px;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .log-in-link:link {    /* unvisited link */
-    color: black;
-    text-decoration: none;
-    border-bottom: 1px solid;
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid;
 }
 .log-in-link:visited {    /* visited link */
-    color: black;
+  color: black;
 }
 .log-in-link:hover {    /* mouse over link */
-    color:#171d9a;
-    border-bottom: none;
-    border-bottom: 1px solid;
+  color:#171d9a;
+  border-bottom: none;
+  border-bottom: 1px solid;
 }
 .log-in-link:active {    /* active link */
-    color:#171d9a;
-    opacity: 0;
+  color:#171d9a;
+  opacity: 0;
 }
 
 .title{
-box-sizing: inherit;
-color: rgb(73, 73, 73);
-direction: ltr;
-display: block;
-font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 32px;
-font-style: normal;
-font-weight: 600;
-height: 36px;
-letter-spacing: 0.128px;
-text-align: center;
-text-rendering: optimizeLegibility;
-word-break: break-word;
+  box-sizing: inherit;
+  color: rgb(73, 73, 73);
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  height: 36px;
+  letter-spacing: 0.128px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
 }
 
 .title#small{
@@ -72,22 +99,20 @@ word-break: break-word;
   font-weight: 400;
 }
 
-
-
 .caption#small{
-box-sizing: inherit;
-color: rgb(73, 73, 73);
-direction: ltr;
-display: block;
-font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 17px;
-font-style: normal;
-font-weight: 400;
-letter-spacing: -0.374px;
-line-height: 25.000032px;
-text-align: center;
-text-rendering: optimizeLegibility;
-word-break: break-word;
+  box-sizing: inherit;
+  color: rgb(73, 73, 73);
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 25.000032px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
 }
 
 .caption#medium{
@@ -105,30 +130,22 @@ word-break: break-word;
   text-rendering: optimizeLegibility;
   word-break: break-word;
   font-weight: bold;
-  }
+}
 
-  .caption#medium-light{
-    box-sizing: inherit;
-    color: rgb(73, 73, 73);
-    direction: ltr;
-    display: block;
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.374px;
-    line-height: 25.000032px;
-    text-align: left;
-    text-rendering: optimizeLegibility;
-    word-break: break-word;
-    }
-
-.log-in-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  
+.caption#medium-light{
+  box-sizing: inherit;
+  color: rgb(73, 73, 73);
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  line-height: 25.000032px;
+  text-align: left;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
 }
 
 .log-in-button{
@@ -164,11 +181,9 @@ word-break: break-word;
   text-align: center;
 }
 
-/* Additional styles for the error message text color */
 .error-message p {
   color: red;
 }
-
 
 .log-in-button:disabled {
   pointer-events: none;

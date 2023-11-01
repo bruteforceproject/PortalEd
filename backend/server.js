@@ -2,11 +2,14 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
+const yessir = require('twilio')("AC5d2f3bf0571fa3e3382f90f069d173a9", "xxxxxxxxxxxxxxxxxxxxxxxxxx");
+
 //const textFlow = require("textflow.js");
 
 //textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr");
 
 const app = express();
+
 
 let db;
 const url = `mongodb+srv://Ramez:U75ZRvMsST1W5IK6@portaledcluster.x6u4jx9.mongodb.net/?retryWrites=true&w=majority`;
@@ -180,9 +183,6 @@ async function startServer() {
 
       const user = await parentCollection.findOne({ phone });
 
-      console.log(phone);
-      console.log(email);
-
       if (!user) {
         return res.status(404).json({ message: "Phone doesn't exist" });
       } else if (user.email != email) {
@@ -195,6 +195,31 @@ async function startServer() {
           .json({ message: "Phone number matches associated account" });
       }
     });
+
+app.post("/api/start-verify", async (req, res)  => {
+  
+  const {phone, email} = req.body
+
+  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
+                .verifications
+                .create({to: phone, channel: 'sms'})
+                .then(verification => console.log(verification.status));
+});
+
+app.post("/api/start-check", async (req, res)  => {
+  
+  const { code, phone } = req.body
+
+  console.log(code)
+
+  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
+  .verificationChecks
+  .create({to: phone, code: code})
+  .then(verification_check => console.log(verification_check.status));
+
+
+});
+
 
     app.post("/api/email-verification", async (req, res) => {
       const { email } = req.body;
