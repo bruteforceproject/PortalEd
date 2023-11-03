@@ -37,6 +37,7 @@ async function startServer() {
     const studentCollection = database.collection("Student");
     const parentCollection = database.collection("Parent");
     const teacherCollection = database.collection("Teacher");
+    const counselorCollection = database.collection("Counselor");
     const classCollection = database.collection("Class");
     const attendanceCollection = database.collection("Attendance");
 
@@ -110,7 +111,7 @@ async function startServer() {
             return res.status(200).json({
               message: "Login successful",
               userId: parentUser.parent_id,
-              role: parentUser.role,
+              role: "parent",
             });
           }
         }
@@ -119,8 +120,8 @@ async function startServer() {
         const teacherUser = await teacherCollection.findOne({ email });
 
         if (teacherUser) {
-          // Check if the provided password matches the stored hashed password
-          //const passwordMatch = await bcrypt.compare(password, teacherUser.password);
+          // Check if the provided password matches the stored  password
+
 
           if (password === teacherUser.password) {
             // Authentication successful for a teacher
@@ -128,10 +129,26 @@ async function startServer() {
             return res.status(200).json({
               message: "Login successful",
               userId: teacherUser._id,
-              role: teacherUser.role,
+              role: "teacher",
             });
           }
         }
+        const counselorUser = await counselorCollection.findOne({ email });
+        if (counselorUser) {
+          // Check if the provided password matches the stored  password
+
+
+          if (password === counselorUser.password) {
+            // Authentication successful for a teacher
+            globalUserId = counselorUser._id.toString();
+            return res.status(200).json({
+              message: "Login successful",
+              userId: counselorUser._id,
+              role: "counselor",
+            });
+          }
+        }
+
 
         res.status(200).json({
           message: "Login successful",
@@ -143,6 +160,8 @@ async function startServer() {
         res.status(500).json({ message: "Login failed" });
       }
     });
+
+
 
     // Create a new route to fetch the parent's name
     app.get("/users/:userId", async (req, res) => {

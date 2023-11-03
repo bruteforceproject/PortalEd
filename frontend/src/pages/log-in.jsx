@@ -36,7 +36,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://localhost:8000/login", {
         method: "POST",
@@ -47,16 +47,22 @@ const Login = () => {
       });
   
       if (response.status === 200) {
-        // Authentication successful, redirect to the dashboard or home page
+        // Authentication successful, redirect based on role
         const data = await response.json();
         let userId = data.userId; // Retrieve the userId from the response
-        userId= userId.toString();
+        userId = userId.toString();
         const role = data.role; // Retrieve the "role" from the response
         console.log("Role:", role); // Add this line to check the value of the role
-
+  
         if (role === "parent") {
           // Redirect to the parent view if the role is "parent"
           navigate("/parentView", { state: { userId } });
+        } else if (role === "teacher") {
+          // Redirect to the teacher view if the role is "teacher"
+          navigate("/teacherView", { state: { userId } });
+        } else if (role === "counselor") {
+          // Redirect to the counselor view if the role is "counselor"
+          navigate("/counselorView", { state: { userId } });
         } else {
           // Redirect to the home page for other roles
           navigate("/home", { state: { userId } });
@@ -73,6 +79,7 @@ const Login = () => {
       setError("Authentication failed");
     }
   };
+  
 
   return (
     <div className="log-in">
