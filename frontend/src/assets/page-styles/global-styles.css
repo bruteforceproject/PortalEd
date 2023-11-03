@@ -1,7 +1,7 @@
 /* global-styles.css */
 
 /* 
-Red: #e63b2c
+Red: #f25d50
 Yellow: #f2ca52
 Green: #558c3b
 */
@@ -10,10 +10,11 @@ Green: #558c3b
 
 /* Color Variables */
 :root {
-  --primary-color: #e63b2c; /* Red */
-  --secondary-color: #f2ca52; /* Yellow */
-  --accent-color: #558c3b; /* Green */
+  --red-color: #f25d50; /* Red */
+  --yellow-color: #f2ca52; /* Yellow */
+  --green-color: #558c3b; /* Green */
   --background-color: #f0f0f0; /* Light Gray */
+  --text-color: #000;
 }
 
 /* Reset default browser styles */
@@ -27,7 +28,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 h1, h2, h3 {
@@ -53,7 +54,7 @@ h3 {
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: var(--primary-color);
+  background-color: var(--red-color);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -68,14 +69,14 @@ h3 {
 
 /* Link styles */
 a {
-  color: var(--primary-color);
+  color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
 a:hover {
   text-decoration: underline;
-  color: var(--accent-color);
+  color: var(--text-color);
 }
 
 /* Spacing */
