@@ -51,16 +51,20 @@ const Login = () => {
         const data = await response.json();
         let userId = data.userId; // Retrieve the userId from the response
         let teacher_id= data.teacher_id;
+        let period0=data.period0;
+        let period1=data.period1;
+
         userId = userId.toString();
         const role = data.role; // Retrieve the "role" from the response
         console.log("Role:", role); // Add this line to check the value of the role
         console.log("teacher_id:", teacher_id);
+        console.log("period0:", period0);
         if (role === "parent") {
           // Redirect to the parent view if the role is "parent"
           navigate("/parentView", { state: { userId } });
         } else if (role === "teacher") {
           // Redirect to the teacher view if the role is "teacher"
-          navigate("/teacherView", { state: { teacher_id } });
+          navigate("/teacherView", { state: { teacher_id, period0, period1} });
         } else if (role === "counselor") {
           // Redirect to the counselor view if the role is "counselor"
           navigate("/counselorView", { state: { userId } });

@@ -22,6 +22,7 @@ function CounselorView() {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
+          console.log("testing",data)
           navigate("/studentOverview", {
             state: { myData: data },
           });

@@ -130,6 +130,10 @@ async function startServer() {
               message: "Login successful",
               userId: teacherUser._id,
               role: "teacher",
+              teacher_id: teacherUser.teacher_id,
+              period0: teacherUser.period0,
+              period1: teacherUser.period1,
+
             });
           }
         }
@@ -283,6 +287,28 @@ app.post("/api/start-check", async (req, res)  => {
         res.status(200).json({ message: "Found email", email: user.email });
       }
     });
+
+    app.post("/getStudentsByPeriod", async (req, res) => {
+      try {
+        const { period0 } = req.body;
+        console.log("test: " ,period0);
+        // Query the student collection to find documents with period_0 matching the provided value
+        const students = await studentCollection.find({ period0 }).toArray();
+    
+        // Extract first names from the matching documents and store them in a list
+        const studentData = students.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+    
+        // Return the list of first names as a JSON response
+        res.status(200).json(studentData);
+      } catch (error) {
+        console.error("Error fetching students by period:", error);
+        res.status(500).json({ message: "Error fetching students by period" });
+      }
+    });
+    
 
     // Start the Express server
     const port = process.env.PORT || 8000;
