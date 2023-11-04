@@ -50,16 +50,17 @@ const Login = () => {
         // Authentication successful, redirect based on role
         const data = await response.json();
         let userId = data.userId; // Retrieve the userId from the response
+        let teacher_id= data.teacher_id;
         userId = userId.toString();
         const role = data.role; // Retrieve the "role" from the response
         console.log("Role:", role); // Add this line to check the value of the role
-  
+        console.log("teacher_id:", teacher_id);
         if (role === "parent") {
           // Redirect to the parent view if the role is "parent"
           navigate("/parentView", { state: { userId } });
         } else if (role === "teacher") {
           // Redirect to the teacher view if the role is "teacher"
-          navigate("/teacherView", { state: { userId } });
+          navigate("/teacherView", { state: { teacher_id } });
         } else if (role === "counselor") {
           // Redirect to the counselor view if the role is "counselor"
           navigate("/counselorView", { state: { userId } });

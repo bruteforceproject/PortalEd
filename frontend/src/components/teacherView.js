@@ -1,6 +1,6 @@
 import React from 'react'
 import './teacherView.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 //import { GrValidate } from "react-icons/gr"; 
 //import axios from 'axios'
@@ -8,9 +8,11 @@ import { useState, useEffect} from 'react';
 
 
 const TeacherView = () => {
-
+  const location = useLocation();
   //??Need the count of students
   const students = [...Array(20).keys()]; // create array of 35 students
+  const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
+  const [teacherName, setTeacherName] = useState('teacherName'); // Initialize as an empty string
 
 
   // const [clickCount, setClickCount] = useState(0);
@@ -53,12 +55,16 @@ const TeacherView = () => {
   const [activeSwitch, setActiveSwitch] = useState(null);
 
   useEffect(() => {
+          // Get userId from location state
+  const teacherIdFromLocation = location.state.teacher_id;
+  setTeacherID(teacherIdFromLocation);
+
     if (activeSwitch !== null) {
       const updatedSwitches = [...switches];
       updatedSwitches[activeSwitch] = true;
       setSwitches(updatedSwitches);
     }
-  }, [activeSwitch, switches]);
+  }, [activeSwitch, switches,location.state.teacher_id]);
 
   const handleSwitchClick = (index) => {
     if (activeSwitch === null) {
@@ -80,10 +86,14 @@ const TeacherView = () => {
   // End of Period Switch Setup
 
   return (
-
+    
     //Start for the periods in a class
     <div className="classroom">
       <div className="periods">
+        
+      <p style={{ color: 'white' }}>Teacher ID: {teacherID}</p>
+
+
         {switches.map((isOn, index) => (
           <div key={index} className={`period ${isOn ? 'on' : 'off'}`}
             onClick={() => handleSwitchClick(index)}>
