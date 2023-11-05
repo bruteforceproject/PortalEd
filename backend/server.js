@@ -40,6 +40,8 @@ async function startServer() {
     const counselorCollection = database.collection("Counselor");
     const classCollection = database.collection("Class");
     const attendanceCollection = database.collection("Attendance");
+    const academicsCollection = database.collection("Academics");
+    const behaviorCollection = database.collection("Behavior");
 
     // This is an end point to receive post requests on /addUser
     app.post("/addTeacher", async (req, res) => {
@@ -90,6 +92,36 @@ async function startServer() {
       } catch(error) {
         console.error("Error fetching attendance data:", error);
         res.status(500).json({message: "Error fetching attendance data"});
+      }
+    });
+
+    //end point to get academics
+    app.post("/getAcademics", async (req, res) => {
+      try {
+        const {studentID, class_id} = req.body;
+        const academicsData = await academicsCollection.findOne({studentID, class_id});
+        if(!academicsData) {
+          return res.status(404).json({message: "Academics data not found"});
+        }
+        res.status(200).json(academicsData);
+      } catch(error) {
+        console.error("Error fetching academics data:", error);
+        res.status(500).json({message: "Error fetching academics data"});
+      }
+    });
+
+    //end point to get behavior
+    app.post("/getBehavior", async (req, res) => {
+      try {
+        const {studentID, class_id} = req.body;
+        const behaviorData = await behaviorCollection.findOne({studentID, class_id});
+        if(!behaviorData) {
+          return res.status(404).json({message: "Behavior data not found"});
+        }
+        res.status(200).json(behaviorData);
+      } catch(error) {
+        console.error("Error fetching behavior data:", error);
+        res.status(500).json({message: "Error fetching behavior data"});
       }
     });
 
