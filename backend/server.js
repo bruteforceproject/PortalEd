@@ -290,12 +290,18 @@ app.post("/api/start-check", async (req, res)  => {
 
     app.post("/getStudentsByPeriod", async (req, res) => {
       try {
-        const { period0, period1 } = req.body;
+        const { period0, period1, period2, period3, period4, period5, period6, period7 } = req.body;
         console.log("testperiod0: " ,period0);
         console.log("testperiod1: " ,period1);
         // Query the student collection to find documents with period_0 matching the provided value
         const students0 = await studentCollection.find({ period0 }).toArray();
         const students1 = await studentCollection.find({ period1 }).toArray();
+        const students2 = await studentCollection.find({ period2 }).toArray();
+        const students3 = await studentCollection.find({ period3 }).toArray();
+        const students4 = await studentCollection.find({ period4 }).toArray();
+        const students5 = await studentCollection.find({ period5 }).toArray();
+        const students6 = await studentCollection.find({ period6 }).toArray();
+        const students7 = await studentCollection.find({ period7 }).toArray();
         // Extract first names from the matching documents and store them in a list
         const studentData0 = students0.map((student) => ({
           fname: student.fname,
@@ -305,12 +311,36 @@ app.post("/api/start-check", async (req, res)  => {
           fname: student.fname,
           studentID: student.studentID,
         }));
+        const studentData2 = students2.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+        const studentData3 = students3.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+        const studentData4 = students4.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+        const studentData5 = students5.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+        const studentData6 = students6.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
+        const studentData7 = students7.map((student) => ({
+          fname: student.fname,
+          studentID: student.studentID,
+        }));
         
         // Combine the two arrays into one
         //const studentData = [...studentData0, ...studentData1];
 
         // Return the list of first names as a JSON response
-        res.status(200).json({studentData0, studentData1});
+        res.status(200).json({studentData0, studentData1, studentData2, studentData3, studentData4, studentData4, studentData5, studentData6, studentData7});
       } catch (error) {
         console.error("Error fetching students by period:", error);
         res.status(500).json({ message: "Error fetching students by period" });

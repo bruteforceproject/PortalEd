@@ -53,6 +53,12 @@ const Login = () => {
         let teacher_id= data.teacher_id;
         let period0=data.period0;
         let period1=data.period1;
+        let period2=data.period2;
+        let period3=data.period3;
+        let period4=data.period4;
+        let period5=data.period5;
+        let period6=data.period6;
+        let period7=data.period7;
 
         userId = userId.toString();
         const role = data.role; // Retrieve the "role" from the response
@@ -64,7 +70,7 @@ const Login = () => {
           navigate("/parentView", { state: { userId } });
         } else if (role === "teacher") {
           // Redirect to the teacher view if the role is "teacher"
-          navigate("/teacherView", { state: { teacher_id, period0, period1} });
+          navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
         } else if (role === "counselor") {
           // Redirect to the counselor view if the role is "counselor"
           navigate("/counselorView", { state: { userId } });

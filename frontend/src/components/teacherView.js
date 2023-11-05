@@ -15,8 +15,21 @@ const TeacherView = () => {
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
+  const [period2, setperiod2] = useState('null'); 
+  const [period3, setperiod3] = useState('null'); 
+  const [period4, setperiod4] = useState('null'); 
+  const [period5, setperiod5] = useState('null'); 
+  const [period6, setperiod6] = useState('null'); 
+  const [period7, setperiod7] = useState('null'); 
+  
   const [period_0Students, setperiod_0Students] = useState([]);
   const [period_1Students, setperiod_1Students] = useState([]);
+  const [period_2Students, setperiod_2Students] = useState([]);
+  const [period_3Students, setperiod_3Students] = useState([]);
+  const [period_4Students, setperiod_4Students] = useState([]);
+  const [period_5Students, setperiod_5Students] = useState([]);
+  const [period_6Students, setperiod_6Students] = useState([]);
+  const [period_7Students, setperiod_7Students] = useState([]);
 
 
   // const [clickCount, setClickCount] = useState(0);
@@ -68,13 +81,19 @@ const TeacherView = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ period0, period1 }), // Send the period_0 value in the request body
+      body: JSON.stringify({ period0, period1, period2, period3, period4, period5, period6, period7 }), // Send the period_0 value in the request body
     })
       .then((response) => response.json())
       .then((data) => {
         // Assuming the API response contains the list of first names
         const period_0Students = data.studentData0;
         const period_1Students = data.studentData1;
+        const period_2Students = data.studentData2;
+        const period_3Students = data.studentData3;
+        const period_4Students = data.studentData4;
+        const period_5Students = data.studentData5;
+        const period_6Students = data.studentData6;
+        const period_7Students = data.studentData7;
         console.log('period 0 Student First Names:', period_0Students);
         console.log('period 1 Student First Names:', period_1Students);
         setperiod_0Students(period_0Students);
@@ -84,6 +103,12 @@ const TeacherView = () => {
         setTeacherID(location.state.teacher_id);
         setperiod0(location.state.period0);
         setperiod1(location.state.period1);
+        setperiod2(location.state.period2);
+        setperiod3(location.state.period3);
+        setperiod4(location.state.period4);
+        setperiod5(location.state.period5);
+        setperiod6(location.state.period6);
+        setperiod7(location.state.period7);
   
         if (activeSwitch !== null) {
           const updatedSwitches = [...switches];
