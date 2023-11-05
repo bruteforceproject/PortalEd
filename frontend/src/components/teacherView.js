@@ -11,7 +11,7 @@ const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   //??Need the count of students
-  const students = [...Array(20).keys()]; // create array of 35 students
+  const activePeriodArray = [...Array(20).keys()]; // create array of 35 students
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
@@ -31,44 +31,9 @@ const TeacherView = () => {
   const [period_6Students, setperiod_6Students] = useState([]);
   const [period_7Students, setperiod_7Students] = useState([]);
 
-
-  // const [clickCount, setClickCount] = useState(0);
-  // const [clickTimeout, setClickTimeout] = useState(null);
-  // let [buttonClassName, setbuttonClassName] = useState('default-color');
-
-  // useEffect(() => {
-  //   if (clickCount === 3) {
-  //     setbuttonClassName('color-red');
-  //     clearTimeout(clickTimeout);
-  //     setClickTimeout(null);
-  //     setClickCount(0);
-  //   } else if (clickCount === 2) {
-  //     if (!clickTimeout) {
-  //       const timeoutId = setTimeout(() => {
-  //         setbuttonClassName('color-yellow');
-  //         setClickCount(0);
-  //         setClickTimeout(null);
-  //       }, 10);
-  //       setClickTimeout(timeoutId);
-  //     }
-  //   } else if (clickCount === 1) {
-  //     if (!clickTimeout) {
-  //       const timeoutId = setTimeout(() => {
-  //         setbuttonClassName('color-green');
-  //         setClickTimeout(null);
-  //       }, 1000);
-  //       setClickTimeout(timeoutId);
-  //     }
-  //   }
-  // }, [clickCount, clickTimeout]);
-
-  // const handleClick = (i) => {
-  //   setClickCount(prevCount => prevCount + 1);
-  // };
-
   // Start of Period Switch Setup
   //?? How to put this false thingy in database and extract from there?
-  const [switches, setSwitches] = useState([false, false, false, false, false, false, false, false]);
+  const [switches, setSwitches] = useState([false, true, false, false, false, false, false, false]);
   const [activeSwitch, setActiveSwitch] = useState(null);
 
   useEffect(() => {
@@ -194,7 +159,7 @@ const TeacherView = () => {
 
     {/* Start of Student section */}
 <div className="student-grid">
-  {period_0Students.map((student, index) => (
+  {period_1Students.map((student, index) => (
     <div className="student" key={index}>
       <div className='grid1'>
       <div
