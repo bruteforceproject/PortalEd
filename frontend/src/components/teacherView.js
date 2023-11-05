@@ -16,6 +16,7 @@ const TeacherView = () => {
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
   const [period_0Students, setperiod_0Students] = useState([]);
+  const [period_1Students, setperiod_1Students] = useState([]);
 
 
   // const [clickCount, setClickCount] = useState(0);
@@ -67,14 +68,17 @@ const TeacherView = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ period0 }), // Send the period_0 value in the request body
+      body: JSON.stringify({ period0, period1 }), // Send the period_0 value in the request body
     })
       .then((response) => response.json())
       .then((data) => {
         // Assuming the API response contains the list of first names
-        const period_0Students = data;
-        console.log('Student First Names:', period_0Students);
+        const period_0Students = data.studentData0;
+        const period_1Students = data.studentData1;
+        console.log('period 0 Student First Names:', period_0Students);
+        console.log('period 1 Student First Names:', period_1Students);
         setperiod_0Students(period_0Students);
+        setperiod_1Students(period_1Students);
 
         // Now you can use studentFirstNames in your component state or render them as needed
         setTeacherID(location.state.teacher_id);
