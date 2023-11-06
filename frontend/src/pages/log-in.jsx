@@ -65,6 +65,7 @@ const Login = () => {
         console.log("Role:", role); // Add this line to check the value of the role
         console.log("teacher_id:", teacher_id);
         console.log("period0:", period0);
+        console.log("period2:", period2);
         if (role === "parent") {
           // Redirect to the parent view if the role is "parent"
           navigate("/parentView", { state: { userId } });

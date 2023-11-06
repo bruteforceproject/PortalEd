@@ -61,8 +61,21 @@ const TeacherView = () => {
         const period_7Students = data.studentData7;
         console.log('period 0 Student First Names:', period_0Students);
         console.log('period 1 Student First Names:', period_1Students);
+        console.log('period 2 Student First Names:', period_2Students);
+        console.log('period 3 Student First Names:', period_3Students);
+        console.log('period 4 Student First Names:', period_4Students);
+        console.log('period 5 Student First Names:', period_5Students);
+        console.log('period 6 Student First Names:', period_6Students);
+        console.log('period 7 Student First Names:', period_7Students);
+
         setperiod_0Students(period_0Students);
         setperiod_1Students(period_1Students);
+        setperiod_2Students(period_2Students);
+        setperiod_3Students(period_3Students);
+        setperiod_4Students(period_4Students);
+        setperiod_5Students(period_5Students);
+        setperiod_6Students(period_6Students);
+        setperiod_7Students(period_7Students);
 
         // Now you can use studentFirstNames in your component state or render them as needed
         setTeacherID(location.state.teacher_id);
@@ -85,7 +98,8 @@ const TeacherView = () => {
         console.error('Error fetching student data by period:', error);
         // Handle error appropriately, e.g., set an error state
       });
-  }, [period0, activeSwitch, switches, location.state.teacher_id, location.state.period0, location.state.period1]);
+  }, [period0, activeSwitch, switches, location.state.teacher_id, location.state.period0, location.state.period1, location.state.period2,
+    location.state.period3,location.state.period4,location.state.period5,location.state.period6, location.state.period7]);
   
 
 

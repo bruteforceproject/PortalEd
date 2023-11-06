@@ -165,6 +165,12 @@ async function startServer() {
               teacher_id: teacherUser.teacher_id,
               period0: teacherUser.period0,
               period1: teacherUser.period1,
+              period2: teacherUser.period2,
+              period3: teacherUser.period3,
+              period4: teacherUser.period4,
+              period5: teacherUser.period5,
+              period6: teacherUser.period6,
+              period7: teacherUser.period7,
 
             });
           }
@@ -325,6 +331,7 @@ app.post("/api/start-check", async (req, res)  => {
         const { period0, period1, period2, period3, period4, period5, period6, period7 } = req.body;
         console.log("testperiod0: " ,period0);
         console.log("testperiod1: " ,period1);
+        console.log("testperiod2: " ,period2);
         // Query the student collection to find documents with period_0 matching the provided value
         const students0 = await studentCollection.find({ period0 }).toArray();
         const students1 = await studentCollection.find({ period1 }).toArray();
