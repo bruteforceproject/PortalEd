@@ -169,16 +169,13 @@ function StudentOverview() {
              
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[0]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[0]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[0]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[0]?.color }}/> 
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[0]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[0]?.color }}/>
               </span>
             </div>
             
@@ -197,16 +194,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[1]?.color}
+                  <img src={require("./academics.png")} alt="test"  style={{ backgroundColor: academicsData[1]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[1]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[1]?.color }}/>  
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[1]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[1]?.color }}/> 
               </span>
             </div>
           </div>
@@ -223,16 +217,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[2]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[2]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[2]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[2]?.color }}/> 
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[2]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[2]?.color }}/>
               </span>
             </div>
           </div>
@@ -249,16 +240,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[3]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[3]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[3]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[3]?.color }}/>  
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[3]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[3]?.color }}/>
               </span>
             </div>
           </div>
@@ -275,16 +263,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[4]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[4]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[4]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[4]?.color }}/>  
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[4]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[4]?.color }}/> 
               </span>
             </div>
           </div>
@@ -301,16 +286,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[5]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[5]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[5]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[5]?.color }}/>  
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[5]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[5]?.color }}/> 
               </span>
             </div>
           </div>
@@ -327,16 +309,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[6]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[6]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[6]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[6]?.color }}/>  
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[6]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[6]?.color }}/> 
               </span>
             </div>
           </div>
@@ -353,16 +332,13 @@ function StudentOverview() {
             </div>
             <div class="image-container">
               <span className="academicsImg">
-                <img src={require("./academics.png")} alt="test" />
-                <b>Academics color: </b> {academicsData[7]?.color}
+                <img src={require("./academics.png")} alt="test" style={{ backgroundColor: academicsData[7]?.color }}/>
               </span>
               <span className="attendanceImg">
-                <img src={require("./attendance.png")} alt="test" />
-                <b>Attendance color: </b> {attendanceData[7]?.color}  
+                <img src={require("./attendance.png")} alt="test" style={{ backgroundColor: attendanceData[7]?.color }}/> 
               </span>
               <span className="behaviorImg">
-                <img src={require("./behavior.png")} alt="test" />
-                <b>Behavior color: </b> {behaviorData[7]?.color} 
+                <img src={require("./behavior.png")} alt="test" style={{ backgroundColor: behaviorData[7]?.color }}/> 
               </span>
             </div>
           </div>

@@ -20,6 +20,7 @@ header{
     text-align: left;
    /* padding-right: 30%; */
    left: 10%;
+
 }
 
 /*these are to make the top a clickable link to student history*/
@@ -43,6 +44,7 @@ div.headLink:hover{
 
 .academicsImg, .attendanceImg, .behaviorImg {
     position: relative;
+    display: flex;
     flex: 1;
     align-items: center;
     height: 100%;
@@ -52,6 +54,8 @@ div.headLink:hover{
     
     
   }
+
+
 
 .image-container {
     position: absolute;
@@ -63,6 +67,7 @@ div.headLink:hover{
     height: 80%; 
     display: flex;
     justify-content: space-between;
+    
     align-items: center;
     
 }
@@ -73,10 +78,11 @@ div.headLink:hover{
     align-items: center;
     height: 100%;
     margin-top: 20px;
+    gap: 20px;
 }
 
 .back-button{
-    margin-right: 10px;
+   
     font-size: 1rem;
     background-color: #007aff;
     color: white;
@@ -98,20 +104,8 @@ div.headLink:hover{
     border-radius: 50%;
     object-fit: contain;
     border: 2px solid black;
+    padding: 5px;
     
-    
-}
-
-.academicsImg img{
-    background-color: #558c3b;
-}
-
-.attendanceImg img{
-    background-color: #f2ca52;
-}
-
-.behaviorImg img {
-    background-color: #f25d50;
 }
 
 
