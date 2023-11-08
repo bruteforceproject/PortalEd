@@ -5,13 +5,16 @@ import { useState, useEffect} from 'react';
 //import { GrValidate } from "react-icons/gr"; 
 //import axios from 'axios'
 
-
+let num;
+let content = null;
 
 const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   //??Need the count of students
-  const activePeriodArray = [...Array(20).keys()]; // create array of 35 students
+  let activePeriodArray = []; // create array of 35 students
+  let studentNames = [];
+  
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
@@ -33,7 +36,7 @@ const TeacherView = () => {
 
   // Start of Period Switch Setup
   //?? How to put this false thingy in database and extract from there?
-  const [switches, setSwitches] = useState([false, true, false, false, false, false, false, false]);
+  const [switches, setSwitches] = useState([false, false, false, false, false, false, false, false]);
   const [activeSwitch, setActiveSwitch] = useState(null);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ const TeacherView = () => {
       .then((response) => response.json())
       .then((data) => {
         // Assuming the API response contains the list of first names
-        const period_0Students = data.studentData0;
+        let period_0Students = data.studentData0;
         const period_1Students = data.studentData1;
         const period_2Students = data.studentData2;
         const period_3Students = data.studentData3;
@@ -59,14 +62,9 @@ const TeacherView = () => {
         const period_5Students = data.studentData5;
         const period_6Students = data.studentData6;
         const period_7Students = data.studentData7;
-        console.log('period 0 Student First Names:', period_0Students);
-        console.log('period 1 Student First Names:', period_1Students);
-        console.log('period 2 Student First Names:', period_2Students);
-        console.log('period 3 Student First Names:', period_3Students);
-        console.log('period 4 Student First Names:', period_4Students);
-        console.log('period 5 Student First Names:', period_5Students);
-        console.log('period 6 Student First Names:', period_6Students);
-        console.log('period 7 Student First Names:', period_7Students);
+        // console.log('period 0 Student First Names:', period_0Students);
+        
+        
 
         setperiod_0Students(period_0Students);
         setperiod_1Students(period_1Students);
@@ -76,7 +74,8 @@ const TeacherView = () => {
         setperiod_5Students(period_5Students);
         setperiod_6Students(period_6Students);
         setperiod_7Students(period_7Students);
-
+        
+        
         // Now you can use studentFirstNames in your component state or render them as needed
         setTeacherID(location.state.teacher_id);
         setperiod0(location.state.period0);
@@ -98,18 +97,17 @@ const TeacherView = () => {
         console.error('Error fetching student data by period:', error);
         // Handle error appropriately, e.g., set an error state
       });
-  }, [period0, activeSwitch, switches, location.state.teacher_id, location.state.period0, location.state.period1, location.state.period2,
-    location.state.period3,location.state.period4,location.state.period5,location.state.period6, location.state.period7]);
+  }, [activeSwitch, period0]);
   
-
-
-
   
   const handleSwitchClick = (index) => {
     if (activeSwitch === null) {
       const turnOn = window.confirm(`Start the Period ${index}`);
       if (turnOn) {
         setActiveSwitch(index);
+        createOutline(index);
+        num = index;
+        console.log("num = "+ num);
       }
     } else if (activeSwitch === index) {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
@@ -151,60 +149,89 @@ const TeacherView = () => {
       });
   }
 
+  function createOutline(index){
+
+    if(index == 0){
+      studentNames = period_0Students.map((student, key) => student.fname);
+      console.log(studentNames);
+    }
+    if(index == 1){
+      studentNames = period_1Students.map((student, key) => 
+      student.fname
+    )
+    }
+
+    }
+    
+    if (num == 0) {
+      content =
+        period_0Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+          
+        ))
+    } else {
+      content =
+        period_1Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    }
 
 
   return (
     
     //Start for the periods in a class
+  <div>
     <div className="classroom">
       <div className="periods">
-        
-      <p style={{ color: 'white' }}>Teacher ID: {teacherID}</p>
-
-
+        <p style={{ color: 'white' }}>Teacher ID: {teacherID}</p>
         {switches.map((isOn, index) => (
           <div key={index} className={`period ${isOn ? 'on' : 'off'}`}
-            onClick={() => handleSwitchClick(index)}>
+            onClick={() => handleSwitchClick(index)}> 
             Period {index}
           </div>
         ))}
-    </div>
-    {/* End of Period section */}
-
+      </div>
+      {/* End of Period section */}
+          
     {/* Start of Student section */}
-<div className="student-grid">
-  {period_1Students.map((student, index) => (
-    <div className="student" key={index}>
-      <div className='grid1'>
-      <div
-                className='grid1'
-                onClick={async () => {
-                  if (student.studentID) {
-                    await getData(student.studentID);
-                  }
-
-                }}
-              >
-                {student.fname}
-              </div>
+    <div className="student-grid">
+      {content}
       </div>
-      <div className='grid2 gridall default-color'></div>
-      <div className='grid3 gridall default-color'></div>
-      <div className='grid4 gridall default-color'> </div>
-      <button className={"grid5 gridall default-color"} >
-        {/*<span className='teacher_logo'><GrValidate/></span>*/}
-      </button>
-      <button className="grid6 gridall default-color ">
-        <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-      </button>
-      <button className="grid7 gridall default-color">
-        <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
-      </button>
+    
     </div>
-        ))}
-      </div>
     </div>
   );
+  
 }
 
 export default TeacherView
