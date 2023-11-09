@@ -11,9 +11,6 @@ let content = null;
 const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  //??Need the count of students
-  let activePeriodArray = []; // create array of 35 students
-  let studentNames = [];
   
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
@@ -97,7 +94,7 @@ const TeacherView = () => {
         console.error('Error fetching student data by period:', error);
         // Handle error appropriately, e.g., set an error state
       });
-  }, [activeSwitch, period0]);
+  }, [activeSwitch]);
   
   
   const handleSwitchClick = (index) => {
@@ -105,15 +102,15 @@ const TeacherView = () => {
       const turnOn = window.confirm(`Start the Period ${index}`);
       if (turnOn) {
         setActiveSwitch(index);
-        createOutline(index);
         num = index;
-        console.log("num = "+ num);
       }
     } else if (activeSwitch === index) {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
         setActiveSwitch(null);
+        num = -1;
+        
       }
     }
     else{
@@ -149,26 +146,13 @@ const TeacherView = () => {
       });
   }
 
-  function createOutline(index){
-
-    if(index == 0){
-      studentNames = period_0Students.map((student, key) => student.fname);
-      console.log(studentNames);
-    }
-    if(index == 1){
-      studentNames = period_1Students.map((student, key) => 
-      student.fname
-    )
-    }
-
-    }
     
     if (num == 0) {
       content =
         period_0Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
-            {student.fname}
+            {student.fname} 
           </div>
           <div className='grid2 gridall default-color' ></div>
           <div className='grid3 gridall default-color'></div>
@@ -181,10 +165,9 @@ const TeacherView = () => {
           <button className="grid7 gridall default-color">
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
-      </div>
-          
+        </div>
         ))
-    } else {
+    } else if(num == 1) {
       content =
         period_1Students.map((student, index) => (
           <div className="student" key={index}>
@@ -204,6 +187,128 @@ const TeacherView = () => {
           </button>
       </div>
         ))
+    } else if(num == 2) {
+      content =
+        period_2Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    } else if(num == 3) {
+      content =
+        period_3Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    } else if(num == 4) {
+      content =
+        period_4Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    } else if(num == 5) {
+      content =
+        period_5Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    } else if(num == 6) {
+      content =
+        period_6Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    } else if(num == 7) {
+      content =
+        period_7Students.map((student, index) => (
+          <div className="student" key={index}>
+          <div className='grid1' key={index} >
+            {student.fname}
+          </div>
+          <div className='grid2 gridall default-color' ></div>
+          <div className='grid3 gridall default-color'></div>
+          <div className='grid4 gridall default-color'> </div>
+          <button className={"grid5 gridall default-color"} >
+          </button>
+          <button className="grid6 gridall default-color ">
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
+          </button>
+          <button className="grid7 gridall default-color">
+            <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+      </div>
+        ))
+    }else{
+      content = null;
     }
 
 
@@ -226,7 +331,7 @@ const TeacherView = () => {
     {/* Start of Student section */}
     <div className="student-grid">
       {content}
-      </div>
+    </div>
     
     </div>
     </div>
