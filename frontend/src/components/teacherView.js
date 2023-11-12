@@ -151,13 +151,17 @@ const TeacherView = () => {
       content =
         period_0Students.map((student, index) => (
           <div className="student" key={index}>
-          <div className='grid1' key={index} >
-            {student.fname} 
+          <div className='grid1' key={index} onClick={async () => {
+            if (student.studentID) {
+              await getData(student.studentID);
+            }
+          }}>
+          {student.fname} 
           </div>
-          <div className='grid2 gridall default-color' ></div>
+          <div className='grid2 gridall default-color'></div>
           <div className='grid3 gridall default-color'></div>
           <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <button className={"grid5 gridall default-color"}>
           </button>
           <button className="grid6 gridall default-color ">
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
@@ -178,6 +182,7 @@ const TeacherView = () => {
           <div className='grid3 gridall default-color'></div>
           <div className='grid4 gridall default-color'> </div>
           <button className={"grid5 gridall default-color"} >
+            <span className='teacher_logo'><img src={require('./attendance.png')} alt="test" /></span>
           </button>
           <button className="grid6 gridall default-color ">
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
