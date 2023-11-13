@@ -15,8 +15,7 @@ const Verify = () => {
     email: userEmail
   });
 
-  const phoneInput = [
-    {
+  const phoneInput = [{
       id: 1,
       name: "phone",
       type: "tel",
@@ -31,11 +30,8 @@ const Verify = () => {
 
   const buttonHandler = async (e) => {
     e.preventDefault();
-    console.log(userEmail)
     let id = e.target.id;
     if(id === 'next-button'){
-      console.log(phoneNumber.phone)
-      console.log(userPhone)
        if(phoneNumber.phone === userPhone) {
         navigate("../account-recovery/enter-code", { state: { userPhone, userEmail } });
       try {

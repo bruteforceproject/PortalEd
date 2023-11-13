@@ -2,7 +2,7 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-const yessir = require('twilio')("AC5d2f3bf0571fa3e3382f90f069d173a9", "xxxxxxxxxxxxxxxxxxxxxxxxxx");
+const yessir = require('twilio')("xxx", "xxx");
 
 //const textFlow = require("textflow.js");
 
@@ -277,7 +277,7 @@ app.post("/api/start-verify", async (req, res)  => {
   
   const {phone, email} = req.body
 
-  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
+  yessir.verify.v2.services('xxx')
                 .verifications
                 .create({to: phone, channel: 'sms'})
                 .then(verification => console.log(verification.status));
@@ -289,12 +289,14 @@ app.post("/api/start-check", async (req, res)  => {
 
   console.log(code)
 
-  yessir.verify.v2.services('xxxxxxxxxxxxxxxxxxxxxxxxxx')
+  yessir.verify.v2.services('xxx')
   .verificationChecks
   .create({to: phone, code: code})
-  .then(verification_check => console.log(verification_check.status));
-
-
+  .then(verification_check => {
+    if (verification_check.status === 'approved'){
+      return res.status(200).json();
+    }
+  });
 });
 
 
