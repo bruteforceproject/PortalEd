@@ -4,8 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 //import { GrValidate } from "react-icons/gr"; 
 //import axios from 'axios'
+import { period_0StudentsFunction, period_1StudentsFunction } from './periodchange';
 
-let num;
+let num = -1;
 let content = null;
 
 const TeacherView = () => {
@@ -89,14 +90,30 @@ const TeacherView = () => {
           updatedSwitches[activeSwitch] = true;
           setSwitches(updatedSwitches);
         }
+
+        if(num == -1){
+          period_0StudentsFunction(period_0Students, period0);
+          console.log(num)
+        }
+        else if(num == 0){
+          console.log(num)
+          period_1StudentsFunction(period_1Students, period1);
+        }
+        
+        
+        
+          
+
       })
       .catch((error) => {
         console.error('Error fetching student data by period:', error);
         // Handle error appropriately, e.g., set an error state
       });
-  }, [activeSwitch]);
+  }, [activeSwitch, period0, period1, period2, period3, period4, period5, period6, period7]);
   
   
+
+
   const handleSwitchClick = (index) => {
     if (activeSwitch === null) {
       const turnOn = window.confirm(`Start the Period ${index}`);
@@ -109,7 +126,7 @@ const TeacherView = () => {
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
         setActiveSwitch(null);
-        num = -1;
+       
         
       }
     }
@@ -118,6 +135,7 @@ const TeacherView = () => {
     }
   };
   // End of Period Switch Setup
+
 
   async function getData(studentID) {
     await fetch(`http://localhost:8000/getStudents`, {
@@ -146,10 +164,13 @@ const TeacherView = () => {
       });
   }
 
-    
+  useEffect(()=> {
+    console.log("RunInside",period_0Students );
     if (num == 0) {
+      
       content =
         period_0Students.map((student, index) => (
+          
           <div className="student" key={index}>
           <div className='grid1' key={index} onClick={async () => {
             if (student.studentID) {
@@ -158,10 +179,11 @@ const TeacherView = () => {
           }}>
           {student.fname} 
           </div>
-          <div className='grid2 gridall default-color'></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
           <button className={"grid5 gridall default-color"}>
+            <span className='teacher_logo'><img src={require('./attendance.png')} alt="test" /></span>
           </button>
           <button className="grid6 gridall default-color ">
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
@@ -178,9 +200,9 @@ const TeacherView = () => {
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
           <button className={"grid5 gridall default-color"} >
             <span className='teacher_logo'><img src={require('./attendance.png')} alt="test" /></span>
           </button>
@@ -316,6 +338,7 @@ const TeacherView = () => {
       content = null;
     }
 
+  }, [activeSwitch])
 
   return (
     

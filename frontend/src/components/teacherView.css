@@ -187,6 +187,17 @@
   }
   
   .color-green {
+    background-color: #558c3b;
+  }
+  
+  .color-yellow {
+    background-color: #f2ca52;
+  }
+  
+  .color-red {
+    background-color: #f25d50;
+  }
+  /* .color-green {
     background-color: #C5E0B3;
   }
   
@@ -196,6 +207,6 @@
   
   .color-red {
     background-color: #F7CAAC;
-  }
+  } */
 
   
