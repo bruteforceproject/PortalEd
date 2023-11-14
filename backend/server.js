@@ -2,7 +2,7 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-const yessir = require('twilio')("xx", "xx");
+// const yessir = require('twilio')("xx", "xx");
 
 //const textFlow = require("textflow.js");
 

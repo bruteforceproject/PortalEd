@@ -4,9 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 //import { GrValidate } from "react-icons/gr"; 
 //import axios from 'axios'
-import { period_0StudentsFunction, period_1StudentsFunction } from './periodchange';
+import { period_0StudentsFunction, period_1StudentsFunction, period_2StudentsFunction } from './periodchange';
+import { period_3StudentsFunction, period_4StudentsFunction, period_5StudentsFunction } from './periodchange';
+import { period_6StudentsFunction, period_7StudentsFunction} from './periodchange';
 
 let num = -1;
+let dataStoredStart = -1;
 let content = null;
 
 const TeacherView = () => {
@@ -89,20 +92,37 @@ const TeacherView = () => {
           const updatedSwitches = [...switches];
           updatedSwitches[activeSwitch] = true;
           setSwitches(updatedSwitches);
-        }
-
-        if(num == -1){
-          period_0StudentsFunction(period_0Students, period0);
-          console.log(num)
-        }
-        else if(num == 0){
-          console.log(num)
-          period_1StudentsFunction(period_1Students, period1);
-        }
+        } 
         
-        
-        
-          
+        switch (dataStoredStart) {
+          case -1:
+            period_0StudentsFunction(period_0Students, period0);
+            break;
+          case 0:
+            period_1StudentsFunction(period_1Students, period1);
+            break;
+          case 1:
+            period_2StudentsFunction(period_2Students, period2);
+            break;
+          case 2:
+            period_3StudentsFunction(period_3Students, period3);
+            break;
+          case 3:
+            period_4StudentsFunction(period_4Students, period4);
+            break;
+          case 4:
+            period_5StudentsFunction(period_5Students, period5);
+            break;
+          case 5:
+            period_6StudentsFunction(period_6Students, period6);
+            break;
+          case 6:
+            period_7StudentsFunction(period_7Students, period7);
+            break;
+          default:
+            break;
+        }
+           
 
       })
       .catch((error) => {
@@ -120,14 +140,14 @@ const TeacherView = () => {
       if (turnOn) {
         setActiveSwitch(index);
         num = index;
+        dataStoredStart = index;
       }
     } else if (activeSwitch === index) {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
         setActiveSwitch(null);
-       
-        
+        num = -1;
       }
     }
     else{
