@@ -10,12 +10,12 @@ import { period_6StudentsFunction, period_7StudentsFunction} from './periodchang
 
 let num = -1;
 let dataStoredStart = -1;
-let content = null;
 
 const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
+  const [content, setContent] = useState('null');
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
@@ -132,7 +132,9 @@ const TeacherView = () => {
   }, [activeSwitch, period0, period1, period2, period3, period4, period5, period6, period7]);
   
   
-
+  const [colorMapatt, setColorMapatt] = useState({});
+  const [colorMapaca, setColorMapaca] = useState({});
+  const [colorMapbeh, setColorMapbeh] = useState({});
 
   const handleSwitchClick = (index) => {
     if (activeSwitch === null) {
@@ -141,6 +143,9 @@ const TeacherView = () => {
         setActiveSwitch(index);
         num = index;
         dataStoredStart = index;
+        setColorMapatt({});
+        setColorMapaca({});
+        setColorMapbeh({});
       }
     } else if (activeSwitch === index) {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
@@ -184,15 +189,42 @@ const TeacherView = () => {
       });
   }
 
+  
+  const handleTapAtt = (index) => {
+    setColorMapatt((prevColorMap) => {
+      const currentColor = prevColorMap[index] === '#558c3b' ? '#f2ca52' : prevColorMap[index] === '#f2ca52' ? '#f25d50' : '#558c3b';
+      return { ...prevColorMap, [index]: currentColor };
+    }); 
+  };
+  const handleTapAca = (index) => {
+    setColorMapaca((prevColorMap) => {
+      const currentColor = prevColorMap[index] === '#558c3b' ? '#f2ca52' : prevColorMap[index] === '#f2ca52' ? '#f25d50' : '#558c3b';
+      return { ...prevColorMap, [index]: currentColor };
+    }); 
+  };
+  const handleTapBeh = (index) => {
+    setColorMapbeh((prevColorMap) => {
+      const currentColor = prevColorMap[index] === '#558c3b' ? '#f2ca52' : prevColorMap[index] === '#f2ca52' ? '#f25d50' : '#558c3b';
+      if (currentColor === "#f25d50"){
+        let sentence = 'Choose an option:\n1. Distractive actions\n2. Misuse of supplies, equipment, or electronics\n3. Defiance of authority\n4. Unsafe, threatening, or violent actions\n5. Other, write the action?';
+        const userChoice = window.prompt(sentence);
+		    if (userChoice) {
+		      alert(`You chose: ${userChoice}`);
+		    }
+      }
+      return { ...prevColorMap, [index]: currentColor };
+    }); 
+  };
+
   useEffect(()=> {
-    console.log("RunInside",period_0Students );
+    
     if (num == 0) {
-      
-      content =
+
+      const contentData  =
         period_0Students.map((student, index) => (
           
-          <div className="student" key={index}>
-          <div className='grid1' key={index} onClick={async () => {
+          <div className="student">
+          <div className='grid1' onClick={async () => {
             if (student.studentID) {
               await getData(student.studentID);
             }
@@ -202,19 +234,21 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"}>
-            <span className='teacher_logo'><img src={require('./attendance.png')} alt="test" /></span>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
         </div>
         ))
+        setContent(contentData);
     } else if(num == 1) {
-      content =
+      const contentData  =
+      
         period_1Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
@@ -223,142 +257,155 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} >
-            <span className='teacher_logo'><img src={require('./attendance.png')} alt="test" /></span>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 2) {
-      content =
+      const contentData  =
         period_2Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 3) {
-      content =
+      const contentData  =
         period_3Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 4) {
-      content =
+      const contentData  =
         period_4Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 5) {
-      content =
+      const contentData  =
         period_5Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 6) {
-      content =
+      const contentData  =
         period_6Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     } else if(num == 7) {
-      content =
+      const contentData  =
         period_7Students.map((student, index) => (
           <div className="student" key={index}>
           <div className='grid1' key={index} >
             {student.fname}
           </div>
-          <div className='grid2 gridall default-color' ></div>
-          <div className='grid3 gridall default-color'></div>
-          <div className='grid4 gridall default-color'> </div>
-          <button className={"grid5 gridall default-color"} >
+          <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
+          <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
+          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+            <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className="grid6 gridall default-color ">
+          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
-          <button className="grid7 gridall default-color">
+          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
       </div>
         ))
+        setContent(contentData);
     }else{
-      content = null;
+      setContent()
     }
 
-  }, [activeSwitch])
+  }, [activeSwitch, colorMapatt, colorMapaca, colorMapbeh])
 
   return (
     
