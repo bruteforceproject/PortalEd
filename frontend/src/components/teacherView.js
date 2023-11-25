@@ -26,8 +26,8 @@ const TeacherView = () => {
   const [period6, setperiod6] = useState('null'); 
   const [period7, setperiod7] = useState('null'); 
   
-  const [period_0Students, setperiod_0Students] = useState([]);
-  const [period_1Students, setperiod_1Students] = useState([]);
+  let [period_0Students, setperiod_0Students] = useState([]);
+  let [period_1Students, setperiod_1Students] = useState([]);
   const [period_2Students, setperiod_2Students] = useState([]);
   const [period_3Students, setperiod_3Students] = useState([]);
   const [period_4Students, setperiod_4Students] = useState([]);
@@ -218,7 +218,7 @@ const TeacherView = () => {
 
   useEffect(()=> {
     
-    if (num == 0) {
+    if (num === 0) {
 
       const contentData  =
         period_0Students.map((student, index) => (
@@ -246,7 +246,7 @@ const TeacherView = () => {
         </div>
         ))
         setContent(contentData);
-    } else if(num == 1) {
+    } else if(num === 1) {
       const contentData  =
       
         period_1Students.map((student, index) => (
@@ -269,7 +269,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 2) {
+    } else if(num === 2) {
       const contentData  =
         period_2Students.map((student, index) => (
           <div className="student" key={index}>
@@ -291,7 +291,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 3) {
+    } else if(num === 3) {
       const contentData  =
         period_3Students.map((student, index) => (
           <div className="student" key={index}>
@@ -313,7 +313,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 4) {
+    } else if(num === 4) {
       const contentData  =
         period_4Students.map((student, index) => (
           <div className="student" key={index}>
@@ -335,7 +335,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 5) {
+    } else if(num === 5) {
       const contentData  =
         period_5Students.map((student, index) => (
           <div className="student" key={index}>
@@ -357,7 +357,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 6) {
+    } else if(num === 6) {
       const contentData  =
         period_6Students.map((student, index) => (
           <div className="student" key={index}>
@@ -379,7 +379,7 @@ const TeacherView = () => {
       </div>
         ))
         setContent(contentData);
-    } else if(num == 7) {
+    } else if(num === 7) {
       const contentData  =
         period_7Students.map((student, index) => (
           <div className="student" key={index}>
