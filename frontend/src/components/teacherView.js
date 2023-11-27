@@ -414,12 +414,11 @@ const TeacherView = () => {
   }, [activeSwitch, colorMapatt, colorMapaca, colorMapbeh])
 
   return (
-    
     //Start for the periods in a class
   <div>
     <div className="classroom">
       <div className="periods">
-        <p style={{ color: 'white' }}>Teacher ID: {teacherID}</p>
+        <p style={{ color: 'white' }}>Teacher ID:{teacherID}</p>
         
         {switches.map((isOn, index) => (
           <div key={index} className={`period ${isOn ? 'on' : 'off'}`}
