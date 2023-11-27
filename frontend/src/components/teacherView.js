@@ -1,5 +1,6 @@
 import React from 'react'
 import './teacherView.css'
+import logo from "../logo1.png";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 //import { GrValidate } from "react-icons/gr"; 
@@ -404,11 +405,15 @@ const TeacherView = () => {
           <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
           </button>
-      </div>
+        </div>
         ))
         setContent(contentData);
     }else{
-      setContent()
+      const contentData = 
+        (<div style={{gridColumn: 3, gridRow: 4}}>
+          <img style={{maxWidth: 150, maxHeight: 150}} src = {logo} alt="logo" />
+        </div>)
+      setContent(contentData);   
     }
 
   }, [activeSwitch, colorMapatt, colorMapaca, colorMapbeh])
