@@ -161,6 +161,12 @@ const TeacherView = () => {
   };
   // End of Period Switch Setup
 
+  const handleLogout = () => {
+    // Add any logout logic you need here, e.g., clearing session data
+    // Once the logout logic is complete, navigate to the desired route
+    navigate('/log-in', { replace: true }); // Replace '/logout' with the route you want to navigate to
+  };
+
 
   async function getData(studentID) {
     await fetch(`http://localhost:8000/getStudents`, {
@@ -414,12 +420,20 @@ const TeacherView = () => {
     <div className="classroom">
       <div className="periods">
         <p style={{ color: 'white' }}>Teacher ID: {teacherID}</p>
+        
         {switches.map((isOn, index) => (
           <div key={index} className={`period ${isOn ? 'on' : 'off'}`}
             onClick={() => handleSwitchClick(index)}> 
             Period {index}
+
+            
           </div>
+          
         ))}
+        <button className="log-out-button" onClick={handleLogout}>
+            Log Out
+          </button>
+
       </div>
       {/* End of Period section */}
           

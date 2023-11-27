@@ -6,13 +6,22 @@
 }
 
 .client-logo-container{
-  width: 50%;
+  flex:1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  
+  
 }
 
 .client-logo{
   width: 30%;
-  margin-top: 40%;
-  margin-left: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 .log-in-container{
@@ -175,6 +184,8 @@
   width: auto;
   will-change: transform;
 }
+
+
 
 .error-message {
   margin-top: 10px;
