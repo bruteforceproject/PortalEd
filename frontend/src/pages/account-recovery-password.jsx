@@ -66,6 +66,9 @@ const PasswordRecovery = () => {
           <InputField key = {input.id} {...input} value = {email[emailInput.name]} onChange = {onChange}/>
         ))}
         <button className='log-in-button' >Next</button>
+        <div className="error-message">
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
         <a className='log-in-link' href='http://localhost:3000/account-recovery/account-id'>I don't know my email</a>
       </form>
     </div>
