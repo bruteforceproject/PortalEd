@@ -2,7 +2,7 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-// const yessir = require('twilio')("xx", "xx");
+ const yessir = require('twilio')("ACb72962ff113b71a5549964fb3514d15d", "af4c0d4a4a9b6432ed7a8db706ed2c24");
 
 //const textFlow = require("textflow.js");
 
@@ -258,28 +258,41 @@ async function startServer() {
       const { phone, email } = req.body;
       console.log(req.body);
 
-      const user = await parentCollection.findOne({ phone });
+      const parent = await parentCollection.findOne({ phone });
 
-      if (!user) {
-        return res.status(404).json({ message: "Phone doesn't exist" });
-      } else if (user.email != email) {
-        res
-          .status(404)
-          .json({ message: "Phone number doesn't match associated account" });
+  if (parent) {
+    // If found in the parentCollection, check if the email matches
+    if (parent.email === email) {
+      return res.status(200).json({ message: "Phone number matches associated account" });
+    } else {
+      return res.status(404).json({ message: "Phone number doesn't match associated account" });
+    }
+  } else {
+    // If not found in the parentCollection, try to find in the teacherCollection
+    const teacher = await teacherCollection.findOne({ phone });
+
+    if (teacher) {
+      // If found in the teacherCollection, check if the email matches
+      if (teacher.email === email) {
+        return res.status(200).json({ message: "Phone number matches associated account" });
       } else {
-        res
-          .status(200)
-          .json({ message: "Phone number matches associated account" });
+        return res.status(404).json({ message: "Phone number doesn't match associated account" });
       }
-    });
+    } else {
+      // If not found in both collections, return a 404 response
+      return res.status(404).json({ message: "Phone doesn't exist" });
+    }
+  }
+});
+
 
 app.post("/api/start-verify", async (req, res)  => {
   
   const {phone, email} = req.body
 
-  yessir.verify.v2.services('xx')
+  yessir.verify.v2.services('VA8da325843da227fc94d159b2f1f13a72')
     .verifications
-    .create({to: phone, channel: 'sms'})
+    .create({to: "+1"+ phone, channel: 'sms'})
     .then(verification => console.log(verification.status));
 });
 
@@ -289,9 +302,9 @@ app.post("/api/start-check", async (req, res)  => {
 
   console.log(code)
 
-  yessir.verify.v2.services('xx')
+  yessir.verify.v2.services('VA8da325843da227fc94d159b2f1f13a72')
   .verificationChecks
-  .create({to: phone, code: code})
+  .create({to: "+1" + phone, code: code})
   .then(verification_check => {
     if (verification_check.status === 'approved'){
       return res.status(200).json();
@@ -303,18 +316,35 @@ app.post("/api/start-check", async (req, res)  => {
     app.post("/api/email-verification", async (req, res) => {
       const { email } = req.body;
 
-      const user = await parentCollection.findOne({ email });
+        // Attempt to find the email in the teacherCollection
+  const teacher = await teacherCollection.findOne({ email });
 
-      if (!user) {
-        return res.status(404).json({ message: "Email doesn't exist" });
-      } else {
-        res.status(200).json({
-          message: "Email exists",
-          userPhone: user.phone,
-          userEmail: user.email,
-        });
-      }
+  if (teacher) {
+    // If found in the teacherCollection, return the result
+    return res.status(200).json({
+      message: "Email exists",
+      userPhone: teacher.phone,
+      userEmail: teacher.email,
+      userType: "teacher", // You can include a userType field to indicate it's a teacher
     });
+  } else {
+    // If not found in the teacherCollection, try the parentCollection
+    const parent = await parentCollection.findOne({ email });
+
+    if (parent) {
+      // If found in the parentCollection, return the result
+      return res.status(200).json({
+        message: "Email exists",
+        userPhone: parent.phone,
+        userEmail: parent.email,
+        userType: "parent", // You can include a userType field to indicate it's a parent
+      });
+    } else {
+      // If not found in both collections, return a 404 response
+      return res.status(404).json({ message: "Email doesn't exist" });
+    }
+  }
+});
 
     app.post("/api/get-email", async (req, res) => {
       const { fname, lname, phone } = req.body;
@@ -339,19 +369,30 @@ app.post("/api/start-check", async (req, res)  => {
         };
 
       const options = { returnNewDocument: true };
-
+      //console.log("email:"+email);
+      //console.log("passwordNew:"+JSON.stringify(update)+"testing"+JSON.stringify(options));
       parentCollection.findOneAndUpdate({email}, update, options)
         .then(updatedDocument => {
           if(updatedDocument) {
             console.log(`Successfully updated document: ${updatedDocument}.`)
             return res.status(200).json();
           } else {
-            console.log("No document matches the provided query.")
+            // If not found in parentCollection, try teacherCollection
+        teacherCollection.findOneAndUpdate({ email }, update, options)
+        .then(updatedTeacherDocument => {
+          if (updatedTeacherDocument) {
+            console.log(`Successfully updated document in teacherCollection: ${updatedTeacherDocument}.`);
+            return res.status(200).json();
+          } else {
+            console.log("No document matches the provided query in both collections.");
+            return res.status(404).json({ message: "Email not found in both collections" });
           }
-          return updatedDocument
         })
-        .catch(err => console.error(`Failed to find and update document: ${err}`))   
-    })
+        .catch(err => console.error(`Failed to find and update document in teacherCollection: ${err}`));
+    }
+  })
+  .catch(err => console.error(`Failed to find and update document in parentCollection: ${err}`));
+});
 
     app.post("/getStudentsByPeriod", async (req, res) => {
       try {
