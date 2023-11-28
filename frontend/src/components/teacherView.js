@@ -78,7 +78,7 @@ const TeacherView = () => {
         setperiod_7Students(period_7Students);
         
         
-        // Now you can use studentFirstNames in your component state or render them as needed
+        
         setTeacherID(location.state.teacher_id);
         setperiod0(location.state.period0);
         setperiod1(location.state.period1);
@@ -133,6 +133,42 @@ const TeacherView = () => {
   }, [activeSwitch, period0, period1, period2, period3, period4, period5, period6, period7]);
   
   
+
+  const handleCreateAttendance = async () => {
+    try {
+      // Prepare the data to be sent in the POST request
+      const data = {
+        studentID:"1",
+        class_id:"233",
+        color:"24",
+        date:"0345",
+        acknowledged: true,
+      };
+
+      // Make a POST request to the /createAttendance endpoint
+      const response = await fetch('http://localhost:8000/createAttendance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Successfully created the attendance document
+        const responseData = await response.json();
+        console.log('Attendance document created with ID:', responseData.documentId);
+      } else {
+        // Handle errors here
+        console.error('Error creating attendance document:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error creating attendance document:', error);
+    }
+  };
+
+
+
   const [colorMapatt, setColorMapatt] = useState({});
   const [colorMapaca, setColorMapaca] = useState({});
   const [colorMapbeh, setColorMapbeh] = useState({});
@@ -184,7 +220,7 @@ const TeacherView = () => {
         if (data) {
           console.log("testing",data)
           navigate("/studentOverview", {
-            state: { myData: data },
+            state: { myData: data, teacherID, period0, period1, period2, period3, period4, period5, period6, period7 },
           });
         } else {
           alert("Error: \nStudent ID is not Found!");
@@ -434,7 +470,7 @@ const TeacherView = () => {
           </div>
           
         ))}
-        <button className="log-out-button" onClick={handleLogout}>
+        <button className="log-out-button" onClick={handleCreateAttendance}>
             Log Out
           </button>
 

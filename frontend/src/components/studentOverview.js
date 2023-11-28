@@ -11,13 +11,42 @@ function StudentOverview() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [academicsData, setAcademicsData] = useState([]);
   const [behaviorData, setBehaviorData] = useState([]);
+
+    
+  const [content, setContent] = useState('null');
+  const [teacher_id, setTeacherID] = useState('null'); // Initialize as an empty string
+  const [period0, setperiod0] = useState('null'); 
+  const [period1, setperiod1] = useState('null'); 
+  const [period2, setperiod2] = useState('null'); 
+  const [period3, setperiod3] = useState('null'); 
+  const [period4, setperiod4] = useState('null'); 
+  const [period5, setperiod5] = useState('null'); 
+  const [period6, setperiod6] = useState('null'); 
+  const [period7, setperiod7] = useState('null'); 
+  
+
   const navigate = useNavigate();
   const location = useLocation();
 
+
+
   useEffect(() => {
+
     // Ensure that the studentData is available before proceeding
     if (location.state && location.state.myData) {
       const studentData = location.state.myData;
+
+        setTeacherID(location.state.teacher_id);
+        setperiod0(location.state.period0);
+        setperiod1(location.state.period1);
+        setperiod2(location.state.period2);
+        setperiod3(location.state.period3);
+        setperiod4(location.state.period4);
+        setperiod5(location.state.period5);
+        setperiod6(location.state.period6);
+        setperiod7(location.state.period7);
+
+
       setStudentData(studentData);
 
       const periodFields = [
@@ -345,7 +374,7 @@ function StudentOverview() {
           <div className="navigation-buttons">
               <button className="back-button"
                 onClick={() => {
-                  navigate("/teacherView");
+                  navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
                 }}
               >
                 Go back to Teacher View

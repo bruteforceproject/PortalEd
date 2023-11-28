@@ -453,6 +453,36 @@ app.post("/api/start-check", async (req, res)  => {
         res.status(500).json({ message: "Error fetching students by period" });
       }
     });
+
+    // Define a route to handle creating a new attendance document
+app.post('/createAttendance', async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { studentID, class_id, color, date, acknowledged } = req.body;
+
+
+    // Access the "Attendance" collection
+    //const attendanceCollection = db.collection('Attendance');
+
+    // Create a new attendance document
+    const newAttendanceDocument = {
+      studentID,
+      class_id,
+      color,
+      date,
+      acknowledged,
+    };
+
+    // Insert the new document into the collection
+    const result = await attendanceCollection.insertOne(newAttendanceDocument);
+
+
+    res.status(201).json({ message: 'Attendance document created successfully', documentId: result.insertedId });
+  } catch (error) {
+    console.error('Error creating attendance document:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
     
 
     // Start the Express server

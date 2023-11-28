@@ -34,6 +34,7 @@ const Verify = () => {
     if(id === 'next-button'){
        if(phoneNumber.phone === userPhone) {
         navigate("../account-recovery/enter-code", { state: { userPhone, userEmail } });
+        
       try {
         await fetch("http://localhost:8000/api/start-verify", {
           method: "POST",
@@ -49,11 +50,13 @@ const Verify = () => {
         setError("Operation Failed");
       }
        }
+       else {
+    setError("Please enter correct number");
     }
-    else if(id === 'back-button') {
+  }else if(id === 'back-button') {
         navigate(-1);
     }
-  }
+  };
 
   return (
     <div className = "log-in">
@@ -64,6 +67,9 @@ const Verify = () => {
         {phoneInput.map((input) => (
           <InputField key = {input.id} {...input} value = {phoneNumber[phoneInput.name]} onChange = {onChange}/>
         ))}
+        <div className="error-message">
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
         <div className = "nav-buttons">
         <button className='log-in-button' id='back-button' onClick={buttonHandler} >Back</button>
         <button className='log-in-button' id='next-button' onClick={buttonHandler} >Next</button>
