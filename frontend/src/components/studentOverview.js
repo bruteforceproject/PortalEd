@@ -163,18 +163,15 @@ function StudentOverview() {
   return (
     <html>
       <header>
-        <div className="headLink">
-          <h2>
-            <span
-              onClick={() => {
+        <div className="headLink" onClick={() => {
                 if (studentData) {
                   navigate("/studentHistory", {
-                    state: { myData: studentData },
+                    state: { myData: studentData, userRole: userRole },
                   });
                 }
-              }}
-              
-            >
+              }}>
+          <h2>
+            <span>
               <span class="name">Student Name: {studentData.fname} {studentData.lname}</span>
             </span>{" "}
             &nbsp;&nbsp;{" "}
@@ -184,9 +181,6 @@ function StudentOverview() {
       </header>
       <body>
         <div>
-    
-          
-          
           <div className="Period">
             <div className="period-info">
               <p>

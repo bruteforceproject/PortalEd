@@ -33,11 +33,11 @@ const StudentHeader = ({ studentName, studentId }) => {
   );
 };
 
-const GoBack = ({studentData}) => {
+const GoBack = ({studentData, userRole}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/studentOverview", {state: {myData: studentData}});
+    navigate("/studentOverview", {state: {myData: studentData, userRole: userRole}});
   };
 
   return (
@@ -98,6 +98,7 @@ const StudentHistory = () => {
 
   const [studentData, setStudentData] = useState({});
   const location = useLocation();
+  const userRole = location.state?.userRole;
 
   useEffect(() => {
     console.log(location);
@@ -179,7 +180,7 @@ const StudentHistory = () => {
             <div className="box">{renderEventTiles("Attendance")}</div>
           </div>
         </div>
-        <GoBack studentData={studentData}/>
+        <GoBack studentData={studentData} userRole={userRole}/>
       </div>
       <GoBackhome />
     </>
