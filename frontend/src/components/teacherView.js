@@ -17,7 +17,7 @@ const TeacherView = () => {
   const navigate = useNavigate();
   
   const [content, setContent] = useState('null');
-  const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
+  const [teacher_id, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
   const [period2, setperiod2] = useState('null'); 
@@ -220,7 +220,7 @@ const TeacherView = () => {
         if (data) {
           console.log("testing",data)
           navigate("/studentOverview", {
-            state: { myData: data, teacherID, period0, period1, period2, period3, period4, period5, period6, period7, userRole: "teacher" },
+            state: { myData: data, teacher_id, period0, period1, period2, period3, period4, period5, period6, period7, userRole: "teacher" },
           });
         } else {
           alert("Error: \nStudent ID is not Found!");
@@ -459,7 +459,7 @@ const TeacherView = () => {
   <div>
     <div className="classroom">
       <div className="periods">
-        <p style={{ color: 'white' }}>Teacher ID:{teacherID}</p>
+        <p style={{ color: 'white' }}>Teacher ID:{teacher_id}</p>
         
         {switches.map((isOn, index) => (
           <div key={index} className={`period ${isOn ? 'on' : 'off'}`}
