@@ -158,6 +158,8 @@ function StudentOverview() {
     }
   }, [location.state]);
 
+  const userRole = location.state?.userRole;
+
   return (
     <html>
       <header>
@@ -372,20 +374,25 @@ function StudentOverview() {
             </div>
           </div>
           <div className="navigation-buttons">
+            {userRole === "teacher" && (
               <button className="back-button"
-                onClick={() => {
-                  navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
-                }}
-              >
-                Go back to Teacher View
-              </button>
+              onClick={() => {
+                navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
+              }}
+            >
+              Go back to Teacher View
+            </button>
+            )}
+            {userRole === "counselor" && (
               <button className="back-button"
-                onClick={() => {
-                  navigate("/counselorView");
-                }}
-              >
-                Go back to Counselor View
-              </button>
+              onClick={() => {
+                navigate("/counselorView");
+              }}
+            >
+              Go back to Counselor View
+            </button>
+            )}
+            
           </div>
         </div>
       </body>

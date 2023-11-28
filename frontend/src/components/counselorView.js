@@ -24,7 +24,7 @@ function CounselorView() {
         if (data) {
           console.log("testing",data)
           navigate("/studentOverview", {
-            state: { myData: data },
+            state: { myData: data, userRole: "counselor" },
           });
         } else {
           alert("Error: \nStudent ID is not Found!");
