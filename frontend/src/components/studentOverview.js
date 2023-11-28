@@ -166,7 +166,7 @@ function StudentOverview() {
         <div className="headLink" onClick={() => {
                 if (studentData) {
                   navigate("/studentHistory", {
-                    state: { myData: studentData, userRole: userRole },
+                    state: { myData: studentData, teacher_id, period0, period1, period2, period3, period4, period5, period6, period7, userRole: userRole },
                   });
                 }
               }}>
