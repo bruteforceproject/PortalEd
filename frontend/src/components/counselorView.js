@@ -42,7 +42,7 @@ function CounselorView() {
         <button
           className="button_cou"
           onClick={() => {
-            navigate("/");
+            navigate("/",{ replace: true });
           }}
         >
           Log Out
