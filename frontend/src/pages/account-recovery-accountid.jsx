@@ -80,7 +80,10 @@ const [error, setError] = useState("");
         {infoInput.map((input) => (
           <InputField key = {input.id} {...input} value = {personalInfo[infoInput.name]} onChange = {onChange}/>
         ))}
-        <button className='log-in-button'>Next</button>
+        <div className="error-message">
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+        <button className='log-in-button' onClick={handleSubmit}>Next</button>
       </form>
     </div>
   )
