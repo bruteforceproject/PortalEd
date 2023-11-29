@@ -161,7 +161,7 @@ function StudentOverview() {
   const userRole = location.state?.userRole;
 
   return (
-    <html>
+    <div>
       <header>
         <div className="headLink" onClick={() => {
                 if (studentData) {
@@ -172,10 +172,10 @@ function StudentOverview() {
               }}>
           <h2>
             <span>
-              <span class="name">Student Name: {studentData.fname} {studentData.lname}</span>
+              <span className="name">Student Name: {studentData.fname} {studentData.lname}</span>
             </span>{" "}
             &nbsp;&nbsp;{" "}
-            <span class="id">Student ID: {studentData.studentID}</span>
+            <span className="id">Student ID: {studentData.studentID}</span>
           </h2>
         </div>
       </header>
@@ -390,7 +390,7 @@ function StudentOverview() {
           </div>
         </div>
       </body>
-    </html>
+    </div>
   );
 }
 export default StudentOverview;
