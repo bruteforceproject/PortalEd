@@ -6,9 +6,10 @@ import "./counselorView.css";
 function CounselorView() {
   const [studentID, setStudentID] = useState("");
   const navigate = useNavigate();
+  //console.log("navigate",navigate);
 
   useEffect(() => {}, []);
-
+  
   async function getData() {
     await fetch(`http://localhost:8000/getStudents`, {
       method: "POST",
@@ -24,7 +25,7 @@ function CounselorView() {
         if (data) {
           console.log("testing",data)
           navigate("/studentOverview", {
-            state: { myData: data },
+            state: { myData: data, userRole: "counselor" },
           });
         } else {
           alert("Error: \nStudent ID is not Found!");
@@ -35,7 +36,7 @@ function CounselorView() {
         console.log(err);
       });
   }
-
+  
   return (
     <div className="container_cou">
       <div className="header-right_cou">

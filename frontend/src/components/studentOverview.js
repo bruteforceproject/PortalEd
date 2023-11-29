@@ -158,33 +158,29 @@ function StudentOverview() {
     }
   }, [location.state]);
 
+  const userRole = location.state?.userRole;
+
   return (
-    <html>
+    <div>
       <header>
-        <div className="headLink">
-          <h2>
-            <span
-              onClick={() => {
+        <div className="headLink" onClick={() => {
                 if (studentData) {
                   navigate("/studentHistory", {
-                    state: { myData: studentData },
+                    state: { myData: studentData, teacher_id, period0, period1, period2, period3, period4, period5, period6, period7, userRole: userRole },
                   });
                 }
-              }}
-              
-            >
-              <span class="name">Student Name: {studentData.fname} {studentData.lname}</span>
+              }}>
+          <h2>
+            <span>
+              <span className="name">Student Name: {studentData.fname} {studentData.lname}</span>
             </span>{" "}
             &nbsp;&nbsp;{" "}
-            <span class="id">Student ID: {studentData.studentID}</span>
+            <span className="id">Student ID: {studentData.studentID}</span>
           </h2>
         </div>
       </header>
       <body>
         <div>
-    
-          
-          
           <div className="Period">
             <div className="period-info">
               <p>
@@ -372,24 +368,29 @@ function StudentOverview() {
             </div>
           </div>
           <div className="navigation-buttons">
+            {userRole === "teacher" && (
               <button className="back-button"
-                onClick={() => {
-                  navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
-                }}
-              >
-                Go back to Teacher View
-              </button>
+              onClick={() => {
+                navigate("/teacherView", { state: { teacher_id, period0, period1, period2, period3, period4, period5, period6, period7} });
+              }}
+            >
+              Go back to Teacher View
+            </button>
+            )}
+            {userRole === "counselor" && (
               <button className="back-button"
-                onClick={() => {
-                  navigate("/counselorView");
-                }}
-              >
-                Go back to Counselor View
-              </button>
+              onClick={() => {
+                navigate("/counselorView");
+              }}
+            >
+              Go back to Counselor View
+            </button>
+            )}
+            
           </div>
         </div>
       </body>
-    </html>
+    </div>
   );
 }
 export default StudentOverview;

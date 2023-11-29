@@ -33,11 +33,11 @@ const StudentHeader = ({ studentName, studentId }) => {
   );
 };
 
-const GoBack = ({studentData}) => {
+const GoBack = ({studentData, userRole, teacher_id, period0, period1, period2, period3, period4, period5, period6, period7}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/studentOverview", {state: {myData: studentData}});
+    navigate("/studentOverview", {state: {myData: studentData, teacher_id, period0, period1, period2, period3, period4, period5, period6, period7, userRole: userRole}});
   };
 
   return (
@@ -98,10 +98,31 @@ const StudentHistory = () => {
 
   const [studentData, setStudentData] = useState({});
   const location = useLocation();
+  const userRole = location.state?.userRole;
+
+  const [content, setContent] = useState('null');
+  const [teacher_id, setTeacherID] = useState('null'); // Initialize as an empty string
+  const [period0, setperiod0] = useState('null'); 
+  const [period1, setperiod1] = useState('null'); 
+  const [period2, setperiod2] = useState('null'); 
+  const [period3, setperiod3] = useState('null'); 
+  const [period4, setperiod4] = useState('null'); 
+  const [period5, setperiod5] = useState('null'); 
+  const [period6, setperiod6] = useState('null'); 
+  const [period7, setperiod7] = useState('null'); 
 
   useEffect(() => {
     console.log(location);
     setStudentData(location.state.myData);
+    setTeacherID(location.state.teacher_id);
+        setperiod0(location.state.period0);
+        setperiod1(location.state.period1);
+        setperiod2(location.state.period2);
+        setperiod3(location.state.period3);
+        setperiod4(location.state.period4);
+        setperiod5(location.state.period5);
+        setperiod6(location.state.period6);
+        setperiod7(location.state.period7);
   }, []);
 
   const studentName = studentData.fname + " " + studentData.lname;
@@ -179,7 +200,8 @@ const StudentHistory = () => {
             <div className="box">{renderEventTiles("Attendance")}</div>
           </div>
         </div>
-        <GoBack studentData={studentData}/>
+        <GoBack studentData={studentData} userRole={userRole} teacher_id={teacher_id} period0={period0} period1={period1} 
+          period2={period2} period3={period3} period4={period4} period5={period5} period6={period6} period7={period7}/>
       </div>
       <GoBackhome />
     </>
