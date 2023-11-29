@@ -9,6 +9,8 @@ import { period_0StudentsFunction, period_1StudentsFunction, period_2StudentsFun
 import { period_3StudentsFunction, period_4StudentsFunction, period_5StudentsFunction } from './periodchange';
 import { period_6StudentsFunction, period_7StudentsFunction} from './periodchange';
 
+import {getGreenAttendaceData, getRedYellowAttendaceData, getRedAcademicData, getGreenYellowAcademicData, getGreenYellowBehaviorData, getRedBehaviorData} from './teacherSaveData';
+
 let num = -1;
 let dataStoredStart = -1;
 
@@ -16,7 +18,7 @@ const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const [content, setContent] = useState('null');
+  const [content, setContent] = useState([]);
   const [teacherID, setTeacherID] = useState('null'); // Initialize as an empty string
   const [period0, setperiod0] = useState('null'); 
   const [period1, setperiod1] = useState('null'); 
@@ -131,41 +133,6 @@ const TeacherView = () => {
         // Handle error appropriately, e.g., set an error state
       });
   }, [activeSwitch, period0, period1, period2, period3, period4, period5, period6, period7]);
-  
-  
-
-  const handleCreateAttendance = async () => {
-    try {
-      // Prepare the data to be sent in the POST request
-      const data = {
-        studentID:"1",
-        class_id:"233",
-        color:"24",
-        date:"0345",
-        acknowledged: true,
-      };
-
-      // Make a POST request to the /createAttendance endpoint
-      const response = await fetch('http://localhost:8000/createAttendance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        // Successfully created the attendance document
-        const responseData = await response.json();
-        console.log('Attendance document created with ID:', responseData.documentId);
-      } else {
-        // Handle errors here
-        console.error('Error creating attendance document:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error creating attendance document:', error);
-    }
-  };
 
 
 
@@ -188,6 +155,12 @@ const TeacherView = () => {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
+        getRedYellowAttendaceData(content);
+        getGreenAttendaceData(content);
+        getGreenYellowAcademicData(content);
+        getRedAcademicData(content);
+        getGreenYellowBehaviorData(content);
+        getRedBehaviorData(content);
         setActiveSwitch(null);
         num = -1;
       }
@@ -259,32 +232,32 @@ const TeacherView = () => {
     }); 
   };
 
+
+
   useEffect(()=> {
     
     if (num === 0) {
-
       const contentData  =
         period_0Students.map((student, index) => (
-          
           <div className="student">
           <div className='grid1' onClick={async () => {
             if (student.studentID) {
               await getData(student.studentID);
             }
           }}>
-          {student.fname} 
+          {student.fname}
           </div>
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
-          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}></div>
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
         </div>
         ))
@@ -300,14 +273,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -322,14 +295,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -344,14 +317,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -366,14 +339,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -388,14 +361,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -410,14 +383,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
       </div>
         ))
@@ -432,14 +405,14 @@ const TeacherView = () => {
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
           <div className='grid3 gridall' style={{ backgroundColor: student.behaviourColor || 'default-color' }}></div>
           <div className='grid4 gridall' style={{ backgroundColor: student.academicsColor || 'default-color' }}> </div>
-          <button className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
+          <button id={student.studentID} className={"grid5 gridall default-color"} style={{ backgroundColor: colorMapatt[index] || '' }} onClick={() => handleTapAtt(index)} >
             <span className='teacher_logo' ><img src={require('./attendance.png')} alt="test" /></span>
           </button>
-          <button className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
-            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
-          </button>
-          <button className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+          <button id={student.studentID} className={"grid6 gridall default-color"} style={{ backgroundColor: colorMapaca[index] || '' }} onClick={() => handleTapAca(index)} >
             <span className='teacher_logo'><img src={require('./academics.png')} alt="test" /></span>
+          </button>
+          <button id={student.studentID} className="grid7 gridall default-color" style={{ backgroundColor: colorMapbeh[index] || '' }} onClick={() => handleTapBeh(index)}>
+            <span className='teacher_logo'><img src={require('./behavior.png')} alt="test" /></span>
           </button>
         </div>
         ))
@@ -470,7 +443,7 @@ const TeacherView = () => {
           </div>
           
         ))}
-        <button className="log-out-button" onClick={handleCreateAttendance}>
+        <button className="log-out-button" onClick={handleLogout}>
             Log Out
           </button>
 

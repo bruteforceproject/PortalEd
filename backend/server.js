@@ -454,7 +454,7 @@ app.post("/api/start-check", async (req, res)  => {
       }
     });
 
-    // Define a route to handle creating a new attendance document
+// Define a route to handle creating a new attendance document
 app.post('/createAttendance', async (req, res) => {
   try {
     // Extract data from the request body
@@ -480,6 +480,64 @@ app.post('/createAttendance', async (req, res) => {
     res.status(201).json({ message: 'Attendance document created successfully', documentId: result.insertedId });
   } catch (error) {
     console.error('Error creating attendance document:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+// Define a route to handle creating a new academic document
+app.post('/createAcademics', async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { studentID, class_id, color, date, acknowledged } = req.body;
+
+
+    // Access the "Attendance" collection
+    //const attendanceCollection = db.collection('Attendance');
+
+    // Create a new attendance document
+    const newAcademicsDocument = {
+      studentID,
+      class_id,
+      color,
+      date,
+      acknowledged,
+    };
+
+    // Insert the new document into the collection
+    const result = await academicsCollection.insertOne(newAcademicsDocument);
+
+
+    res.status(201).json({ message: 'Academics document created successfully', documentId: result.insertedId });
+  } catch (error) {
+    console.error('Error creating academics document:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+// Define a route to handle creating a new Behavior document
+app.post('/createBehavior', async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { studentID, class_id, color, date, acknowledged } = req.body;
+
+
+    // Access the "Attendance" collection
+    //const attendanceCollection = db.collection('Attendance');
+
+    // Create a new attendance document
+    const newBehaviorDocument = {
+      studentID,
+      class_id,
+      color,
+      date,
+      acknowledged,
+    };
+
+    // Insert the new document into the collection
+    const result = await behaviorCollection.insertOne(newBehaviorDocument);
+
+
+    res.status(201).json({ message: 'Behavior document created successfully', documentId: result.insertedId });
+  } catch (error) {
+    console.error('Error creating Behavior document:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
