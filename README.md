@@ -1,6 +1,12 @@
 # PortalEd
 
-![logo1](https://user-images.githubusercontent.com/76506163/236370824-e533a022-758c-47d0-b1a6-6d896571e8d2.png)
+
+
+<div align="center">
+  <img src="logo1copy.png" alt="Screenshot">
+</div>
+
+
 
 # Synopsis
 
@@ -11,6 +17,8 @@ Prompt notification and response to student infractions is necessary to effectiv
 This application automatically notifies the student’s parents and guardians and requires them to acknowledge awareness of their child's behavior, attendance, or academic alerts. With this expedient notification and response, the parents and guardians are more actively engaged and influencing their child’s education, growth, and success.
 
 In addition to alerts, this application enables parents, guardians, and schools to analyze their student’s history and monitor for any positive or negative changes. With this wealth of information, informed-decisions can be made to improve the quality of learning.
+
+The application was developed with the primary objective of making the attendance-taking process easier for educators while concurrently providing a comprehensive platform for monitoring both student academics and behavior.
 
 # Installation
 
@@ -52,9 +60,11 @@ In addition to alerts, this application enables parents, guardians, and schools 
 4. Once opened, navigate to **Terminal**.
 
 5. Click anywhere inside the **Terminal** and input the following command:
-   `cd frontend`
+   `npm run start-dev`
 
-6. Next, input the following command in the **Terminal** which will run the application: `npm start`
+6. Next, you should see mongoDB local server start on port 8000 & local host should open on default browser on port 3000.
+
+   NOTE: Twilio requires API authentication key so may not work unless you replace the key in the file server.js
 
 # Testing
 
