@@ -2,9 +2,9 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
- const yessir = require('twilio')("ACb72962ff113b71a5549964fb3514d15d", "af4c0d4a4a9b6432ed7a8db706ed2c24");
+ const yessir = require('twilio')("ACb72962ff113b71a5549964fb3514d15d", "0b06ec43b9762ecaffdeeea5e4e0ae7e");
 
-//const textFlow = require("textflow.js");
+//const textFlow = require("textflow.js");   bffd946fa8b093a25ce72cf36476b649
 
 //textFlow.useKey("6rcyalWx9EZg4OuURkmpT8kTOpZhteFdO8itwJC32ki1roGcqaCqp64frionxSvr");
 
@@ -346,17 +346,38 @@ app.post("/api/start-check", async (req, res)  => {
   }
 });
 
-    app.post("/api/get-email", async (req, res) => {
-      const { fname, lname, phone } = req.body;
+app.post("/api/get-email", async (req, res) => {
+  const { fname, lname, phone } = req.body;
+  console.log("testphone" + phone);
 
-      const user = await parentCollection.findOne({ phone });
-
-      if (!user) {
+  try {
+    const user = await parentCollection.findOne({ phone, fname });
+    console.log(user);
+    if (!user) {
+      // If user is not found in parentCollection, try to find in teacherCollection
+      const teacherUser = await teacherCollection.findOne({ phone, fname });
+      /*console.log("fname"+fname);
+      console.log("lname"+lname);
+      console.log("teacherfname"+teacherUser.fname);
+      console.log("teacherlname"+teacherUser.lname); */
+      if (!teacherUser) {
         return res.status(404).json({ message: "Email doesn't exist" });
-      } else if (fname == user.fname && lname == user.lname) {
-        res.status(200).json({ message: "Found email", email: user.email });
+      } else if (fname == teacherUser.fname && lname == teacherUser.lname) {
+        res.status(200).json({ message: "Found email", email: teacherUser.email });
       }
-    });
+    } else if (fname == user.fname && lname == user.lname) {
+      res.status(200).json({ message: "Found email", email: user.email });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
+
+
+
 
     app.post("/api/reset-password", async(req, res) => {
       const { email, password } = req.body;

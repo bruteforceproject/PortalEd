@@ -17,6 +17,7 @@ const YourAccountID = () => {
         <h1 className='title' >Portal ED</h1>
         <p className='caption' id="medium-light">Email Found</p>
         <p className='caption' id="small">Your email is: {userEmail}</p>
+        
         <button className='log-in-button'>Log In</button>
       </form>
     </div>
