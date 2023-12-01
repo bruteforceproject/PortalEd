@@ -185,7 +185,20 @@ List key milestones, how much we have left to do for 191, and what we expect to 
 - [x] Alert System
 - [x] Dynamic student component to track attendance, behavior and academics 
 - [x] Fully Functional MERN stack Webapp
-- [x] Deployed Web app to the URL link [http://www.portaled.com/](http://www.portaled.com/)
+- [x] Deployed Web app to the URL link [http://www.portaled.com/](http://www.portaled.com/)  
+
+
+# Few Snapshots of the Web App  
+**Login Page:**
+![Screenshot 1](frontend/screenshots/LoginPage.png)  
+**TeacherView Page:**  
+![Screenshot 2](frontend/screenshots/TeacherViewPage.png)  
+**StudentOverview Page:**  
+![Screenshot 3](frontend/screenshots/StudentOverViewPage.png)  
+**Student History Page:**  
+![Screenshot 4](frontend/screenshots/StudentHistoryPage.png)  
+
+
 
 
 # Credits
