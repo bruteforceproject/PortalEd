@@ -104,6 +104,31 @@ By following these instructions, you can run the tests for the PortalEd project 
 
 - During the testing phase of our project, we utilized NPM (Node Package Manager) for testing purposes. We focused on testing our frontend to ensure that each view is properly styled and functions according to our desired specifications.
 
+# Jest Testing
+
+ **System Requirements:**  
+Node Version: v18.14.0  
+NPM Version: v9.4.2  
+React: v18.2.0  
+
+ **Set-Up:**  
+1. Clone Github repository by running the following command: 
+  
+-     > github clone https://https://github.com/bruteforceproject/PortalEd  
+2. Add Twilio API authentication key in server.js otherwise “forgot password?” feature will not work. This API key is sensitive information and should not be posted publicly.  
+   **NOTE** This step is not needed for the rest of the app to work, this api key is simply only for SMS verification feature
+     
+3. In the terminal run npm to install all required packages
+-       >npm install
+
+4. Next, since you should be in the main directory 'PortalEd' navigate to the frontend folder by running the following command  
+-       > cd frontend  
+5. Now you can run any specific *.test file listed in the folder D:\PortalEd\frontend\src\components
+   For example, to test CounselorView.test.js run the following command  
+-     > npm test src/components/CounselorView.test.js 
+
+
+
 # Developer Instructions
 
 - Required Software: Any IDE that is capable of editing, creating and running a react application.
@@ -123,11 +148,20 @@ By following these instructions, you can run the tests for the PortalEd project 
 -      -main pages will be ".js" files instead of html since we are using react.
       -each page has a corresponding .css file that handles styling
 
+
+
+
+
+
+
+
+
+
 # Timeline
 
 List key milestones, how much we have left to do for 191, and what we expect to get done in 191
 
-### Key Milestones:
+### Key Milestones in CSC 190:
 
 - [x] Front-end Counselor View
 - [x] Front-end Parent View
@@ -136,17 +170,23 @@ List key milestones, how much we have left to do for 191, and what we expect to 
 - [x] Display Student-History
 - [x] Student Average widget
 
-### What's left to do for 190
-
-- [ ] Establish consistent visual stype so the app looks cohesive and unified across all screens
-- [ ] Database management
-- [ ] Counselor View components
 
 ### What we expect to get done in 191
 
 - Mongodb variables for student names
 - Calculate and store student history and averages in database
 - All components to be integrated in a way that data can be shared and access consistently
+
+### Key Milestones in CSC 191:
+- [x] Setting up first few API endpoints to communicate front end with back end. 
+- [x] Login Authentication
+- [x] Fully Functional Mobile app (For Parents) 
+- [x] Mongodb database with structured design 
+- [x] Alert System
+- [x] Dynamic student component to track attendance, behavior and academics 
+- [x] Fully Functional MERN stack Webapp
+- [x] Deployed Web app to the URL link [http://www.portaled.com/](http://www.portaled.com/)
+
 
 # Credits
 
