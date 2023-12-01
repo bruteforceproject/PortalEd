@@ -122,6 +122,7 @@ const Login = () => {
           </div>
           <a
             className="log-in-link"
+            
             href="http://localhost:3000/account-recovery/password"
           >
             Forgot email or password?

@@ -62,7 +62,7 @@ const [error, setError] = useState("");
       } 
       
       else if (response.status === 404) {
-        setError("Email not found");
+        setError("Invalid credentials");
       }
     } 
     
