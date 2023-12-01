@@ -1,16 +1,15 @@
 import React from 'react'
 
 // This is for saving the data in MongoDB through attendace after each Period
-async function handleCreateAttendance(studentIDValue,color,acknowledge){
+async function handleCreateAttendance(studentIDValue,color,acknowledge, classIDValue){
     try {
       // Prepare the data to be sent in the POST request
       let date = new Date();
       date = date.toLocaleDateString();
 
-      console.log("hca")
       const data = {
         studentID:studentIDValue,
-        class_id: "",
+        class_id: classIDValue,
         color: color,
         date: date,
         acknowledged: acknowledge,
@@ -38,7 +37,7 @@ async function handleCreateAttendance(studentIDValue,color,acknowledge){
     }
 }
 
-export function getGreenAttendaceData(content){
+export function getGreenAttendaceData(content, classIDValue){
     const greenBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const greenDivs = React.Children.toArray(element.props.children).filter(
@@ -55,11 +54,11 @@ export function getGreenAttendaceData(content){
       const studentIDValue = value.props.id;
       const color = "#558c3b";
       const acknowledge = true;
-      handleCreateAttendance(studentIDValue,color,acknowledge);
+      handleCreateAttendance(studentIDValue,color,acknowledge, classIDValue);
     })
 }
 
-export function getRedYellowAttendaceData(content){
+export function getRedYellowAttendaceData(content, classIDValue){
     const redYellowBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const redYellowDivs = React.Children.toArray(element.props.children).filter(
@@ -76,22 +75,21 @@ export function getRedYellowAttendaceData(content){
       const studentIDValue = value.props.id;
       const color = value.props.style.backgroundColor;
       const acknowledge = false;
-      handleCreateAttendance(studentIDValue,color, acknowledge);
+      handleCreateAttendance(studentIDValue,color, acknowledge, classIDValue);
     })
 }
 
 
 // This is for saving the data in MongoDB through academic after each Period
-async function handleCreateAcademic(studentIDValue,color,acknowledge){
+async function handleCreateAcademic(studentIDValue,color,acknowledge,classIDValue){
     try {
       // Prepare the data to be sent in the POST request
       let date = new Date();
       date = date.toLocaleDateString();
 
-      console.log("hca")
       const data = {
         studentID:studentIDValue,
-        class_id: "",
+        class_id: classIDValue,
         color: color,
         date: date,
         acknowledged: acknowledge,
@@ -119,7 +117,7 @@ async function handleCreateAcademic(studentIDValue,color,acknowledge){
     }
 }
 
-export function getRedAcademicData(content){
+export function getRedAcademicData(content,classIDValue){
     const redBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const redDivs = React.Children.toArray(element.props.children).filter(
@@ -136,11 +134,11 @@ export function getRedAcademicData(content){
       const studentIDValue = value.props.id;
       const color = "#f25d50";
       const acknowledge = false;
-      handleCreateAcademic(studentIDValue,color,acknowledge);
+      handleCreateAcademic(studentIDValue,color,acknowledge, classIDValue);
     })
 }
 
-export function getGreenYellowAcademicData(content){
+export function getGreenYellowAcademicData(content, classIDValue){
     const greenYellowBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const greenYellowDivs = React.Children.toArray(element.props.children).filter(
@@ -157,13 +155,13 @@ export function getGreenYellowAcademicData(content){
       const studentIDValue = value.props.id;
       const color = value.props.style.backgroundColor;
       const acknowledge = true;
-      handleCreateAcademic(studentIDValue,color, acknowledge);
+      handleCreateAcademic(studentIDValue,color, acknowledge, classIDValue);
     })
 }
 
 
 // This is for saving the data in MongoDB through Behaviour after each Period
-async function handleCreateBehavior(studentIDValue,color,acknowledge){
+async function handleCreateBehavior(studentIDValue,color,acknowledge, classIDValue){
     try {
       // Prepare the data to be sent in the POST request
       let date = new Date();
@@ -171,7 +169,7 @@ async function handleCreateBehavior(studentIDValue,color,acknowledge){
 
       const data = {
         studentID:studentIDValue,
-        class_id: "",
+        class_id: classIDValue,
         color: color,
         date: date,
         acknowledged: acknowledge,
@@ -199,7 +197,7 @@ async function handleCreateBehavior(studentIDValue,color,acknowledge){
     }
 }
 
-export function getRedBehaviorData(content){
+export function getRedBehaviorData(content,classIDValue){
     const redBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const redDivs = React.Children.toArray(element.props.children).filter(
@@ -216,11 +214,11 @@ export function getRedBehaviorData(content){
       const studentIDValue = value.props.id;
       const color = "#f25d50";
       const acknowledge = false;
-      handleCreateBehavior(studentIDValue,color,acknowledge);
+      handleCreateBehavior(studentIDValue,color,acknowledge, classIDValue);
     })
 }
 
-export function getGreenYellowBehaviorData(content){
+export function getGreenYellowBehaviorData(content, classIDValue){
     const greenYellowBackgroundDivs = content.reduce((acc, element) => {
       // Extract red background divs from the element's children
       const greenYellowDivs = React.Children.toArray(element.props.children).filter(
@@ -237,7 +235,7 @@ export function getGreenYellowBehaviorData(content){
       const studentIDValue = value.props.id;
       const color = value.props.style.backgroundColor;
       const acknowledge = true;
-      handleCreateBehavior(studentIDValue,color, acknowledge);
+      handleCreateBehavior(studentIDValue,color, acknowledge, classIDValue);
     })
 }
 

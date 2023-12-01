@@ -13,7 +13,7 @@ import {getGreenAttendaceData, getRedYellowAttendaceData, getRedAcademicData, ge
 
 let num = -1;
 let dataStoredStart = -1;
-
+let classIDValue;
 const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -124,9 +124,7 @@ const TeacherView = () => {
             break;
           default:
             break;
-        }
-           
-
+        }     
       })
       .catch((error) => {
         console.error('Error fetching student data by period:', error);
@@ -155,13 +153,14 @@ const TeacherView = () => {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
-        getRedYellowAttendaceData(content);
-        getGreenAttendaceData(content);
-        getGreenYellowAcademicData(content);
-        getRedAcademicData(content);
-        getGreenYellowBehaviorData(content);
-        getRedBehaviorData(content);
-        setActiveSwitch(null);
+        console.log(index);
+        getRedYellowAttendaceData(content, classIDValue);
+        getGreenAttendaceData(content, classIDValue);
+        getGreenYellowAcademicData(content, classIDValue);
+        getRedAcademicData(content, classIDValue);
+        getGreenYellowBehaviorData(content, classIDValue);
+        getRedBehaviorData(content, classIDValue);
+        setActiveSwitch(null, classIDValue);
         num = -1;
       }
     }
@@ -237,6 +236,7 @@ const TeacherView = () => {
   useEffect(()=> {
     
     if (num === 0) {
+      classIDValue = period0;
       const contentData  =
         period_0Students.map((student, index) => (
           <div className="student">
@@ -263,11 +263,12 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 1) {
+      classIDValue = period1;
       const contentData  =
       
         period_1Students.map((student, index) => (
           <div className="student" key={index}>
-          <div className='grid1' key={index} >
+          <div  className='grid1' key={index} >
             {student.fname}
           </div>
           <div className='grid2 gridall' style={{ backgroundColor: student.attendanceData || 'default-color' }}></div>
@@ -286,6 +287,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 2) {
+      classIDValue = period2;
       const contentData  =
         period_2Students.map((student, index) => (
           <div className="student" key={index}>
@@ -308,6 +310,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 3) {
+      classIDValue = period3;
       const contentData  =
         period_3Students.map((student, index) => (
           <div className="student" key={index}>
@@ -330,6 +333,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 4) {
+      classIDValue = period4;
       const contentData  =
         period_4Students.map((student, index) => (
           <div className="student" key={index}>
@@ -352,6 +356,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 5) {
+      classIDValue = period5;
       const contentData  =
         period_5Students.map((student, index) => (
           <div className="student" key={index}>
@@ -374,6 +379,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 6) {
+      classIDValue = period6;
       const contentData  =
         period_6Students.map((student, index) => (
           <div className="student" key={index}>
@@ -396,6 +402,7 @@ const TeacherView = () => {
         ))
         setContent(contentData);
     } else if(num === 7) {
+      classIDValue = period7;
       const contentData  =
         period_7Students.map((student, index) => (
           <div className="student" key={index}>
