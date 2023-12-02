@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const Verify = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const userPhone = location.state.userPhone
+  const userPhone = location.state.userPhone || "";
   const userEmail = location.state.userEmail
   const [error, setError] = useState("");
   
