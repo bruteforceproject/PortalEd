@@ -161,7 +161,7 @@ export function getGreenYellowAcademicData(content, classIDValue){
 
 
 // This is for saving the data in MongoDB through Behaviour after each Period
-async function handleCreateBehavior(studentIDValue,color,acknowledge, classIDValue){
+async function handleCreateBehavior(studentIDValue,color, acknowledge, classIDValue, alertID){
     try {
       // Prepare the data to be sent in the POST request
       let date = new Date();
@@ -173,6 +173,7 @@ async function handleCreateBehavior(studentIDValue,color,acknowledge, classIDVal
         color: color,
         date: date,
         acknowledged: acknowledge,
+        alertID: alertID,
       };
 
       // Make a POST request to the /createAcademic endpoint
@@ -197,25 +198,9 @@ async function handleCreateBehavior(studentIDValue,color,acknowledge, classIDVal
     }
 }
 
-export function getRedBehaviorData(content,classIDValue){
-    const redBackgroundDivs = content.reduce((acc, element) => {
-      // Extract red background divs from the element's children
-      const redDivs = React.Children.toArray(element.props.children).filter(
-        child =>
-          child.props &&
-          child.props.style &&
-          child.props.style.backgroundColor === '#f25d50' &&
-          child.props.className === "grid7 gridall default-color"
-      );
-      // Concatenate redDivs to the accumulator
-      return acc.concat(redDivs);
-    }, []);
-    redBackgroundDivs.map((value) =>{
-      const studentIDValue = value.props.id;
-      const color = "#f25d50";
-      const acknowledge = false;
-      handleCreateBehavior(studentIDValue,color,acknowledge, classIDValue);
-    })
+export function getRedBehaviorData(content,classIDValue, alertID){
+    const acknowledge = false;
+    handleCreateBehavior(content.props.children[6].props.id,"#f25d50",acknowledge, classIDValue, alertID);
 }
 
 export function getGreenYellowBehaviorData(content, classIDValue){
@@ -235,7 +220,7 @@ export function getGreenYellowBehaviorData(content, classIDValue){
       const studentIDValue = value.props.id;
       const color = value.props.style.backgroundColor;
       const acknowledge = true;
-      handleCreateBehavior(studentIDValue,color, acknowledge, classIDValue);
+      handleCreateBehavior(studentIDValue,color, acknowledge, classIDValue, 0);
     })
 }
 

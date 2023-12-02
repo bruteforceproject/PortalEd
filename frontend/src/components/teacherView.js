@@ -14,6 +14,7 @@ import {getGreenAttendaceData, getRedYellowAttendaceData, getRedAcademicData, ge
 let num = -1;
 let dataStoredStart = -1;
 let classIDValue;
+let alertID = 0;
 const TeacherView = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -153,13 +154,11 @@ const TeacherView = () => {
       alert("Finishing the Period will save all the data of Atendance, Behaviour, and Academic");
       const turnOff = window.confirm(`Are you sure that you want to finish the Period ${index}`);
       if (turnOff) {
-        console.log(index);
         getRedYellowAttendaceData(content, classIDValue);
         getGreenAttendaceData(content, classIDValue);
         getGreenYellowAcademicData(content, classIDValue);
         getRedAcademicData(content, classIDValue);
         getGreenYellowBehaviorData(content, classIDValue);
-        getRedBehaviorData(content, classIDValue);
         setActiveSwitch(null, classIDValue);
         num = -1;
       }
@@ -221,11 +220,18 @@ const TeacherView = () => {
     setColorMapbeh((prevColorMap) => {
       const currentColor = prevColorMap[index] === '#558c3b' ? '#f2ca52' : prevColorMap[index] === '#f2ca52' ? '#f25d50' : '#558c3b';
       if (currentColor === "#f25d50"){
-        let sentence = 'Choose an option:\n1. Distractive actions\n2. Misuse of supplies, equipment, or electronics\n3. Defiance of authority\n4. Unsafe, threatening, or violent actions\n5. Other, write the action?';
-        const userChoice = window.prompt(sentence);
-		    if (userChoice) {
-		      alert(`You chose: ${userChoice}`);
-		    }
+        do{
+          let sentence = 'Enter a number (1, 2, 3, 4, or 5):\n1. Distractive actions\n2. Misuse of supplies, equipment, or electronics\n3. Defiance of authority\n4. Unsafe, threatening, or violent actions\n5. Other';
+          alertID = window.prompt(sentence);
+        }while(alert == null && !["1", "2", "3", "4","5"].includes(alertID));
+        console.log(alertID);
+		    if (["1", "2", "3", "4","5"].includes(alertID)) {
+		      alert(`Alert Have been sent to parent`);
+          getRedBehaviorData(content[index], classIDValue, alertID);
+		    }else{
+          return {...prevColorMap, [index]: "#f2ca52"};
+        }
+        alertID = "0";
       }
       return { ...prevColorMap, [index]: currentColor };
     }); 
